@@ -1,0 +1,76 @@
+//for themeMix
+// color
+$primary-color: #ea721a;
+$success-color: #12b35e;
+$warning-color: #f90;
+// $warning-color: #ff5422;
+$info-color: #73adec;
+$error-color: #f13131;
+$gray-color: #999;
+
+$ball-default-color: #f13131;
+$ball-red: #f13131;
+$ball-green: #47b53a;
+$ball-blue: #3990b4;
+$ball-gray: #999;
+// 投注页面样式改版v1.0
+$primary-type2: #f13131;
+
+// btn
+$btn-primary-bg: $primary-color;
+$btn-primary-active-bg: darken($btn-primary-bg, 8%);
+
+// layout
+$layout-primary: #c00;
+$layout-wrap-width: 1280px;
+$layout-sideNav-width: 230px;
+$layout-home-rank-height: 486px;
+
+$space-base:								20px !default; // 20
+$space-xs:									5px !default;	// 5
+$space-sm:									10px !default;	// 10
+$space:											$space-base !default;	// 20
+$space-lg:									30px !default;	// 30
+
+// function
+@mixin clearfix() {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
+
+%clearfix {
+	&::after {
+		display: block;
+		clear: both;
+		content: "";
+	}
+}
+
+@mixin ellipsis() {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin square($size) {
+  $_size: $size * 1px;
+  width: $_size;
+  height: $_size;
+  line-height: $_size;
+}
+
+//for themeBoMao
+//color
+$BoMao-yellow-1: #ffd100;
+$BoMao-yellow-2: #ffaa0d;
+$BoMao-yellow-3: #ffc342;
+$BoMao-dark-1: #262732;
+$BoMao-dark-2: #161221;
+$BoMao-text-color: #555555;
+$BoMao-linearGradient-green: linear-gradient(#88e0cd, #25b596);
+
+//layout
+$BoMao-layout: 1280px;

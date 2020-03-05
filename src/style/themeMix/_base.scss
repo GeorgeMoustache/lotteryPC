@@ -1,0 +1,168 @@
+
+#themeMix {
+  background:#f5f5f5;
+  font-size: 12px;
+  color: #495060;
+  line-height: 1.5;
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  }
+  .fn-clear:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: ' ';
+    clear: both;
+    height: 0;
+  }
+  .fn-clear {
+    zoom: 1;
+  }
+  .fn-hide {
+    display: none;
+  }
+  .fn-vishide {
+    visibility: hidden;
+  }
+  .fn-left,
+  .fn-right {
+    display: inline;
+  }
+  .fn-left {
+    float: left;
+  }
+  .fn-right {
+    float: right;
+  }
+  .ellipsis {
+    @include ellipsis;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  ol,
+  ul {
+    list-style: none;
+  }
+
+  .mr15 {
+    margin-right: 15px;
+  }
+  .mt15 {
+    margin-top: 15px;
+  }
+  .ml16 {
+    margin-left: 16px;
+  }
+  .mb16 {
+    margin-bottom: 16px;
+  }
+  .mb20 {
+    margin-bottom: 20px;
+  }
+  .mb10 {
+    margin-bottom: 10px;
+  }
+  .mr10 {
+    margin-right: 10px;
+  }
+  .ml10 {
+    margin-left: 10px;
+  }
+  .text-primary {
+    color: $primary-color;
+  }
+  .text-primary-type2 {
+    color: $primary-type2;
+  }
+  .text-primary .ivu-input {
+    color: $primary-color;
+  }
+  .text-success {
+    color: $success-color;
+  }
+  .text-warning {
+    color: $warning-color;
+  }
+  .text-info {
+    color: $info-color;
+  }
+  .text-error {
+    color: $error-color;
+  }
+  .text-gray {
+    color: $gray-color;
+  }
+  .font-lg {
+    font-size: 16px;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .text-right {
+    text-align: right;
+  }
+  .text-black {
+    color: #333;
+  }
+
+  .form-width {
+    width: 250px;
+    &-sm {
+      width: 120px;
+    }
+    &-xs {
+      width: 60px;
+    }
+  }
+
+  .null-tip {
+    text-align: center;
+  }
+
+  // divide
+  .divide {
+    margin: 15px;
+    height: 1px;
+    border-bottom: 1px #cecece dashed;
+  }
+
+  // layout
+  .layout-wrap {
+    position: relative;
+    margin: 0 auto;
+    width: $layout-wrap-width;
+    @include clearfix();
+  }
+
+  // spin
+  .spin-icon-load {
+    animation: ani-spin 1s linear infinite;
+  }
+  @keyframes ani-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .spin-col {
+    height: 100px;
+    position: relative;
+    border: 1px solid #eee;
+  }
+
+  .clearfix {
+    @extend %clearfix;
+  }
+}

@@ -1,0 +1,1674 @@
+#chatroom {
+  position: relative;
+  width: 375px;
+  height: 100%;
+  border: 1px solid #f1f1f1;
+  overflow: hidden;
+  i,
+  em {
+    font-style: normal;
+  }
+  //聊天室 head
+  .room-head {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    background: #fff;
+    .title {
+      font-size: 16px;
+      color: #707070;
+    }
+    .option {
+      display: inline-flex;
+      li {
+        margin-left: 10px;
+        > a {
+          display: block;
+          width: 14px;
+          height: 16px;
+          background-repeat: no-repeat;
+          background-position: center center;
+          text-indent: -9999px;
+          &.filter {
+            background-image: url('~assets/webchat/filter-toggle.svg');
+          }
+          &.readme {
+            background-image: url('~assets/webchat/readme.svg');
+          }
+        }
+        .sub-menu {
+          position: absolute;
+          right: 0;
+          top: 100%;
+          width: 194px;
+          padding: 10px;
+          background: #fff;
+          z-index: 13;
+          a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 5px 0;
+            background: none;
+            border: 1px solid transparent;
+            border-radius: 2px;
+            font-size: 16px;
+            color: #606060;
+            &::before {
+              content: '';
+              display: block;
+              width: 21px;
+              height: 24px;
+              margin-right: 10px;
+              background-repeat: no-repeat;
+              background-position: center center;
+            }
+            &.all::before {
+              background-image: url('~assets/webchat/filter-all.svg');
+              background-size: 20px auto;
+            }
+            &.redpack::before {
+              background-image: url('~assets/webchat/filter-redpack.svg');
+            }
+            &.msg::before {
+              background-image: url('~assets/webchat/filter-message.svg');
+            }
+            &.follow::before {
+              background-image: url('~assets/webchat/filter-follow.svg');
+              background-size: 100% auto;
+            }
+            &:hover {
+              border-color: #ef9477;
+            }
+            &.active {
+              background: #ef9477;
+              color: #fff;
+              &.all::before {
+                background-image: url('~assets/webchat/filter-all-w.svg');
+              }
+              &.redpack::before {
+                background-image: url('~assets/webchat/filter-redpack-w.svg');
+              }
+              &.msg::before {
+                background-image: url('~assets/webchat/filter-message-w.svg');
+              }
+              &.follow::before {
+                background-image: url('~assets/webchat/filter-follow-w.svg');
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //過濾器 mask
+  #filter-mask {
+    position: absolute;
+    left: 0;
+    top: 37px;
+    bottom: 0;
+    width: 100%;
+    background: rgba(4, 4, 15, 0.65);
+    z-index: 12;
+  }
+
+  //聊天室訊息列表
+  .history {
+    position: absolute;
+    left: 0;
+    top: 36px;
+    bottom: 84px;
+    width: 100%;
+    padding: 10px;
+    background: #f2f2f2;
+    overflow: auto;
+    transition: all 0.3s;
+    &.active {
+      bottom: 199px;
+    }
+    li.list {
+      margin-top: 15px;
+    }
+    li.view-log {
+      margin: 0;
+      font-size: 12px;
+      text-align: center;
+      .more {
+        display: inline-block;
+        margin-bottom: 5px;
+        color: #40a4e6;
+      }
+      .time span {
+        display: inline-block;
+        padding: 0 5px;
+        background: #c1c3c4;
+        border-radius: 5px;
+        color: #fff;
+        line-height: 19px;
+      }
+    }
+  }
+
+  //等級樣式
+  .user-level,
+  .user-label,
+  .user-nickname {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 5px;
+    padding: 1px 5px 1px 1px;
+    border-radius: 25px;
+    font-size: 12px;
+    color: #fff;
+    line-height: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .user-level i {
+    width: 15px;
+    height: 15px;
+    margin-right: 2px;
+    background: url('~assets/webchat/icon_level.svg');
+    visibility: middle;
+    color: #000;
+    text-align: center;
+  }
+
+  @for $i from 0 through 2 {
+    .user-label#{$i} {
+      &::before {
+        content: '';
+        display: block;
+        width: 15px;
+        height: 15px;
+        margin-right: 2px;
+        background-image: url('~assets/webchat/icon_label-#{$i}.svg');
+      }
+    }
+  }
+
+  $direction: to right;
+  @for $n from 0 through 5 {
+    $levelLoop: 10 * $n;
+
+    .user-level#{1 + $levelLoop} {
+      background: #ffae00;
+    }
+    .user-level#{2 + $levelLoop} {
+      background: #ff8a8c;
+    }
+    .user-level#{3 + $levelLoop} {
+      background: #ff7613;
+    }
+    .user-level#{4 + $levelLoop} {
+      background: #fc5c33;
+    }
+    .user-level#{5 + $levelLoop} {
+      background: #f6372a;
+    }
+    .user-level#{6 + $levelLoop} {
+      background: #ff4585;
+    }
+    .user-level#{7 + $levelLoop} {
+      background: #eb59b7;
+    }
+    .user-level#{8 + $levelLoop} {
+      background: #ff1572;
+    }
+    .user-level#{9 + $levelLoop} {
+      background: #c90096;
+    }
+    .user-level#{10 + $levelLoop} {
+      background: #da1467;
+    }
+  }
+  .user-label0 {
+    background: #ff992e;
+  }
+  .user-label1 {
+    background: #d91608;
+  }
+  .user-label2 {
+    background: #992aa6;
+  }
+
+  // 昵称
+  .user-nickname {
+    padding-right: 0;
+    color: #fc701a;
+  }
+
+  //@用戶
+  i.eite {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 2px;
+    background: linear-gradient(#edfe3e, #b5f4b2);
+    border-radius: 5px;
+    font-size: 12px;
+    vertical-align: middle;
+  }
+
+  //关注按鈕
+  .attention-btn {
+    display: inline-block;
+    width: 49px;
+    height: 17px;
+    background: #ff4d4d;
+    border: 1px solid #ff4d4d;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #fff;
+    line-height: 15px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .attention-btn.active {
+    background: #fff;
+    color: #ff4d4d;
+  }
+
+  //一般文字訊息
+  .message {
+    padding-top: 15px;
+    i {
+      position: relative;
+      display: inline-block;
+      min-width: 30px;
+      padding: 6px;
+      background: rgb(228, 232, 246);
+      border: 1px solid rgb(194, 194, 194);
+      border-radius: 10px;
+      font-size: 12px;
+      word-break: break-all;
+      line-height: 1.33;
+      &::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: -10px;
+        display: block;
+        width: 14px;
+        height: 10px;
+        background: url('~assets/webchat/bubble.svg');
+      }
+      .emoji-img {
+        display: inline-block;
+        width: 20px;
+        height: auto;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  //圖片訊息
+  .picture {
+    margin-top: 5px;
+    img {
+      display: block;
+      max-width: 80px;
+      height: auto;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  //領取紅包訊息
+  .receive-red {
+    padding: 0 40px;
+    font-size: 12px;
+    color: #2a2a2a;
+    line-height: 1.3;
+    text-align: center;
+    cursor: pointer;
+    .name {
+      color: #535eff;
+    }
+    .money {
+      color: #ff4d4d;
+    }
+  }
+
+  //上線提醒訊息
+  .notice-reminding {
+    width: 270px;
+    margin: 0 auto;
+    background: #c1c1c1;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #fff;
+    line-height: 19px;
+    text-align: center;
+    i {
+      color: #ff7700;
+    }
+  }
+
+  // 分享類別共用
+  .share-panel {
+    display: flex;
+    margin-top: 10px;
+    .flag {
+      flex-shrink: 0;
+      display: block;
+      width: 60px;
+      padding: 20px 15px;
+      font-size: 12px;
+      color: #fff;
+      text-align: center;
+    }
+    dl {
+      flex-grow: 1;
+      dt {
+        padding: 3px 0;
+        font-size: 13px;
+        color: #fff;
+        text-align: center;
+      }
+      dd {
+        display: flex;
+        align-items: center;
+        padding: 0 5px;
+        font-size: 12px;
+        color: #666;
+      }
+      .info {
+        flex-grow: 1;
+      }
+      .info p {
+        padding: 4px 10px;
+      }
+      .issue {
+        border-bottom: 1px solid #adabad;
+      }
+      a {
+        display: block;
+        width: 46px;
+        margin-left: 15px;
+        background: #f13131;
+        border-radius: 6px;
+        font-size: 12px;
+        color: #fff;
+        line-height: 20px;
+        text-align: center;
+      }
+    }
+  }
+
+  .share-panel.plan .flag {
+    padding: 20px 5px;
+    background: linear-gradient(to right, #af067d, #ff3c3e);
+  }
+
+  .share-panel.plan dl {
+    background: #fff5ff;
+  }
+
+  .share-panel.plan dt {
+    background: #ff3c3e;
+  }
+
+  .share-panel.order .flag {
+    background: linear-gradient(to right, #ff0032, #ff8081);
+  }
+
+  .share-panel.order dl {
+    background: #fff6e1;
+  }
+
+  .share-panel.order dt {
+    background: #ff8081;
+  }
+
+  .share-panel.combat .flag {
+    background: linear-gradient(to right, #ff3e00, #ffbd1a);
+  }
+
+  .share-panel.combat dl {
+    background: #fff2f2;
+  }
+
+  .share-panel.combat dt {
+    background: #ffbd1a;
+  }
+
+  //紅包群組樣式
+  .redpack-group {
+    margin-top: 10px;
+    border-radius: 3px;
+    overflow: hidden;
+    line-height: 1.5;
+    cursor: pointer;
+    dt {
+      position: relative;
+      padding: 15px 85px 15px 100px;
+      font-size: 16px;
+      &::before {
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        display: block;
+      }
+      .money {
+        margin-bottom: 10px;
+        color: #fff;
+      }
+      .bomb {
+        color: #535eff;
+      }
+      .info {
+        font-size: 12px;
+        color: #fff;
+      }
+      .status {
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        color: #fff;
+      }
+    }
+    dd {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 15px;
+      background: #fff;
+      font-size: 12px;
+      color: #707070;
+      .time {
+        display: flex;
+        align-items: center;
+        i {
+          margin-right: 3px;
+          font-size: 14px;
+        }
+      }
+    }
+    &.red-packet dt,
+    &.flaunt-red-packet dt {
+      background: linear-gradient(to right, #ff7344, #c93636);
+    }
+    &.single-bomb dt,
+    &.multi-bomb dt {
+      background: linear-gradient(to right, #fdc240, #ff9437);
+    }
+    &.red-packet dt::before,
+    &.flaunt-red-packet dt::before {
+      width: 74px;
+      height: 74px;
+      margin-top: -37px;
+    }
+    &.red-packet dt::before {
+      background: url('~assets/webchat/redpack.png');
+    }
+    &.flaunt-red-packet dt::before {
+      background: url('~assets/webchat/flaunt-redpack.png');
+    }
+    &.single-bomb dt::before,
+    &.multi-bomb dt::before {
+      width: 60px;
+      height: 68px;
+      margin-top: -34px;
+    }
+    &.single-bomb dt::before {
+      background: url('~assets/webchat/single-bomb.png');
+    }
+    &.multi-bomb dt::before {
+      background: url('~assets/webchat/multi-bomb.png');
+    }
+    &.red-packet.disabled dt,
+    &.flaunt-red-packet.disabled dt {
+      background: #ff9d7c;
+    }
+    &.single-bomb.disabled dt,
+    &.multi-bomb.disabled dt {
+      background: #ffcea2;
+    }
+    &.lock {
+      cursor: not-allowed;
+    }
+  }
+
+  //聊天室主要功能區塊
+  .chatbox {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+  }
+
+  //表情符號列表
+  .emoji {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    width: 100%;
+    height: 115px;
+    margin-bottom: -115px;
+    background: #dcdcdc;
+    font-size: 30px;
+    color: #666;
+    line-height: 115px;
+    text-align: center;
+    transition: all 0.3s;
+    &.active {
+      margin-bottom: 0;
+    }
+  }
+
+  .emoji-items {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 6px 30px;
+    li {
+      width: 14.2%;
+      height: 33px;
+      cursor: pointer;
+      img {
+        display: block;
+        width: 25px;
+        height: auto;
+        margin: 0 auto;
+        transition: all 0.3s;
+      }
+      &:hover img {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  //聊天室 emoji 樣式
+  .emoji {
+    .ivu-carousel-arrow {
+      width: 25px;
+      height: 25px;
+    }
+    .ivu-carousel-arrow.left {
+      left: 8px
+    }
+    .ivu-carousel-arrow.right {
+      right: 8px
+    }
+    .ivu-icon {
+      position: relative;
+      top: -50px;
+      font-size: 15px;
+    }
+    .ivu-carousel-dots-inside {
+      bottom: -5px;
+      li {
+        margin: 0 3px
+      }
+      li button {
+        width: 4px;
+        height: 4px;
+        background: #929090;
+        border-radius: 50%;
+        opacity: 1;
+      }
+      li.ivu-carousel-active button {
+        background: #FFF;
+      }
+    }
+  }
+
+  //發紅包 + 上傳圖片 + 開表情符號 + 清除
+  .control {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 12px 5px 18px;
+    background: #fff;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+    z-index: 11;
+    a,
+    label {
+      display: block;
+      cursor: pointer;
+    }
+    .main {
+      display: flex;
+      align-items: center;
+      a,
+      label {
+        height: 17px;
+        margin-right: 14px;
+        &.lock {
+          cursor: not-allowed;
+        }
+      }
+      a.redpack {
+        width: 14.2px;
+        background: url('~assets/webchat/icon-rpocket.svg');
+      }
+      label.upload {
+        width: 18.4px;
+        background: url('~assets/webchat/icon-image.svg');
+      }
+      a.open-emoji {
+        width: 17px;
+        background: url('~assets/webchat/icon-sticker.svg');
+      }
+      #uploadImg {
+        display: none;
+      }
+    }
+    .clear {
+      width: 16px;
+      height: 25.3px;
+      background: url('~assets/webchat/icon-clear.svg');
+    }
+  }
+
+  //輸入文字框
+  .send {
+    position: relative;
+    display: flex;
+    z-index: 10;
+    .txt {
+      flex-grow: 1;
+      height: 48px;
+      padding: 10px;
+      border: none;
+      font-size: 12px;
+      color: #707070;
+      line-height: 1.2;
+      resize: none;
+      &:focus {
+        outline: none;
+      }
+    }
+    .submit {
+      width: 39px;
+      height: 48px;
+      background-image: url('~assets/webchat/icon-send.svg');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: #f13131;
+      border: none;
+      text-indent: -9999px;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:focus {
+        outline: none;
+      }
+      &.lock {
+        background-color: #999;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  //頁面彈窗樣式
+  #mask-layer,
+  #maskbox {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #mask-layer {
+    background: rgba(4, 4, 15, 0.65);
+    z-index: 99;
+  }
+
+  #maskbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    background: rgba(4, 4, 15, 0.65);
+    z-index: 100;
+    pointer-events: none;
+    > * {
+      pointer-events: fill;
+    }
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      height: 10px;
+      width: 20px;
+      height: 20px;
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 10px;
+        display: block;
+        width: 20px;
+        height: 3px;
+        background: #fff;
+        border-radius: 3px;
+      }
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  //預覽圖片
+  .preview {
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    .download {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      display: block;
+      width: 19px;
+      height: 21px;
+      background: url('~assets/webchat/icon-download.png');
+    }
+  }
+
+  //搶紅包
+  .grab-red {
+    position: relative;
+    width: 290px;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    text-align: center;
+    .snatch {
+      width: 80px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 24px;
+      color: #eb4b32;
+      line-height: 1;
+      text-indent: 5px;
+    }
+    i {
+      font-size: 18px;
+      line-height: 1;
+    }
+    em {
+      display: block;
+      font-size: 13px;
+      color: #eb4b32;
+      line-height: 1;
+      text-indent: 10px;
+    }
+    p {
+      font-size: 12px;
+      color: #495060;
+      line-height: 1;
+      text-indent: 12px;
+      cursor: pointer;
+    }
+    &.ordinary {
+      height: 220px;
+      background-image: url('~assets/webchat/pthb.png');
+      .snatch {
+        margin-top: 27px;
+      }
+      h1 {
+        margin: 65px 0 15px 0;
+        line-height: 1;
+      }
+      em {
+        margin-bottom: 68px;
+        line-height: 1;
+      }
+    }
+    &.show-off {
+      height: 240px;
+      background-image: url('~assets/webchat/qb.png');
+      .snatch {
+        margin: 58px 0 8px 0;
+      }
+      h1 {
+        margin: 104px 0 10px 0;
+        line-height: 1;
+      }
+      em {
+        margin-bottom: 65px;
+        line-height: 1;
+      }
+    }
+  }
+
+  //掃雷紅包預覽
+  .bomb-preview {
+    position: relative;
+    .bg {
+      position: relative;
+      width: 285px;
+      height: 470px;
+      background: url('~assets/webchat/bomb-red-bg.png');
+      .normal {
+        padding-top: 100px;
+        font-size: 18px;
+        color: #ffe8b4;
+        text-align: center;
+        .username {
+          margin-bottom: 25px;
+        }
+        .bomb-type {
+          margin-bottom: 15px;
+        }
+        .money {
+          margin-bottom: 15px;
+          font-size: 24px;
+        }
+        .bomb {
+          margin-bottom: 20px;
+          span {
+            color: #fff;
+          }
+        }
+        .title {
+          color: #fff;
+        }
+        .open-bomb {
+          position: absolute;
+          bottom: 70px;
+          left: 50%;
+          display: block;
+          width: 47px;
+          height: 45px;
+          margin-left: -23.5px;
+          background: url('~assets/webchat/bomb-red-open.png');
+          font-size: 30px;
+          color: #f26c31;
+          line-height: 45px;
+        }
+      }
+      .other {
+        padding-top: 100px;
+        .title {
+          margin-bottom: 20px;
+          font-size: 18px;
+          color: #ffe8b4;
+          text-align: center;
+        }
+        img {
+          display: block;
+          width: 100%;
+          max-width: 200px;
+          height: auto;
+          margin: 0 auto;
+        }
+        .more {
+          position: absolute;
+          bottom: 20px;
+          left: 50%;
+          margin-left: -38px;
+          font-size: 12px;
+          color: #ffe8b4;
+        }
+      }
+    }
+    .close-preview {
+      position: relative;
+      display: block;
+      width: 30px;
+      height: 30px;
+      margin: 10px auto 0 auto;
+      border: 1px solid #fff;
+      border-radius: 50%;
+      text-indent: -9999px;
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 13px;
+        display: block;
+        width: 18px;
+        height: 1px;
+        background: #fff;
+      }
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  //領取掃雷紅包餘額不足的失敗提示
+  .get-bomb-fail {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 184px;
+    margin: -50px 0 0 -92px;
+    padding: 20px 0;
+    background: rgba(4, 4, 15, 0.65);
+    border-radius: 4px;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    z-index: 100;
+    i {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 40px;
+    }
+  }
+
+  //用戶資訊
+  .user-detail {
+    position: relative;
+    width: 284px;
+    background: #ffb240;
+    border-radius: 10px;
+    text-align: center;
+    .avatar {
+      display: block;
+      width: 80px;
+      height: 80px;
+      margin: -40px auto 10px auto;
+      background: #fff;
+      border: 2px solid #ffb240;
+      border-radius: 50%;
+    }
+    .nickname {
+      margin-bottom: 5px;
+      font-size: 18px;
+      color: #707070;
+    }
+    .rank {
+      margin-bottom: 38px;
+    }
+    .attention {
+      margin-bottom: 20px;
+      span {
+        margin: 0 30px;
+      }
+    }
+    .like {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px 0 15px 0;
+      background: url('~assets/webchat/img-profolio-wave.png') left top repeat-x #fff;
+      font-size: 12px;
+      color: #707070;
+      img {
+        display: block;
+        width: 20px;
+        height: 20px;
+        margin: 0 3px;
+      }
+    }
+    .operation {
+      background: #fff;
+      border-radius: 0 0 10px 10px;
+      overflow: hidden;
+      a {
+        display: block;
+        padding: 15px;
+        border-top: 1px solid #bcbcbc;
+        font-size: 14px;
+        color: #ff6f00;
+      }
+    }
+  }
+
+  //禁言選單
+  .banned {
+    width: 284px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #606060;
+    line-height: 34px;
+    text-align: center;
+    .title {
+      position: relative;
+      font-weight: bold;
+      .close {
+        right: 7px !important;
+        top: 4px !important;
+      }
+      .close::before,
+      .close::after {
+        height: 2px !important;
+        background: #7c7c7c !important;
+      }
+    }
+    a {
+      display: block;
+      border-top: 2px solid #f4f3f3;
+      color: #606060;
+      transition: all 0.3s;
+      &:hover {
+        background: #f1f1f1;
+      }
+    }
+  }
+
+  //紅包詳情
+  .redpack-detail {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url('~assets/webchat/red-bg-mid.png') center top repeat-y;
+    border-bottom: 10px solid #ff7045;
+    line-height: 1.5;
+    text-align: center;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      width: 100%;
+      height: 178px;
+      background: url('~assets/webchat/red-bg-top.png') center top no-repeat;
+    }
+    .red-head {
+      position: relative;
+      font-size: 18px;
+      color: #fff;
+      line-height: 45px;
+      .cancel {
+        position: absolute;
+        left: 15px;
+        top: 0;
+        font-size: 14px;
+        color: #fff;
+      }
+    }
+    //普通 + 炫耀紅包
+    .normal {
+      position: relative;
+      margin-top: 35px;
+      .avatar {
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 10px auto;
+        border-radius: 50%;
+      }
+      .name {
+        font-size: 16px;
+      }
+      .result {
+        i {
+          display: inline-block;
+          margin-bottom: 10px;
+          padding: 1px 3px;
+          background: #e6222b;
+          border-radius: 3px;
+          color: #fff;
+        }
+        label {
+          display: block;
+          margin-bottom: 5px;
+          font-size: 16px;
+          color: #323232;
+          line-height: 1;
+        }
+        em {
+          font-size: 45px;
+        }
+        p {
+          color: #999;
+        }
+        .snatch {
+          font-size: 24px;
+          color: #333;
+          font-weight: bold;
+        }
+      }
+      .red-item {
+        margin: 10px 28px;
+        border: 1px solid #e1e1e1;
+        .total {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px;
+          border-bottom: 1px solid #e1e1e1;
+          font-size: 12px;
+          color: #999;
+        }
+        .list {
+          height: 330px;
+          overflow: auto;
+        }
+        li {
+          display: flex;
+          justify-content: space-between;
+          padding: 5px 10px;
+          border-bottom: 1px solid #e1e1e1;
+        }
+        .item-left {
+          display: inline-flex;
+          text-align: left;
+        }
+        .item-left img {
+          display: block;
+          width: 36px;
+          height: 36px;
+          margin-right: 5px;
+          border-radius: 50%;
+        }
+        .item-left-info span {
+          display: block;
+          font-size: 14px;
+          color: #323232;
+        }
+        .item-left-info i {
+          color: #999;
+        }
+        .item-right {
+          font-weight: bold;
+        }
+      }
+    }
+    //掃雷紅包
+    .bomb-pack {
+      position: relative;
+      margin-top: 30px;
+      .avatar {
+        display: block;
+        width: 124px;
+        height: 124px;
+        margin: 0 auto 10px auto;
+        border-radius: 50%;
+      }
+      .content {
+        padding: 0 30px;
+        .name {
+          font-size: 16px;
+          color: #2a2a2a;
+        }
+        .total-money {
+          font-size: 24px;
+          color: #2a2a2a;
+        }
+        .title {
+          margin-bottom: 10px;
+          font-size: 18px;
+          color: #2a2a2a;
+        }
+        .info {
+          display: flex;
+          justify-content: space-between;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #bcbcbc;
+          font-size: 12px;
+          color: #606060;
+        }
+        .total-packs {
+          padding: 5px;
+          border-bottom: 1px solid #bcbcbc;
+          font-size: 12px;
+          color: #606060;
+          text-align: right;
+        }
+        .list {
+          height: 260px;
+          overflow: auto;
+          li {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            border-bottom: 1px solid #bcbcbc;
+            font-size: 12px;
+            color: #707070;
+            .item-left {
+              position: relative;
+              padding-left: 40px;
+              text-align: left;
+              img {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                display: block;
+                width: 30px;
+                height: auto;
+                margin-top: -15px;
+                border-radius: 50%;
+              }
+              .self {
+                color: #ff7045;
+              }
+            }
+            .item-right {
+              text-align: right;
+              .text {
+                display: inline-flex;
+                color: #f13131;
+                &.bingo::before {
+                  content: '';
+                  display: inline-block;
+                  width: 12px;
+                  height: 13px;
+                  margin-right: 3px;
+                  background: url('~assets/webchat/bomb.png');
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //紅包詳情動畫
+  .redpack-detail.slide-fade-enter-active {
+    transition: all 0.3s ease;
+  }
+  .redpack-detail.slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+  .redpack-detail.slide-fade-enter,
+  .slide-fade-leave-to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  //我要跟投
+  .follow-bet {
+    width: 280px;
+    background: #fff;
+    .title {
+      position: relative;
+      border-bottom: 1px solid #ccc;
+      font-size: 16px;
+      color: #333;
+      line-height: 35px;
+      text-align: center;
+      .close {
+        right: 7px !important;
+        top: 4px !important;
+      }
+      .close::before,
+      .close::after {
+        height: 2px !important;
+        background: #7c7c7c !important;
+      }
+    }
+    .user-name {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      font-size: 12px;
+      color: #333;
+      i {
+        padding-right: 5px;
+        color: #d14246;
+      }
+    }
+    .bet-info {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+    .bet-input {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      input {
+        width: 100px;
+        height: 30px;
+        background: #f5f5f5;
+        border: none;
+        font-size: 12px;
+        color: #333;
+        line-height: 30px;
+        text-align: center;
+      }
+      input::-webkit-inner-spin-button {
+        appearance: none;
+      }
+    }
+    button {
+      display: block;
+      width: 104px;
+      height: 28px;
+      margin: 10px auto;
+      background: #d14246;
+      border: 1px solid #d14246;
+      border-radius: 5px;
+      font-size: 12px;
+      color: #fff;
+      line-height: 28px;
+      text-align: center;
+      transition: all 0.3s;
+      &:hover {
+        background: #fff;
+        color: #d14246;
+      }
+    }
+  }
+
+  //拖曳上傳圖片
+  #chatroom {
+    .ivu-upload {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      z-index: 101;
+    }
+    .upload-outer {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .upload-inner {
+      pointer-events: none;
+    }
+  }
+
+  //置底按鈕
+  .click-to-bottom {
+    position: absolute;
+    right: 25px;
+    bottom: 90px;
+    font-size: 12px;
+    color: #7b7b7b;
+    text-align: center;
+    transition: all 0.3s;
+    z-index: 9;
+    &::before {
+      content: '';
+      display: block;
+      width: 25px;
+      height: 25px;
+      margin-bottom: 2px;
+      background: url('~assets/webchat/fab-end.svg');
+      background-size: 100% auto;
+    }
+    &.active {
+      bottom: 205px;
+    }
+  }
+
+  //聊天室說明
+  .readme-window {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 13;
+    .title {
+      position: relative;
+      padding: 10px 0;
+      border-bottom: 3px solid #f2f2f2;
+      font-size: 14px;
+      color: #707070;
+      text-align: center;
+      .close {
+        position: absolute;
+        left: 5px;
+        top: 9px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          display: block;
+          width: 20px;
+          height: 2px;
+          background: #929090;
+        }
+        &::before {
+          transform: rotate(45deg);
+        }
+        &::after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+    .wrap {
+      padding: 0 15px;
+      font-size: 12px;
+      color: #707070;
+      li {
+        display: flex;
+        padding: 10px 0;
+        border-bottom: 1px solid #e3e3e5;
+        &:last-child {
+          border-bottom: none;
+        }
+        > span {
+          display: block;
+          width: 80px;
+        }
+      }
+      li.content {
+        display: block;
+        > span {
+          width: 100%;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #e3e3e5;
+        }
+        .desc {
+          height: calc(100vh - 400px);
+          padding: 10px 0;
+          overflow: auto;
+        }
+      }
+    }
+  }
+}
+
+
+//發紅包
+.send-redpack {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 20px;
+  background: #e3e3e3;
+  transition: all 0.3s;
+  z-index: 99;
+  &.slide-fade-enter-active {
+    transition: all 0.3s ease;
+  }
+  &.slide-fade-leave-active {
+    transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+  &.slide-fade-enter,
+  &.slide-fade-leave-to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  .title {
+    position: relative;
+    padding: 10px;
+    background: #df0000;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    .back {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+  .tabs {
+    margin-bottom: 5px;
+    padding: 5px;
+    background: #fff;
+    text-align: center;
+    .ivu-radio-wrapper {
+      width: 115px;
+      height: 28px;
+      border-color: #f13131;
+      box-shadow: none;
+      padding: 0;
+      color: #f13131;
+      line-height: 28px;
+      &::before,
+      &::after {
+        display: none;
+      }
+      &.ivu-radio-wrapper-checked {
+        background: #f13131;
+        color: #fff;
+      }
+    }
+  }
+  .wrap {
+    height: auto !important;
+    margin-bottom: 30px;
+    padding: 0 20px;
+    background: #fff;
+    li {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      font-size: 12px;
+      color: #606060;
+      line-height: 24px;
+      span {
+        flex-shrink: 0;
+        width: 85px;
+      }
+      &.ratio span {
+        width: auto;
+      }
+      input {
+        display: block;
+        width: 100%;
+        height: 24px;
+        padding: 0 5px;
+        border: 1px solid #e3e3e3;
+        border-radius: 0;
+        font-size: 12px;
+        color: #606060;
+        line-height: 24px;
+        &::-webkit-input-placeholder {
+          color: #c7c7cc;
+        }
+        &::-webkit-inner-spin-button {
+          appearance: none;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+      .wealth {
+        color: #f13131;
+      }
+      .refresh {
+        margin-left: 5px;
+        font-size: 14px;
+        color: #999999;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+    li.option {
+      flex-wrap: wrap;
+      span {
+        width: 100%;
+        margin-bottom: 10px;
+        em {
+          margin-right: 5px;
+          color: #f13131;
+        }
+      }
+      .ivu-checkbox-group {
+        -webkit-appearance: none;
+      }
+      .ivu-radio-wrapper,
+      .ivu-checkbox-wrapper {
+        width: 42px;
+        height: 42px;
+        margin: 0 15px 10px 0;
+        padding: 0;
+        border: 1px solid #e3e3e3;
+        border-radius: 50%;
+        box-shadow: none;
+        line-height: 42px;
+        text-align: center;
+        &::before,
+        &::after {
+          display: none;
+        }
+        &.ivu-radio-wrapper-checked,
+        &.ivu-checkbox-wrapper-checked {
+          background: #f13131;
+          color: #fff;
+        }
+        span {
+          display: none;
+        }
+        &:nth-child(6) {
+          margin-right: 0;
+        }
+      }
+      .random {
+        position: absolute;
+        right: 5px;
+        bottom: 15px;
+        display: block;
+        width: 100px;
+        background: #f1f1f1;
+        border-radius: 10px;
+        font-size: 14px;
+        color: #606060;
+        line-height: 30px;
+        letter-spacing: 8px;
+        text-indent: 5px;
+        text-align: center;
+      }
+    }
+  }
+  .send {
+    display: block !important;
+    width: 175px;
+    margin: 0 auto;
+    padding: 0;
+    background: #df0000;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+    line-height: 32px;
+    text-align: center;
+  }
+}

@@ -1,0 +1,82 @@
+
+#themeMix {
+  /* #region tabs-card-hack[DrawNotice.vue,NoticeAndHelp.vue,QuickBet.vue] */
+  .tabs-card-hack {
+    border: 1px solid #ddd;
+    border-top: none;
+    background: #fff;
+    &.ivu-tabs-card > .ivu-tabs-bar {
+      .ivu-tabs-nav-container,
+      .ivu-tabs-tab,
+      .ivu-tabs-tab-active {
+        height: 44px;
+      }
+    }
+    .ivu-tabs-nav-container {
+      height: 44px;
+    }
+    .ivu-tabs-ink-bar {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      height: 0;
+    }
+    & > .ivu-tabs-bar .ivu-tabs-tab,
+    &.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab {
+      margin-right: 0;
+      padding: 0;
+      line-height: 1;
+      padding: 13px 0 14px;
+      text-align: center;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      border-radius: 0;
+      background: #eee;
+      font-size: 15px;
+    }
+    .ivu-tabs-tab + .ivu-tabs-tab {
+      border-left: 1px solid #ddd;
+    }
+
+    & > .ivu-tabs-bar .ivu-tabs-tab-active,
+    &.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab-active {
+      border-top: 3px solid $layout-primary;
+      border-bottom: none;
+      padding-top: 11px;
+      padding-bottom: 15px;
+      margin-bottom: -2px;
+      color: $layout-primary;
+      background: #fff;
+    }
+  }
+  /* #endregion */
+
+  .ivu-tooltip-inner {
+    white-space: normal;
+    color: #fff;
+    background-color: $primary-color;
+  }
+  .ivu-tooltip-popper[x-placement^="top"] .ivu-tooltip-arrow {
+    border-top-color: $primary-color;
+  }
+
+  .none-checkbox .ivu-checkbox,
+  .none-radio .ivu-radio {
+    display: none;
+  }
+
+  .ivu-progress-bg {
+    text-align: center;
+    font-size: 12px;
+    line-height: 2;
+    color: #fff;
+  }
+
+  // 特别号快速输入
+  .hk_filter-modal {
+    .ivu-modal-footer {
+      border-top: none;
+      padding: 0;
+    }
+  }
+}

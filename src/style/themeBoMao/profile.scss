@@ -1,0 +1,1452 @@
+@charset "utf-8";
+
+#BoMao {
+  .profile-outer {
+    background: #d4d4d4;
+    .layout-wrap {
+      display: flex;
+      align-items: flex-start;
+      //側選單
+      .side-nav {
+        flex-shrink: 0;
+        width: 70px;
+        background: #3a3b49;
+        > li {
+          position: relative;
+          > a {
+            position: relative;
+            display: block;
+            width: 70px;
+            height: 70px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            text-indent: -9999px;
+            &::before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0;
+              display: none;
+              width: 4px;
+              height: 100%;
+              background: #26b99a;
+            }
+            &.active {
+              background-color: #26b99a;
+            }
+          }
+          &:hover > a {
+            background-color: #2d2f3b;
+            &::before {
+              display: block;
+            }
+          }
+          &:hover > a.active {
+            background-color: #26b99a;
+          }
+          &.record > a {
+            background-image: url('~assets/themeBoMao/profile/sidenav/record.svg');
+            background-size: 22px auto;
+          }
+          &.record:hover > a,
+          &.record > a.active {
+            background-image: url('~assets/themeBoMao/profile/sidenav/record-active.svg');
+          }
+          &.financial > a {
+            background-image: url('~assets/themeBoMao/profile/sidenav/financial.svg');
+            background-size: 30px auto;
+          }
+          &.financial:hover > a,
+          &.financial > a.active {
+            background-image: url('~assets/themeBoMao/profile/sidenav/financial-active.svg');
+          }
+          &.account > a {
+            background-image: url('~assets/themeBoMao/profile/sidenav/account.svg');
+            background-size: 30px auto;
+          }
+          &.account:hover > a,
+          &.account > a.active {
+            background-image: url('~assets/themeBoMao/profile/sidenav/account-active.svg');
+          }
+          &.team > a {
+            background-image: url('~assets/themeBoMao/profile/sidenav/team.svg');
+            background-size: 35px auto;
+          }
+          &.team:hover > a,
+          &.team > a.active {
+            background-image: url('~assets/themeBoMao/profile/sidenav/team-active.svg');
+          }
+          &.profit > a {
+            background-image: url('~assets/themeBoMao/profile/sidenav/profit.svg');
+            background-size: 30px auto;
+          }
+          &.profit:hover > a,
+          &.profit > a.active {
+            background-image: url('~assets/themeBoMao/profile/sidenav/profit-active.svg');
+          }
+          .sub-menu {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            display: none;
+            width: 160px;
+            padding-bottom: 10px;
+            background: #434555;
+            z-index: 2;
+            .title {
+              padding: 15px;
+              font-size: 16px;
+              color: #fff;
+              font-weight: bold;
+            }
+            a {
+              display: block;
+              margin-bottom: 5px;
+              font-size: 14px;
+              color: #808695;
+              line-height: 25px;
+              text-indent: 15px;
+              transition: all 0.3s;
+              &::before {
+                content: '> ';
+                display: none;
+              }
+              &:hover,
+              &.router-link-active {
+                background: #2d2f3b;
+                color: #fff;
+                &::before {
+                  display: inline;
+                }
+              }
+            }
+          }
+          &:hover .sub-menu {
+            display: block;
+          }
+        }
+      }
+      .profile-inner {
+        width: 100%;
+        min-height: calc(100vh - 362px);
+        padding: 20px 15px;
+        background: #fff;
+        //breadcrumb
+        #breadcrumb {
+          margin-bottom: 20px;
+          font-size: 14px;
+          color: #555;
+        }
+        //頁籤切換 tab
+        .page-tabs {
+          display: flex;
+          margin: 0 -15px 20px -15px;
+          padding: 0 20px;
+          background: #f5f5f5;
+          a {
+            display: block;
+            width: 100px;
+            height: 44px;
+            border-top: 4px solid transparent;
+            font-size: 16px;
+            color: #555;
+            line-height: 40px;
+            text-align: center;
+            &.active,
+            &.router-link-active {
+              background: #fff;
+              border-color: #26b99a;
+              color: #26b99a;
+            }
+          }
+        }
+        //搜尋功能
+        .filter {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          font-size: 12px;
+          color: #495060;
+          > div {
+            margin-bottom: 10px;
+          }
+          .ivu-form-item {
+            margin: 0;
+          }
+          .quick-date {
+            display: flex;
+            margin-right: 20px;
+            .ivu-radio-wrapper {
+              width: 36px;
+              height: 22px;
+              margin-right: 8px;
+              padding: 0;
+              border: 1px solid #acacac;
+              border-radius: 1px;
+              font-size: 12px;
+              color: #495060;
+              line-height: 22px;
+              text-align: center;
+              &::before,
+              &::after {
+                display: none;
+              }
+            }
+            .ivu-radio-wrapper-checked {
+              background: #25b596;
+              border-color: transparent;
+              box-shadow: none;
+              color: #fff;
+            }
+          }
+          .custom-data {
+            margin-right: 20px;
+            .ivu-date-picker {
+              width: 175px;
+            }
+            .ivu-icon {
+              right: 3px;
+              width: 22px;
+              height: 22px;
+              line-height: 22px;
+            }
+            .ivu-input {
+              height: 22px;
+            }
+            .ivu-date-picker-rel input:hover,
+            .ivu-date-picker-focused input,
+            .ivu-date-picker input:focus {
+              border-color: #25b596;
+              box-shadow: none;
+            }
+          }
+          .sort {
+            margin-right: 10px;
+            .ivu-radio-checked .ivu-radio-inner {
+              border-color: #25b596;
+              &.ivu-radio-focus {
+                box-shadow: none;
+              }
+              &::after {
+                background: #25b596;
+              }
+            }
+          }
+          .option {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            .ivu-select {
+              width: 120px;
+              height: 22px;
+              margin-right: 10px;
+              .ivu-select-selection {
+                height: 22px;
+                &:hover,
+                &:focus {
+                  border-color: #25b596;
+                  box-shadow: none;
+                }
+                .ivu-select-selected-value {
+                  height: 22px;
+                  line-height: 22px;
+                }
+              }
+              .ivu-select-dropdown {
+                margin: 0;
+                .ivu-select-item-selected {
+                  background: #25b596;
+                }
+              }
+            }
+          }
+          .user {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            white-space: nowrap;
+            input {
+              width: 120px;
+              height: 22px;
+            }
+            .ivu-checkbox-wrapper {
+              margin-left: 10px;
+              .ivu-checkbox-focus {
+                box-shadow: none;
+              }
+            }
+            .ivu-checkbox-wrapper-checked {
+              .ivu-checkbox-inner {
+                background: #25b596;
+                border-color: #25b596;
+              }
+            }
+          }
+          .submit {
+            button {
+              width: 80px;
+              height: 22px;
+              margin-right: 5px;
+              padding: 0;
+              background: $BoMao-linearGradient-green;
+              border: none;
+              border-radius: 0;
+              font-size: 14px;
+              line-height: 22px;
+            }
+          }
+        }
+        //today-detail
+        .today-detail {
+          display: flex;
+          margin-bottom: 20px;
+          font-size: 12px;
+          color: #495060;
+          li {
+            margin-right: 25px;
+            span {
+              color: #25b596;
+            }
+          }
+        }
+        //user-breadcrumb (代理中心下級麵包屑用)
+        .user-breadcrumb {
+          width: 100%;
+          margin-bottom: 15px;
+          a {
+            display: inline-block;
+            margin-bottom: 6px;
+            font-size: 12px;
+            color: #495060;
+            &::before {
+              content: '>';
+              padding: 0 5px;
+            }
+          }
+        }
+        //MoneyTrans.vue
+        #money-trans {
+          .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #555;
+            &::before {
+              content: '';
+              display: block;
+              width: 4px;
+              height: 24px;
+              margin-right: 5px;
+              background: #ffd100;
+              border-radius: 3px;
+            }
+          }
+          .trans {
+            margin-bottom: 35px;
+            .wrap {
+              padding: 20px;
+              box-shadow: 0 1px 6px 0 #d4d4d4;
+              border: solid 1px #d4d4d4;
+              .platform {
+                display: flex;
+                justify-content: space-between;
+                width: 685px;
+                margin: 0 auto 20px auto;
+                background: url('~assets/themeBoMao/profile/moneytrans-icon.svg') center center no-repeat;
+                background-size: 46px auto;
+                .title {
+                  margin-bottom: 15px;
+                  font-size: 14px;
+                  color: #555;
+                }
+                .ivu-select-selection {
+                  border-radius: 0;
+                }
+              }
+              .money {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 25px;
+                .ivu-input-wrapper {
+                  width: 155px;
+                  margin-right: 15px;
+                  .ivu-input {
+                    border-radius: 0;
+                  }
+                }
+                .submit {
+                  width: 72px;
+                  padding: 0;
+                  background: $BoMao-linearGradient-green;
+                  border: none;
+                  border-radius: 0;
+                  color: #fff;
+                  line-height: 30px;
+                }
+                .reset {
+                  background: none;
+                  border: none;
+                }
+              }
+              .option {
+                text-align: center;
+                .ivu-radio-wrapper {
+                  height: 27px;
+                  margin: 0 7px;
+                  padding: 0 13px;
+                  background: #fff;
+                  border: 1px solid #808695;
+                  border-radius: 0;
+                  color: #555;
+                  line-height: 27px;
+                  &::before,
+                  &::after {
+                    display: none;
+                  }
+                }
+                .ivu-radio-wrapper-checked {
+                  background: #25b596;
+                  color: #fff;
+                  box-shadow: none;
+                }
+              }
+            }
+          }
+          .current {
+            .wrap {
+              display: flex;
+              flex-wrap: wrap;
+              dl {
+                width: 25%;
+                margin: -1px 0 0 -1px;
+                padding: 15px 20px;
+                border: 1px solid #d4d4d4;
+                dt {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  height: 28px;
+                  margin-bottom: 10px;
+                  font-size: 14px;
+                  color: #555;
+                  button {
+                    width: 60px;
+                    padding: 0;
+                    background: $BoMao-linearGradient-green;
+                    border: none;
+                    font-size: 12px;
+                    color: #fff;
+                    line-height: 28px;
+                  }
+                }
+                dd {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  color: #ea721a;
+                  .loading-money {
+                    font-size: 14px;
+                    color: #555;
+                  }
+                  .loading-money.active {
+                    display: none;
+                  }
+                  .remain {
+                    display: none;
+                    font-size: 15px;
+                    span {
+                      font-size: 22px;
+                    }
+                  }
+                  .remain.active {
+                    display: block;
+                  }
+                  .refresh {
+                    padding: 0;
+                    border: none;
+                    font-size: 22px;
+                    color: #555;
+                    transition: all 0.3s;
+                    &:hover {
+                      transform: rotate(180deg);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        //Information.vue
+        #information {
+          .wrap {
+            .user-info {
+              display: flex;
+              align-items: center;
+              width: 420px;
+              margin: 0 auto;
+              .info {
+                margin-right: 20px;
+                .avatar {
+                  display: block;
+                  width: 110px;
+                  height: 110px;
+                  margin-bottom: 10px;
+                  background: #f1f1f1;
+                  border-radius: 50%;
+                }
+                .rank {
+                  text-align: center;
+                }
+              }
+              .grade {
+                font-size: 12px;
+                color: #555;
+                text-align: center;
+                p {
+                  margin-top: 15px;
+                }
+                span {
+                  color: #ea721a;
+                }
+                .ivu-progress {
+                  width: 260px;
+                  border-radius: 13px;
+                  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+                  .ivu-progress-inner {
+                    background: #f5f5f5;
+                    .ivu-progress-bg {
+                      background: linear-gradient(to right, #ea721a, #ffd100);
+                      text-indent: -9999px;
+                    }
+                  }
+                }
+                .grade-explain {
+                  display: inline-block;
+                  margin-left: 15px;
+                  padding: 0 5px;
+                  border: 1px solid #ffd100;
+                  border-radius: 10px;
+                  color: #555;
+                  line-height: 19px;
+                }
+              }
+            }
+            .list {
+              width: 410px;
+              margin: 0 auto 30px auto;
+              .ivu-form-item {
+                margin: 5px 0 0 0;
+                .ivu-form-item-label {
+                  font-size: 14px;
+                  color: #555;
+                }
+                .ivu-form-item-content {
+                  font-size: 14px;
+                  color: #555;
+                  .ivu-input-wrapper {
+                    width: 300px;
+                    .ivu-input {
+                      border-color: #d4d4d4;
+                      border-radius: 0;
+                      font-size: 14px;
+                      color: #555;
+                      &.ivu-input-disabled {
+                        background: none;
+                        border: none;
+                      }
+                    }
+                  }
+                  .ivu-form-item-error-tip {
+                    left: 100%;
+                    top: 9px;
+                    font-size: 12px;
+                    color: #ea721a;
+                    white-space: nowrap;
+                  }
+                }
+              }
+            }
+            .buttons {
+              text-align: center;
+              button {
+                display: inline-block;
+                width: 72px;
+                height: 30px;
+                margin: 0 10px;
+                padding: 0;
+                border: none;
+                border-radius: 0;
+                font-size: 14px;
+                line-height: 30px;
+              }
+              .submit {
+                background: $BoMao-linearGradient-green;
+                color: #fff;
+              }
+              .reset {
+                background: none;
+                color: #8d8d8d;
+              }
+            }
+
+            .grade-table {
+              width: 450px;
+              margin: 25px auto 0 auto;
+              text-align: center;
+              .title {
+                display: inline-flex;
+                align-items: center;
+                margin-bottom: 10px;
+                font-size: 16px;
+                color: #262732;
+                &::before {
+                  content: '';
+                  display: block;
+                  width: 21px;
+                  height: 21px;
+                  margin-right: 10px;
+                  background: url('~assets/themeBoMao/profile/medal.svg');
+                  background-size: 100% auto;
+                }
+              }
+              table {
+                width: 100%;
+                border-left: 1px solid #d4d4d4;
+                border-top: 1px solid #d4d4d4;
+                font-size: 14px;
+                color: #495060;
+                thead {
+                  background: #94c4ad;
+                  color: #fff;
+                  font-weight: bold;
+                  td:first-child {
+                    border-right-color: #fff;
+                  }
+                }
+                td {
+                  padding: 10px;
+                  border-right: 1px solid #d4d4d4;
+                  border-bottom: 1px solid #d4d4d4;
+                }
+              }
+            }
+            .back {
+              position: relative;
+              display: inline-flex;
+              align-items: center;
+              font-size: 12px;
+              color: #555;
+              &::before,
+              &::after {
+                content: '';
+                display: block;
+              }
+              &::before {
+                width: 15px;
+                height: 15px;
+                margin-right: 5px;
+                box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.7);
+                border-radius: 50%;
+              }
+              &::after {
+                position: absolute;
+                left: 4px;
+                top: 5.5px;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 3px 6px 3px 0;
+                border-color: transparent #929090 transparent transparent;
+              }
+            }
+          }
+          //等級樣式
+          .user-level,
+          .user-label,
+          .user-nickname {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 5px;
+            padding: 1px 5px 1px 1px;
+            border-radius: 25px;
+            font-size: 12px;
+            color: #fff;
+            line-height: 15px;
+            vertical-align: middle;
+            cursor: pointer;
+          }
+
+          .user-level i {
+            width: 15px;
+            height: 15px;
+            margin-right: 2px;
+            background: url('~assets/webchat/icon_level.svg');
+            visibility: middle;
+            color: #000;
+            font-style: normal;
+            text-align: center;
+          }
+
+          @for $i from 0 through 2 {
+            .user-label#{$i} {
+              &::before {
+                content: '';
+                display: block;
+                width: 15px;
+                height: 15px;
+                margin-right: 2px;
+                background-image: url('~assets/webchat/icon_label-#{$i}.svg');
+              }
+            }
+          }
+
+          $direction: to right;
+
+          @for $n from 0 through 5 {
+            $levelLoop: 10 * $n;
+
+            .user-level#{1 + $levelLoop} {
+              background: #ffae00;
+            }
+
+            .user-level#{2 + $levelLoop} {
+              background: #ff8a8c;
+            }
+
+            .user-level#{3 + $levelLoop} {
+              background: #ff7613;
+            }
+
+            .user-level#{4 + $levelLoop} {
+              background: #fc5c33;
+            }
+
+            .user-level#{5 + $levelLoop} {
+              background: #f6372a;
+            }
+
+            .user-level#{6 + $levelLoop} {
+              background: #ff4585;
+            }
+
+            .user-level#{7 + $levelLoop} {
+              background: #eb59b7;
+            }
+
+            .user-level#{8 + $levelLoop} {
+              background: #ff1572;
+            }
+
+            .user-level#{9 + $levelLoop} {
+              background: #c90096;
+            }
+
+            .user-level#{10 + $levelLoop} {
+              background: #da1467;
+            }
+          }
+
+          .user-label0 {
+            background: #ff992e;
+          }
+
+          .user-label1 {
+            background: #d91608;
+          }
+
+          .user-label2 {
+            background: #992aa6;
+          }
+        }
+        //Password.vue
+        #password {
+          .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            a {
+              display: inline-block;
+              margin-right: 8px;
+              padding: 0 5px;
+              border: 1px solid #25b596;
+              font-size: 12px;
+              color: #555;
+              line-height: 20px;
+              transition: all 0.3s;
+              &:hover,
+              &.active {
+                background: #25b596;
+                color: #fff;
+              }
+            }
+          }
+          .title {
+            margin-bottom: 35px;
+            font-size: 16px;
+            color: #555;
+            span {
+              display: inline-block;
+              margin-left: 15px;
+              font-size: 12px;
+            }
+          }
+          .ivu-form {
+            width: 440px;
+            margin: 0 auto;
+            .ivu-form-item-content {
+              display: flex;
+              .ivu-input-wrapper {
+                width: 240px;
+                margin-right: 10px;
+              }
+              .tip {
+                color: #555;
+              }
+            }
+            button {
+              width: 72px;
+              height: 30px;
+              margin: 20px auto 0 auto;
+              padding: 0;
+              background: $BoMao-linearGradient-green;
+              border: none;
+              border-radius: 0;
+              font-size: 14px;
+              color: #fff;
+              line-height: 30px;
+              &:disabled {
+                background: #999;
+              }
+            }
+          }
+        }
+        //BankCard.vue
+        #bank-card {
+          .card-wrap {
+            .card {
+              width: 540px;
+              height: 188px;
+              margin: 0 auto;
+              padding: 40px 45px;
+              background: url('~assets/themeBoMao/profile/bankcard-bg.png');
+              box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+              font-size: 18px;
+              color: #fff;
+              p {
+                padding: 10px 0;
+              }
+            }
+          }
+        }
+        //未綁定銀行卡提示
+        #never-bind {
+          padding-top: 50px;
+          font-size: 16px;
+          color: #555;
+          text-align: center;
+          a {
+            display: inline-block;
+            width: 72px;
+            height: 30px;
+            margin-top: 50px;
+            background: $BoMao-linearGradient-green;
+            font-size: 14px;
+            color: #fff;
+            line-height: 30px;
+          }
+        }
+        //Deposit.vue
+        #deposit {
+          .account {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #555;
+          }
+          .pay-list {
+            margin-bottom: 50px;
+            a {
+              display: inline-flex;
+              align-items: center;
+              margin: 0 10px 7px 0;
+              padding: 5px 10px;
+              border: 1px solid #d4d4d4;
+              font-size: 14px;
+              color: #555;
+              &::before {
+                content: '';
+                display: block;
+                width: 20px;
+                height: 20px;
+                margin-right: 5px;
+                background-position: left top;
+                background-repeat: no-repeat;
+                background-size: 20px auto;
+              }
+              &.wechat::before {
+                background-image: url('~assets/themeBoMao/profile/paytype/wechat.png');
+              }
+              &.qq::before {
+                background-image: url('~assets/themeBoMao/profile/paytype/qq.png');
+                background-size: 24px auto;
+              }
+              &.alipay::before {
+                background-image: url('~assets/themeBoMao/profile/paytype/alipay.png');
+              }
+              &.unionpay::before {
+                background-image: url('~assets/themeBoMao/profile/paytype/unionpay.png');
+              }
+              @for $i from 0 through 18 {
+                &.bank-#{$i}::before {
+                  background-image: url('~assets/themeBoMao/profile/bank-logo/bank#{$i}.svg');
+                }
+              }
+              &.active {
+                border-color: #25b596;
+              }
+            }
+          }
+          .form {
+            width: 340px;
+            margin: 0 auto 50px auto;
+            li {
+              position: relative;
+              margin-bottom: 20px;
+              &:last-child {
+                margin: 0;
+              }
+              input {
+                border: 1px solid #d4d4d4;
+                border-radius: 0;
+              }
+              .tip {
+                position: absolute;
+                left: 100%;
+                top: 8px;
+                margin-left: 10px;
+                font-size: 12px;
+                color: #555;
+                white-space: nowrap;
+              }
+            }
+          }
+          .readme {
+            width: 410px;
+            height: 100px;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.29;
+          }
+          .discount {
+            width: 400px;
+            height: 105px;
+            margin: 50px auto;
+            padding-top: 30px;
+            background: url('~assets/themeBoMao/profile/discount-bg.png');
+            background-size: 100% auto;
+            font-size: 14px;
+            color: #fff;
+            line-height: 1.86;
+            text-align: center;
+          }
+          .confirm {
+            padding-top: 50px;
+            .info {
+              width: 250px;
+              margin: 0 auto 50px auto;
+              font-size: 14px;
+              color: #555;
+              line-height: 1.43;
+            }
+            .qrcode {
+              display: block;
+              width: 137px;
+              height: 137px;
+              margin: 0 auto;
+              background: #f1f1f1;
+            }
+          }
+          .result {
+            width: 260px;
+            margin: 0 auto;
+            color: #555;
+            &::before {
+              content: '';
+              display: block;
+              width: 120px;
+              height: 120px;
+              margin: 0 auto 30px auto;
+              background-size: 100% auto;
+            }
+            &.success::before {
+              background-image: url('~assets/themeBoMao/profile/success.png');
+            }
+            &.failed::before {
+              background-image: url('~assets/themeBoMao/profile/failed.png');
+            }
+            .title {
+              margin-bottom: 30px;
+              font-size: 16px;
+              font-weight: bold;
+              text-align: center;
+            }
+            p {
+              font-size: 14px;
+              line-height: 1.43;
+            }
+          }
+          .buttons {
+            margin-top: 35px;
+            text-align: center;
+            button,
+            a {
+              display: inline-block;
+              min-width: 72px;
+              height: 30px;
+              margin: 0 20px;
+              padding: 0 10px;
+              border-radius: 0;
+              font-size: 14px;
+              line-height: 30px;
+              text-align: center;
+              &.submit {
+                background: $BoMao-linearGradient-green;
+                border: none;
+                color: #fff;
+              }
+              &.back {
+                background: none;
+                border-color: #25b596;
+                color: #25b596;
+              }
+            }
+          }
+        }
+        //Withdraw.vue
+        #withdraw {
+          .bind-bank {
+            .note {
+              margin-bottom: 50px;
+              font-size: 14px;
+              color: #555;
+            }
+            .ivu-form {
+              width: 340px;
+              margin: 0 auto;
+              .ivu-form-item-content {
+                display: flex;
+                .tip {
+                  position: absolute;
+                  left: 100%;
+                  top: 3px;
+                  margin-left: 10px;
+                  font-size: 12px;
+                  color: #555;
+                  white-space: nowrap;
+                }
+                .buttons {
+                  width: 100%;
+                  text-align: center;
+                  button {
+                    display: inline-block;
+                    margin: 0 5px;
+                    border: none;
+                    border-radius: 0;
+                    &.submit {
+                      background: $BoMao-linearGradient-green;
+                      color: #fff;
+                    }
+                    &.reset {
+                      background: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .withdraw {
+            .head {
+              display: flex;
+              justify-content: center;
+              align-items: flex-end;
+              margin-bottom: 50px;
+              dl {
+                width: 650px;
+                border: 1px solid #25b596;
+                dt {
+                  padding: 15px;
+                  background: #25b596;
+                  font-size: 14px;
+                  color: #fff;
+                  text-align: center;
+                  p {
+                    padding: 5px 0;
+                  }
+                }
+                dd {
+                  padding: 20px 120px;
+                  font-size: 16px;
+                  color: #2e2f41;
+                  p {
+                    padding: 10px 0;
+                  }
+                }
+              }
+              .note {
+                font-size: 12px;
+                color: #555;
+              }
+            }
+            .ivu-form {
+              width: 340px;
+              margin: 0 auto;
+              .ivu-form-item-content {
+                display: flex;
+                justify-content: center;
+                .tip {
+                  position: absolute;
+                  left: 100%;
+                  top: 0;
+                  margin-left: 10px;
+                  font-size: 12px;
+                  color: #555;
+                  white-space: nowrap;
+                }
+                .buttons {
+                  margin-top: 30px;
+                  button {
+                    height: 30px;
+                    margin: 0 5px;
+                    padding: 0;
+                    border: none;
+                    border-radius: 0;
+                    line-height: 30px;
+                    &.submit {
+                      width: 72px;
+                      background: $BoMao-linearGradient-green;
+                      color: #fff;
+                    }
+                    &.reset {
+                      background: none;
+                    }
+                  }
+                }
+              }
+            }
+            .daily-count {
+              font-size: 14px;
+              color: #555;
+              text-align: center;
+              span {
+                color: #ea721a;
+              }
+            }
+          }
+        }
+        //Intro.vue (agent-intro)
+        #agent-intro {
+          font-size: 14px;
+          color: $BoMao-text-color;
+          line-height: 1.5;
+          h3 {
+            margin: 20px 0 10px 0;
+            font-size: 18px;
+            color: #25b596;
+          }
+        }
+        //AgencyReport.vue
+        #agency-report {
+          .list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            dl {
+              width: 48%;
+              margin-bottom: 30px;
+              border: 1px solid #acacac;
+              border-radius: 5px;
+              overflow: hidden;
+              dt {
+                background: #25b596;
+                font-size: 16px;
+                color: #fff;
+                line-height: 50px;
+                text-align: center;
+              }
+              dd {
+                display: flex;
+                justify-content: space-around;
+                padding: 20px;
+                span {
+                  text-align: center;
+                }
+                em {
+                  display: block;
+                  margin-bottom: 5px;
+                  font-size: 18px;
+                  color: #25b596;
+                  cursor: pointer;
+                  font-style: normal;
+                }
+                i {
+                  display: block;
+                  font-style: normal;
+                }
+              }
+            }
+          }
+        }
+        //ManageInvite.vue
+        #manage-invite {
+          .tip {
+            margin-bottom: 20px;
+            a {
+              color: #25b596;
+            }
+          }
+          .ivu-form-item {
+            display: flex;
+            margin-bottom: 30px;
+            label {
+              width: 100px;
+            }
+            .ivu-form-item-content {
+              display: flex;
+              white-space: nowrap;
+              .help {
+                margin-left: 10px;
+              }
+              button {
+                display: block;
+                margin-left: 100px;
+                background: #26b99a;
+                border: none;
+                color: #fff;
+              }
+            }
+          }
+        }
+        //ManageIcode.vue
+        #manage-icode {
+          .alert {
+            margin-top: 15px;
+          }
+        }
+        //todayProfit.vue
+        #today-profit {
+          .wrap {
+            .tips {
+              width: 1000px;
+              font-size: 12px;
+              color: #495060;
+              text-align: right;
+            }
+            .head {
+              display: flex;
+              margin-bottom: 30px;
+              li {
+                padding: 15px;
+                border: 1px solid #8d8d8d;
+                border-radius: 5px;
+                overflow: hidden;
+                vertical-align: middle;
+                &.balance {
+                  width: 360px;
+                  .money {
+                    font-size: 30px;
+                    color: #ea721a;
+                  }
+                  .ivu-icon-ios-loop-strong {
+                    position: relative;
+                    top: -3px;
+                    margin-left: 30px;
+                    font-size: 20px;
+                    line-height: 20px;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                  }
+                  .ivu-icon-ios-loop-strong:hover {
+                    transform: rotate(180deg);
+                  }
+                  .row {
+                    margin-top: 10px;
+                    font-size: 12px;
+                    span {
+                      margin-right: 70px;
+                    }
+                    a {
+                      margin: 0 5px;
+                      padding: 0 10px;
+                      border-radius: 2px;
+                      border: 1px solid #8d8d8d;
+                      color: #707070;
+                      line-height: 18px;
+                    }
+                  }
+                }
+                &.amount {
+                  width: 300px;
+                  margin: 0 20px;
+                }
+                &.calculate {
+                  width: 300px;
+                }
+              }
+            }
+            .amount,
+            .calculate {
+              .ivu-icon {
+                float: left;
+                margin-right: 15px;
+                width: 60px;
+                height: 60px;
+                padding: 16px;
+                text-align: center;
+                border-radius: 4px;
+                background: #26b99a;
+                font-size: 28px;
+                line-height: 28px;
+                color: #fff;
+              }
+              .detail {
+                overflow: hidden;
+                 span {
+                   display: block;
+                   margin-bottom: 28px;
+                   font-size: 12px;
+                   color: #495060;
+                 }
+                 .money {
+                   font-size: 20px;
+                   color: #ea721a;
+                 }
+                 em {
+                  display: block;
+                  font-size: 12px;
+                  color: #26b99a;
+                }
+              }
+            }
+            //詳情
+            .body {
+              display: flex;
+              justify-content: space-around;
+              width: 1000px;
+              padding: 30px 0;
+              border: 1px solid #8d8d8d;
+              border-radius: 5px;
+              > li {
+                width: 100%;
+                border-right: 1px solid #8d8d8d;
+                color: #495060;
+                text-align: center;
+                &:last-child {
+                  border: none;
+                }
+                em {
+                  display: block;
+                  margin-bottom: 5px;
+                  font-size: 18px;
+                }
+                span {
+                  font-size: 12px;
+                }
+              }
+            }
+            .share {
+              height: 22px;
+              margin-top: 25px;
+              padding: 0 10px;
+              background: $BoMao-linearGradient-green;
+              border: none;
+              border-radius: 0;
+              font-size: 14px;
+              color: #fff;
+              line-height: 22px;
+              &.lock {
+                cursor: not-allowed;
+              }
+            }
+            .platform {
+              margin-bottom: 25px;
+              h2 {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+                font-size: 16px;
+                color: #495060;
+                &::before {
+                  content: "";
+                  display: block;
+                  width: 22px;
+                  height: 22px;
+                  margin-right: 15px;
+                  background: url('~assets/themeBoMao/profile/today-profit-title.png') center center no-repeat #26b99a;
+                  border-radius: 50%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //代理中心註冊下級會員
+  #proxyReg {
+    overflow: auto;
+    &.active {
+      height: 50vh;
+    }
+    .ivu-modal-footer {
+      display: none;
+    }
+    .ivu-form-item {
+      width: 340px;
+      margin: 0 auto 25px auto;
+    }
+    .ivu-input-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 340px;
+    }
+    .form-tip {
+      display: inline-block;
+      margin-left: 10px;
+      color: #999;
+    }
+    .vcode {
+      .ivu-input-group-append {
+        position: absolute;
+        left: 100%;
+        top: 0;
+        width: 60px;
+        padding: 0 !important;
+        border: none;
+        z-index: 2;
+      }
+      img {
+        display: block;
+        width: 60px;
+        height: 32px;
+      }
+    }
+    .buttons {
+      text-align: center;
+      button {
+        margin: 0 10px;
+        &.reset,
+        &.submit {
+          width: 68px;
+        }
+        &.submit {
+          background: none;
+          border-color: #a68f4c;
+          color: #a68f4c;
+          &:hover {
+            background: #f1f1f1;
+          }
+        }
+      }
+    }
+  }
+}

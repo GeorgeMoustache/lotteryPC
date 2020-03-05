@@ -1,0 +1,112 @@
+#themeMix {
+  .theme2,
+  .theme4 {
+    .logobar {
+      .layout-wrap {
+        margin: inherit;
+      }
+      .service-link {
+        display: none;
+      }
+    }
+  }
+
+  //backtop style
+  .ivu-back-top {
+    z-index: 102;
+  }
+
+  .ivu-back-top-inner {
+    width: 42px;
+    height: 42px;
+    background: url('~assets/themeMix/gotop.png');
+    box-shadow: none;
+    i {
+      display: none;
+    }
+    &:hover { 
+      background: url('~assets/themeMix/gotop.png');
+      opacity: .6;
+    }
+  }
+
+  .logobar .login-form .ivu-form-item {
+    margin-bottom: 0;
+  }
+
+  // hack
+  .ivu-checkbox-inner {
+    width: 16px;
+    height: 16px;
+  }
+  .ivu-checkbox-checked .ivu-checkbox-inner {
+    border-color: #ff631e;
+    background-color: #ff631e;
+    &:after {
+      top: 2px;
+      left: 5px;
+    }
+  }
+  .ivu-checkbox-gray {
+    .ivu-checkbox-checked .ivu-checkbox-inner {
+      border-color: #707070;
+      background-color: #707070;
+    }
+  }
+
+  // 第三方平台对于弹窗的hack
+  .alert-wrap .ivu-alert {
+    padding: 8px 16px 8px 16px;
+  }
+
+  //Model 提示框的設定
+  .ivu-modal-wrap {
+    display: flex;
+    align-items: center;
+    .ivu-modal {
+      top: 0;
+    }
+  }
+
+  .ivu-modal-confirm-body {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 20px 0;
+    .ivu-modal-confirm-body-icon {
+      position: static;
+      margin-right: 10px;
+    }
+  }
+  .ivu-btn-text {
+    background: #FFF;
+    border-color: #f13131;
+    color: #f13131;
+    &:hover {
+      background: #f1f1f1;
+      border-color: #f13131;
+      color: #f13131;
+    }
+  }
+
+  //注單記錄發炫耀紅包的彈窗樣式
+  .redpack-overlay {
+    .ivu-modal-body {
+      padding: 0;
+    }
+    .ivu-modal-footer {
+      display: none;
+    }
+    .ivu-modal-close {
+      z-index: 1;
+    }
+    .ivu-icon-ios-close-empty {
+      color: #FFF;
+    }
+  }
+
+  //分享計劃的按鈕 loading 樣式
+  .share-plan.ivu-btn.ivu-btn-loading {
+    position: absolute;
+  }
+}

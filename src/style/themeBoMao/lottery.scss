@@ -1,0 +1,2377 @@
+@charset "utf-8";
+
+#BoMao {
+  //彩票投注頁面
+  .lottery-wrap {
+    background-image: url('~assets/themeBoMao/lottery/bg-default.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    &.container {
+      padding: 50px 39px;
+    }
+    .ivu-spin-main {
+      transform: scale(2, 2);
+    }
+    //各彩種背景樣式
+    &.CQSSC {
+      background-image: url('~assets/themeBoMao/lottery/bg-CQSSC.png');
+    }
+    &.BHDSSC {
+      background-image: url('~assets/themeBoMao/lottery/bg-BHDSSC.jpg');
+    }
+    &.ELSSSC {
+      background-image: url('~assets/themeBoMao/lottery/bg-ELSSSC.jpg');
+    }
+    &.GXSSC {
+      background-image: url('~assets/themeBoMao/lottery/bg-GXSSC.jpg');
+    }
+    &.JNDSSC {
+      background-image: url('~assets/themeBoMao/lottery/bg-JNDSSC.jpg');
+    }
+    &.TJSSC {
+      background-image: url('~assets/themeBoMao/lottery/bg-TJSSC.jpg');
+    }
+    &.XJSSC {
+      background-image: url('~assets/themeBoMao/lottery/bg-XJSSC.png');
+    }
+    &.PK10 {
+      background-image: url('~assets/themeBoMao/lottery/bg-PK10.png');
+    }
+    &.PCDD {
+      background-image: url('~assets/themeBoMao/lottery/bg-PCDD.jpg');
+    }
+    &.ELEX5 {
+      background-image: url('~assets/themeBoMao/lottery/bg-11X5.jpg');
+    }
+    &.K3 {
+      background-image: url('~assets/themeBoMao/lottery/bg-K3.jpg');
+    }
+    &.HKSIX {
+      background-image: url('~assets/themeBoMao/lottery/bg-HKSIX.png');
+      .body-inner {
+        background: #282852;
+      }
+    }
+    .container {
+      padding: 0;
+    }
+    .head {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-right: 100px;
+      .links {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 80px;
+        height: 90px;
+        margin-top: -45px;
+        a {
+          display: block;
+          width: 80px;
+          margin: 1px 0;
+          background: #2a2b59;
+          border-radius: 3px;
+          font-size: 12px;
+          color: #FFF;
+          line-height: 26px;
+          text-align: center;
+        }
+      }
+    }
+    .body-outer {
+      position: relative;
+      //浮動開關按鈕 (最近開獎 + 路單 + 聊天室)
+      .float-switch {
+        position: absolute;
+        left: 100%;
+        top: 0;
+        z-index: 102;
+        a {
+          display: block;
+          width: 39px;
+          margin-bottom: 3px;
+          padding: 5px;
+          background: #ffd100;
+          border-radius: 0 2px 2px 0;
+          font-size: 16px;
+          color: #495060;
+          line-height: 1.25;
+          font-weight: bold;
+          text-align: center;
+          &::before {
+            content: "";
+            display: block;
+            width: 20px;
+            height: 25px;
+            margin: 0 auto 5px auto;
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            background-position: center center;
+          }
+          &.draw-bar {
+            height: 119px;
+            &::before {
+              background-image: url('~assets/themeBoMao/lottery/float-note.svg');
+            }
+          }
+          &.trend-ball {
+            height: 79px;
+            &::before {
+              background-image: url('~assets/themeBoMao/lottery/float-star.svg');
+              background-size: 100% auto;
+            }
+          }
+        }
+      }
+    }
+    .body-inner {
+      position: relative;
+      padding-bottom: 20px;
+      background: #EEE;
+      overflow: hidden;
+      .play-outer {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding: 0 20px;
+      }
+      .cart-wrap {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding: 0 10px;
+        > * {
+          width: 100%;
+          margin: 0 10px
+        }
+        .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 5px;
+          font-size: 14px;
+          color: $BoMao-text-color;
+          .toggle {
+            font-size: 12px;
+            .ivu-switch {
+              width: 30px;
+              height: 16px;
+              margin-right: 5px;
+              &::after {
+                left: 0;
+                top: 0;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+              }
+            }
+            .ivu-switch-checked {
+              &::after {
+                left: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+    //浮動開關面板 (最近開獎 + 路單 + 聊天室)
+    .float-panel {
+      position: absolute;
+      left: 100%;
+      top: 0;
+      height: 100%;
+      #betdraw-bar,
+      #trend-ball-list {
+        width: 375px;
+        height: 100%;
+        border: none;
+        border-left: 4px solid #ffd100;
+        border-bottom: 4px solid #ffd100;
+        transform: translateX(0);
+        &.active {
+          transform: translateX(-100%);
+        }
+        table {
+          width: 100%;
+        }
+      }
+      #betdraw-bar {
+        font-size: 12px;
+        th {
+          padding: 0 10px;
+          background: #252943;
+          color: #FFF;
+          text-align: left;
+        }
+        td {
+          padding: 5px 10px;
+          border-bottom: 1px solid #ebebeb;
+          border-right: 1px solid #ebebeb;
+          text-align: left;
+        }
+      }
+      #trend-ball-list {
+        padding-top: 10px;
+        .tabs a {
+          border-bottom: 2px solid #ffd100;
+          color: #495060;
+        }
+        .content .range .ivu-radio-wrapper.ivu-radio-wrapper-checked {
+          background: #ffd100;
+          color: #495060;
+        }
+      }
+    }
+    //LotteryInfo.vue
+    .lottery-info {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      .info-left {
+        display: block;
+        width: 113px;
+        height: 109px;
+        margin-right: 60px;
+        img {
+          display: block;
+          width: auto;
+          height: 100%;
+        }
+      }
+      .info-right {
+        .info {
+          display: none;
+        }
+        .counter {
+          margin-bottom: 7px;
+          padding: 10px;
+          background: $BoMao-text-color;
+          border-radius: 3px;
+          .tick {
+            margin-bottom: 5px;
+            text-align: right;
+            color: #FFF;
+          }
+          .content {
+            display: flex;
+            align-items: center;
+          }
+          .tip {
+            margin-right: 10px;
+            font-size: 14px;
+            color: #FFF;
+            line-height: 1.5;
+            text-align: center;
+            span {
+              padding: 0 3px;
+              color: #f9f2b9;
+            }
+          }
+          .count-down {
+            display: flex;
+            white-space: nowrap;
+            font-family: Helvetica;
+            font-size: 34px;
+            color: #4a4c60;
+            line-height: 35px;
+            span {
+              display: inline-block;
+              width: 50px;
+              background: #4a4c60;
+              color: #FFF;
+              text-align: center;
+            }
+          }
+          .stop-sales {
+            width: 310px;
+            padding: 12px 5px;
+            background: #4a4c60;
+            font-size: 40px;
+            color: #FFF;
+            text-align: center;
+          }
+        }
+        .select-type {
+          .ivu-radio-group-button {
+            border: 1px solid #f17e2e;
+            border-radius: 3px;
+            overflow: hidden;
+            .ivu-radio-wrapper {
+              background: #6d7288;
+              border: none;
+              border-radius: 0;
+              color: #FFF;
+              line-height: 24px;
+            }
+            .ivu-radio-wrapper-checked {
+              background: #f17e2e;
+            }
+          }
+        }
+      }
+    }
+    //CurrentOpen.vue
+    .current-open {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      .label {
+        margin-right: 20px;
+        font-size: 14px;
+        color: #FFF;
+        span {
+          padding: 0 3px;
+          color: #f9f2b9;
+        }
+      }
+      .lottery-balls {
+        display: flex;
+        align-items: center;
+        .lottery-ball {
+          display: block;
+          width: 32px;
+          height: 32px;
+          margin: 0 2px;
+          background: url('~assets/themeBoMao/lottery/ball.png');
+          background-size: 100% auto;
+          border-radius: 50%;
+          font-size: 14px;
+          color: $BoMao-text-color;
+          line-height: 32px;
+          text-align: center;
+        }
+        .betnum {
+          width: 200px;
+          @include ellipsis;
+        }
+        .ivu-input-wrapper {
+          width: 150px;
+        }
+      }
+      td.null-tip {
+        text-align: center;
+      }
+    }
+    //LotteryMode.vue
+    .lottery-mode {
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: $BoMao-text-color;
+      li {
+        cursor: pointer;
+      }
+      .main {
+        display: flex;
+        background: #cdcdcd;
+        li {
+          padding: 16px 20px 14px 20px;
+          border-bottom: 4px solid transparent;
+          white-space: nowrap;
+        }
+        li.active {
+          border-bottom-color: #f17e2e;
+        }
+      }
+      .sub {
+        li {
+          display: inline-block;
+          margin: 8px 0 0 8px;
+          padding: 0 15px;
+          border-radius: 3px;
+          line-height: 32px;
+        }
+        li.active {
+          background: #f17e2e;
+          color: #FFF;
+        }
+      }
+    }
+    //ModeHelp.vue
+    .mode-help {
+      display: flex;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: $BoMao-text-color;
+      line-height: 1.5;
+      .tooltip {
+        margin-left: 10px;
+        cursor: crosshair;
+        .ivu-tooltip {
+          margin-right: 10px;
+          .ivu-tooltip-inner {
+            white-space: normal;
+          }
+        }
+      }
+    }
+    //RecentlyOpen.vue
+    .recently-open {
+      flex-shrink: 0;
+      width: 200px;
+      margin-left: 20px;
+      font-size: 12px;
+      color: $BoMao-text-color;
+      text-align: center;
+      thead {
+        background: #f17e2e;
+        color: #FFF;
+      }
+      tbody {
+        background: #cdcdcd;
+        td:last-child {
+          color: #f17e2e;
+          letter-spacing: 5px;
+        }
+      }
+      tr {
+        border-bottom: 2px solid #919191;
+      }
+      tr:last-child {
+        border-bottom: none;
+      }
+      td {
+        width: 50%;
+        padding: 10px 0;
+        .PCDD {
+          display: flex;
+          justify-content: center;
+        }
+        .PK10 {
+          display: flex;
+          flex-wrap: wrap;
+          width: 115px;
+          li {
+            width: 18px;
+            height: 18px;
+            margin: 2px;
+            background: #FFF;
+            border: 1px solid #555;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #f17e2e;
+            line-height: 18px;
+            letter-spacing: 0;
+            text-align: center;
+          }
+        }
+      }
+    }
+    //各投注內容樣式
+    //傳統玩法 硬幣投注面板
+    .betcoin {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+      .label {
+        margin-right: 5px;
+        font-size: 14px;
+        color: $BoMao-text-color;
+      }
+      .value {
+        width: 60px;
+        input {
+          height: 20px;
+          border: 1px solid $BoMao-text-color;
+          border-radius: 0;
+          font-size: 14px;
+          color: #f17e2e;
+          text-align: center;
+        }
+      }
+      .reset {
+        display: inline-block;
+        margin: 0 10px;
+        font-size: 12px;
+        color: $BoMao-text-color;
+      }
+      .coin {
+        display: flex;
+        margin-right: 10px;
+        li {
+          width: 48px;
+          height: 48px;
+          margin: 0 3px;
+          background: url('~assets/themeBoMao/lottery/betcoin.png');
+          font-size: 12px;
+          color: $BoMao-text-color;
+          line-height: 48px;
+          text-align: center;
+          cursor: pointer;
+        }
+        li:nth-child(1) {
+          background-position: left top;
+        }
+        li:nth-child(2) {
+          background-position: -48px top;
+        }
+        li:nth-child(3) {
+          background-position: -96px top;
+        }
+        li:nth-child(4) {
+          background-position: -144px top;
+        }
+        li:nth-child(5) {
+          background-position: -192px top;
+        }
+        li:nth-child(6) {
+          background-position: right top;
+        }
+      }
+    }
+    //傳統玩法 table
+    .bet-table {
+      width: 100%;
+      max-width: 690px;
+      margin-bottom: 35px;
+      border-left: 1px solid #bdbdbd;
+      border-top: 1px solid #bdbdbd;
+      color: $BoMao-text-color;
+      thead {
+        font-size: 16px;
+        text-align: center;
+      }
+      tbody {
+        font-size: 14px;
+      }
+      td {
+        width: 25%;
+        padding: 5px 0;
+        background: #d4d4d4;
+        border-right: 1px solid #bdbdbd;
+        border-bottom: 1px solid #bdbdbd;
+        .content {
+          display: flex;
+          align-items: center;
+          text-align: center;
+          > * {
+            border-right: 1px solid #bdbdbd;
+          }
+          .label {
+            width: 55px;
+          }
+          .ratio {
+            width: 55px;
+            margin-right: 10px;
+            color: #f17e2e
+          }
+          .value {
+            width: 45px;
+            height: 24px;
+            border: none;
+            text-align: center;
+            input {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+    //投注 table(group)
+    .table-group {
+      width: 690px;
+      overflow: hidden;
+      .bet-table {
+        float: left;
+      }
+      .ct {
+        width: 20%;
+        td {
+          width: 20%;
+          .content {
+            .label {
+              width: 40px;
+            }
+            .ratio {
+              width: 45px;
+              margin-right: 5px;
+            }
+            .value {
+              width: 40px;
+            }
+          }
+        }
+      }
+      .vs {
+        width: 25%;
+        td {
+          .content {
+            .label {
+              width: 40px;
+            }
+            .ratio {
+              width: 60px;
+              margin-right: 10px;
+            }
+            .value {
+              input {
+                width: 50px;
+              }
+            }
+          }
+        }
+      }
+    }
+    //投注號碼 bar
+    .bet-bar {
+      display: inline-flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 2px solid #a1a1a1;
+      .cell-label {
+        width: 65px;
+        margin-right: 25px;
+        font-size: 16px;
+        color: $BoMao-text-color;
+        line-height: 30px;
+      }
+      .cell-number {
+        margin-right: 25px;
+        .ivu-checkbox-wrapper,
+        .ivu-radio-wrapper {
+          .ivu-checkbox,
+          .ivu-radio {
+            display: none;
+          }
+          .num-ball {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #FFF;
+            box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            font-size: 16px;
+            color: $BoMao-text-color;
+            line-height: 30px;
+            text-align: center;
+            transition: all .3s;
+            &:hover {
+              background: #f17e2e;
+              color: #FFF;
+            }
+          }
+        }
+        .ivu-checkbox-wrapper-checked,
+        .ivu-radio-wrapper-checked {
+          .num-ball {
+            background: #f17e2e;
+            color: #FFF;
+          }
+        }
+      }
+      .cell-number.full {
+        width: 440px;
+        .ivu-checkbox-wrapper {
+          margin: 0 5px 25px 5px;
+        } 
+      }
+      .cell-number.special {
+        .ivu-checkbox-wrapper {
+          .num-ball {
+            width: auto;
+            padding: 0 10px;
+            border-radius: 6px;
+          }
+        }
+      }
+      //快三和值
+      .cell-number.k3hz {
+        margin: 0 0 0 -20px;
+        .ivu-checkbox-group {
+          .ivu-checkbox-group-item {
+            width: 55px;
+            margin: 0;
+            .num-ball {
+              display: block;
+              margin: 0 auto;
+            }
+          }
+        }
+        .ratio-group {
+          margin: 10px 0 15px 0;
+          font-size: 12px;
+          color: #707070;
+          .num-ratio {
+            display: inline-block;
+            width: 55px;
+            text-align: center;
+          }
+        }
+      }
+      //快三球特殊樣式
+      .cell-number .num-ball.single-ball {
+        width: auto;
+        padding: 0 10px;
+        border-radius: 25px;
+      }
+      .cell-number.ball1 {
+        .num-ball {
+          width: 58px;
+          height: 52px;
+          background-color: transparent;
+          background-repeat: no-repeat;
+          background-position: center center;
+          border-radius: 6px;
+          box-shadow: none;
+          text-indent: -9999px;
+        }
+        @for $i from 1 through 6 {
+          .ivu-checkbox-wrapper:nth-child(#{$i}) .num-ball {
+            background-image: url('~assets/themeBoMao/lottery/dice-#{$i}.png');
+          }
+        }
+        .num-ball:hover {
+          background-color: #d4d4d4;
+          background-position: center center;
+          background-repeat: no-repeat;
+        }
+        .ivu-checkbox-wrapper-checked {
+          .num-ball {
+            background-color: #f17e2e;
+          }
+        }
+      }
+      .cell-number.ball2 {
+        .num-ball {
+          width: 100px;
+          height: 52px;
+          background-color: transparent;
+          background-repeat: no-repeat;
+          background-position: center center;
+          border-radius: 6px;
+          box-shadow: none;
+          text-indent: -9999px;
+          &.one-dice {
+            width: 58px;
+            margin: 0 23px;
+          }
+        }
+        @for $i from 1 through 6 {
+          .ivu-checkbox-wrapper:nth-child(#{$i}) .num-ball {
+            background-image: url('~assets/themeBoMao/lottery/dice-#{$i}#{$i}.png');
+          }
+          .ivu-checkbox-wrapper:nth-child(#{$i}) .num-ball.one-dice {
+            background-image: url('~assets/themeBoMao/lottery/dice-#{$i}.png');
+          }
+        }
+        .num-ball:hover {
+          background-color: #d4d4d4;
+          background-position: center center;
+          background-repeat: no-repeat;
+        }
+        .ivu-checkbox-wrapper-checked {
+          .num-ball {
+            background-color: #f17e2e;
+          }
+        }
+      }
+      .cell-number.ball3 {
+        .ivu-checkbox-group {
+          width: 490px;
+        }
+        .ivu-checkbox-wrapper {
+          margin-bottom: 10px;
+        }
+        .num-ball {
+          width: 140px;
+          height: 52px;
+          background-color: transparent;
+          background-repeat: no-repeat;
+          background-position: 7px 6px;
+          border-radius: 6px;
+          box-shadow: none;
+          text-indent: -9999px;
+        }
+        @for $i from 1 through 6 {
+          .ivu-checkbox-wrapper:nth-child(#{$i}) .num-ball {
+            background-image: url('~assets/themeBoMao/lottery/dice-#{$i}#{$i}#{$i}.png');
+          }
+        }
+        .num-ball:hover {
+          background-color: #d4d4d4;
+          background-position: 7px 6px;
+          background-repeat: no-repeat;
+        }
+        .ivu-checkbox-wrapper-checked {
+          .num-ball {
+            background-color: #f17e2e;
+          }
+        }
+        
+      }
+      .cell-filter {
+        align-self: center;
+        .ivu-radio-wrapper {
+          .ivu-radio {
+            display: none;
+          }
+          .num-ball {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            background: #FFF;
+            box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            font-size: 14px;
+            color: $BoMao-text-color;
+            line-height: 22px;
+            text-align: center;
+            transition: all .3s;
+            &:hover {
+              background: #f17e2e;
+              color: #FFF;
+            }
+          }
+        }
+        .ivu-radio-wrapper-checked {
+          .num-ball {
+            background: #f17e2e;
+            color: #FFF;
+          }
+        }
+        .clear-ball {
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+          padding: 0;
+          background: #FFF;
+          box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+          border: none;
+          border-radius: 50%;
+          font-size: 14px;
+          color: $BoMao-text-color;
+          line-height: 22px;
+          text-align: center;
+          transition: all .3s;
+          &:hover {
+            background: #f17e2e;
+            color: #FFF;
+          }
+        }
+      }
+      .betbar-wrap {
+        .bet-select {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+          font-size: 12px;
+          .tip {
+            color: $BoMao-text-color;
+          }
+        }
+        .bet-number {
+          display: flex;
+        }
+      }
+      //單式
+      &.single {
+        display: block;
+        border: none;
+        .bet-custom {
+          .textarea {
+            margin-bottom: 5px;
+            textarea {
+              height: 180px;
+            }
+          }
+          .control {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .tip {
+              font-size: 12px;
+              color: $BoMao-text-color;
+            }
+            .clear {
+              padding: 2px 5px;
+              background: #f17e2e;
+              color: #FFF;
+            }
+          }
+        }
+      }
+    }
+    //PK10 投注樣式
+    .bet-bar-PK10 {
+      .bet-table {
+        background: #e4e4e4;
+        &.GYJ {
+          td:nth-last-child(1),
+          td:nth-last-child(2),
+          td:nth-last-child(3) {
+            border-top: 1px solid #bdbdbd;
+          }
+        }
+      }
+      .table-group {
+        .bet-table {
+          width: 20%;
+          td {
+            .content {
+              .label {
+                width: 30px;
+                &.ball {
+                  width: 20px;
+                  height: 20px;
+                  margin: 0 5px;
+                  color: #FFF;
+                  line-height: 20px;
+                  text-align: center;
+                  &.ball-01 {
+                    background: #e6dc30;
+                  }
+                  &.ball-02 {
+                    background: #1794da;
+                  }
+                  &.ball-03 {
+                    background: #4b4b4b;
+                  }
+                  &.ball-04 {
+                    background: #fd7622;
+                  }
+                  &.ball-05 {
+                    background: #2ddbdd;
+                  }
+                  &.ball-06 {
+                    background: #523ff8;
+                  }
+                  &.ball-07 {
+                    background: #bcbcbc;
+                  }
+                  &.ball-08 {
+                    background: #fc2a1c;
+                  }
+                  &.ball-09 {
+                    background: #770d07;
+                  }
+                  &.ball-10 {
+                    background: #1fba1f;
+                  }
+                }
+              }
+              .ratio {
+                width: 50px;
+                margin: 0;
+                padding: 0;
+              }
+              .value {
+                width: 55px;
+              }
+            }
+          }
+        }
+      }
+    }
+    //PCDD 投注樣式
+    .bet-bar-PCDD {
+      width: 100%;
+      table {
+        color: #555;
+        &.layout-1 {
+          width: 390px;
+        }
+      }
+      thead {
+        td {
+          background: #cdcdcd;
+          font-size: 14px;
+        }
+      }
+      td {
+        padding: 10px;
+        font-size: 12px;
+        text-align: center;
+        .ball {
+          display: block;
+          width: 50px;
+          margin: 0 auto;
+          padding: 7px 0;
+          background: #FFF;
+          border-radius: 20px;
+          box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+          font-size: 16px;
+          text-align: center;
+          transition: all .3s;
+          &.ball-red {
+            color: #f13131;
+          }
+          &.ball-blue {
+            color: #3990b4;
+          }
+          &.ball-green {
+            color: #47b53a;
+          }
+        }
+        input {
+          width: 50px;
+          height: 16px;
+          border: none;
+          box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+          font-size: 12px;
+          color: #ea721a;
+          text-align: center;
+        }
+      }
+      .special3 {
+        td {
+          white-space: nowrap;
+          .ball {
+            width: 80px;
+          }
+          .ivu-select {
+            width: 60px;
+            span {
+              width: 26px;
+              height: 16px;
+              margin: 7px 0 0 7px; 
+              padding: 0;
+              border-radius: 15px;
+              box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+              line-height: 16px;
+            }
+          }
+          .ball-green span {
+            color: #47b53a
+          }
+          .ball-red span {
+            color: #f13131;
+          }
+          .ball-blue span {
+            color: #3990b4;
+          }
+          .price {
+            width: 40px;
+            margin: 0 5px;
+            input {
+              width: 40px;
+              color: #f13131;
+            }
+          }
+        }
+      }
+    }
+    //六合彩投注樣式
+    .bet-bar-HKSIX {
+      &.hack-ball .ivu-checkbox-group {
+        width: 665px;
+      }
+      &.hack-tmblm .ivu-checkbox-group {
+        width: 435px;
+      }
+      &.hack-ssbb .ivu-checkbox-group {
+        width: 300px;
+      }
+      &.hack-sbbbb .ivu-checkbox-group {
+        width: 360px;
+      }
+      &.hack-txsx .ivu-checkbox-group {
+        width: 350px;
+      }
+      .ivu-checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 50px;
+        .break1 {
+          width: 600px;
+        }
+        .break2 {
+          width: 500px;
+        }
+        .ball-3d {
+          width: 46px;
+          margin: 0 10px 30px 10px;
+          .ivu-checkbox-wrapper {
+            width: 100%;
+            margin: 0;
+            .ivu-checkbox {
+              display: none;
+            }
+            .num {
+              display: block;
+              width: 30px;
+              height: 30px;
+              margin: 0 auto 10px auto;
+              border: 1px solid transparent;
+              border-radius: 50%;
+              box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+              font-size: 16px;
+              color: #FFF;
+              line-height: 30px;
+              text-align: center;
+              &.ball-red {
+                border-color: #ba373e;
+              }
+              &.ball-blue {
+                border-color: #3352d7;
+              }
+              &.ball-green {
+                border-color: #11906a;
+              }
+            }
+          }
+          .ivu-checkbox-wrapper-checked {
+            .num.ball-red {
+              background: #ba373e;
+            }
+            .num.ball-blue {
+              background: #3352d7;
+            }
+            .num.ball-green {
+              background: #11906a;
+            }
+          }
+          .betnum-ratio {
+            display: block;
+            margin: 0;
+            font-size: 12px;
+            color: #6d7288;
+            text-align: center;
+          }
+        }
+        .rect-3d {
+          margin: 0 10px 15px 10px;
+          .ivu-checkbox-wrapper {
+            margin: 0 0 10px 0;
+            .ivu-checkbox {
+              display: none;
+            }
+            .num {
+              display: block;
+              margin: 0;
+              padding: 0 10px;
+              border: 1px solid #67b3ff;
+              border-radius: 25px;
+              font-size: 16px;
+              color: #FFF;
+              line-height: 30px;
+            }
+          }
+          .ivu-checkbox-wrapper-checked {
+            .num {
+              background: #ffd100;
+              border-color: transparent;
+              color: #282852;
+            }
+          }
+          .betnum-ratio {
+            display: block;
+            margin: 0;
+            font-size: 12px;
+            color: #6d7288;
+            text-align: center;
+          }
+        }
+      }
+      .bet-util {
+        width: 100%;
+        color: #FFF;
+        button {
+          margin-left: 10px;
+        }
+      }
+    }
+    //BetUtil.vue
+    .bet-util {
+      margin: 20px 0;
+      font-size: 14px;
+      color: $BoMao-text-color;
+      .number {
+        padding: 0 5px;
+        color: #f17e2e;
+      }
+      .price {
+        width: 60px;
+        margin-right: 15px;
+        input {
+          height: 20px;
+          border: 1px solid $BoMao-text-color;
+          border-radius: 0;
+          color: #f17e2e;
+          text-align: center;
+        }
+      }
+      .unit {
+        display: inline-flex;
+        vertical-align: middle;
+        li {
+          width: 20px;
+          height: 20px;
+          margin-right: 5px;
+          border: 1px solid $BoMao-text-color;
+          border-radius: 3px;
+          line-height: 20px;
+          text-align: center;
+          cursor: pointer;
+          &.active {
+            background: #f17e2e;
+            color: #FFF;
+          }
+        }
+      }
+      .control {
+        margin-top: 20px;
+        text-align: center;
+        button {
+          padding: 0 ;
+          font-size: 16px;
+          line-height: 32px;
+        }
+        .addcart {
+          margin-right: 45px;
+          padding: 0 30px;
+        }
+        .reset {
+          background: none;
+          border: none;
+        }
+      }
+    }
+    //PCDD betUtil
+    .bet-util-pcdd {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      font-size: 14px;
+      .number {
+        color: #ea721a;
+      }
+      .addcart {
+        margin-left: 10px;
+        background: #f9f2b9;
+        border: none;
+        transition: all .3s;
+        &:hover {
+          opacity: .6;
+          color: #555;
+        }
+      }
+    }
+    //BetCart 購物車
+    .bet-cart {
+      padding: 10px;
+      background: #FFF;
+      .list {
+        height: 190px;
+        overflow: auto;
+        table {
+          width: 100%;
+          font-size: 14px;
+          color: $BoMao-text-color;
+          line-height: 1.2;
+          text-align: center;  
+        }
+        thead {
+          background: #cdcdcd;
+        }
+        tbody tr {
+          border-bottom: 1px solid #707070;
+        }
+        td {
+          padding: 5px;
+        }
+      }
+      .null-tip {
+        padding: 70px 0;
+        text-align: center;
+      }
+      .control {
+        margin-top: 20px;
+        text-align: center;
+        button {
+          margin: 0 10px;
+          padding: 0 25px;
+          font-size: 12px;
+          line-height: 25px;
+          &.clear {
+            padding: 0;
+            background: none;
+            border: none;
+          }
+        }
+      }
+    }
+    //ChaseList.vue
+    .chase-list {
+      padding: 10px;
+      background: #FFF;
+      .chase-tabs {
+        margin-bottom: 10px;
+        font-size: 12px;
+        color: $BoMao-text-color;
+        span {
+          padding: 0 5px;
+          color: #f17e2e;
+        }
+        .ratio {
+          width: 77px;
+          margin: 0 5px;
+        }
+        .issue {
+          width: 30px;
+          margin: 0 5px;
+        }
+        .ivu-input {
+          height: 24px;
+          border-color: $BoMao-text-color;
+          border-radius: 0;
+          color: #f17e2e;
+          text-align: center;
+        }
+      }
+      .list {
+        height: 200px;
+        overflow: auto;
+        table {
+          width: 100%;
+          font-size: 14px;
+          color: $BoMao-text-color;  
+          thead {
+            background: #cdcdcd;
+          }
+          tbody tr {
+            border-bottom: 1px solid #707070;
+          }
+          td {
+            padding: 5px;
+            .ratio {
+              width: 100px;
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+    //RecordList.vue
+    .record-list {
+      margin: 0 20px;
+      padding: 10px;
+      background: #FFF;
+      font-size: 14px;
+      color: $BoMao-text-color;
+      .title {
+        margin-bottom: 5px;
+      }
+      .record-table {
+        table {
+          width: 100%;
+          border: none;
+          thead td {
+            background: #cdcdcd;
+            color: #555;
+          }
+          tbody {
+            tr {
+              border-bottom: 2px solid #aaaaaa;
+            }
+          }
+          td {
+            padding: 10px;
+            border: none;
+            white-space: nowrap;
+            text-align: center;
+            .betnum {
+              width: 400px;
+              @include ellipsis;
+            }
+            a {
+              color: #f17e2e;
+            }
+          }
+        }
+      }
+      .table-page {
+        .ivu-page-item:hover a {
+          color: #ea721a;
+        }
+        .ivu-page-item-active {
+          background: #ea721a;
+          &:hover a {
+            color: #FFF;
+          }
+        }
+      }
+    }
+    //因應各彩種投注內容樣式不同做特別調整
+    //LotteyInfo
+    &.PK10 .lottery-info .info-right .counter {
+      background: #fd4e5a;
+    } 
+    &.PCDD .lottery-info .info-right .counter {
+      background: rgba(255, 255, 255, .7);
+      .tick {
+        color: #4a4c60;
+      }
+      .tip {
+        color: #555;
+        span {
+          color: #f17e2e;
+        }
+      }
+    }
+    &.ELEX5 .lottery-info .info-right .counter {
+      background: rgba(109, 114, 136, 0.5);
+    }
+    &.HKSIX .lottery-info .info-right .counter {
+      background: #2a2b59;
+      .count-down span {
+        background: #262732;
+      }
+    }
+    //CurrentOpen
+    &.PK10 .current-open {
+      background: #4773bf;
+      .lottery-balls {
+        .lottery-ball {
+          width: 38px;
+          height: 38px;
+          color: #FFF;
+          line-height: 38px;
+          &.ball-01 {
+            background: #e6dc30;
+          }
+          &.ball-02 {
+            background: #1794da;
+          }
+          &.ball-03 {
+            background: #4b4b4b;
+          }
+          &.ball-04 {
+            background: #fd7622;
+          }
+          &.ball-05 {
+            background: #2ddbdd;
+          }
+          &.ball-06 {
+            background: #523ff8;
+          }
+          &.ball-07 {
+            background: #bcbcbc;
+          }
+          &.ball-08 {
+            background: #fc2a1c;
+          }
+          &.ball-09 {
+            background: #770d07;
+          }
+          &.ball-10 {
+            background: #1fba1f;
+          }
+        }
+      }
+    }
+    &.PCDD .current-open {
+      background: rgba(255, 255, 255, .7);
+      .label {
+        color: #555;
+        span {
+          color: #f17e2e;
+        }
+      }
+      .lottery-balls {
+        .lottery-ball {
+          background: #f13131;
+          color: #FFF;
+          &.ball-blue {
+            background: #3990b4;
+          }
+          &.ball-green {
+            background: #47b53a;
+          }
+        }
+      }
+    }
+    &.ELEX5 .current-open {
+      .lottery-balls {
+        .lottery-ball {
+          background: rgba(109, 114, 136, 0.6);
+          border: 1px solid #d0d0d0;
+          font-size: 18px;
+          color: #FFF;
+        }
+      }
+    }
+    &.HKSIX .current-open {
+      .lottery-balls {
+        flex-wrap: wrap;
+        width: 320px;
+        color: #FFF;
+        .lottery-ball {
+          width: 39px;
+          height: 39px;
+          font-size: 14px;
+          color: #FFF;
+          line-height: 39px;
+          text-align: center;
+          &.ball-red {
+            background: url('~assets/themeBoMao/lottery/circle-red.png');
+          }
+          &.ball-blue {
+            background: url('~assets/themeBoMao/lottery/circle-blue.png');
+          }
+          &.ball-green {
+            background: url('~assets/themeBoMao/lottery/circle-green.png');
+          }
+        }
+        .twelve-labels {
+          display: flex;
+          margin-top: 10px;
+          span {
+            width: 39px;
+            margin-right: 4px;
+            font-size: 12px;
+            color: #FFF;
+            text-align: center;
+          }
+          .twelve-space {
+            width: 12px;
+            margin: 0;
+          }
+        }
+      }
+    }
+    //LotteryMode
+    &.ELEX5 .lottery-mode {
+      .main li.active {
+        border-bottom-color: #3352d7;
+      }
+      .sub li.active {
+        background: #3352d7;
+      }
+    }
+    &.HKSIX .lottery-mode {
+      color: #FFF;
+      .main {
+        background: #434382;
+        li.active {
+          border-bottom-color: #ffd100;
+        }
+      }
+      .sub li.active {
+        background: #ffd100;
+        color: #555;
+      } 
+    }
+    //mode-help
+    &.HKSIX .mode-help {
+      color: #FFF
+    }
+    //betBar
+    &.ELEX5.lottery-wrap .bet-bar .cell-number {
+      .ivu-checkbox-wrapper:hover .num-ball,
+      .ivu-checkbox-wrapper-checked .num-ball,
+      .ivu-radio-wrapper-checked .num-ball {
+        background: #3352d7;
+      }
+    }
+    &.ELEX5.lottery-wrap .bet-bar .cell-filter {
+      .ivu-radio-wrapper:hover .num-ball,
+      .ivu-radio-wrapper-checked .num-ball {
+        background: #3352d7;
+      }
+    }
+    //betUtil
+    &.ELEX5.lottery-wrap .bet-util {
+      .number {
+        color: #3352d7;
+      }
+      .price input {
+        color: #3352d7;
+      }
+      .unit li.active {
+        background: #3352d7;
+      }
+      .control .addcart {
+        background: #3352d7;
+        border-color: #3352d7;
+        
+      }
+    }
+    &.HKSIX.lottery-wrap .special-number {
+      display: block;
+      margin: 0 auto;
+      background: #ffd100;
+      border-color: #ffd100;
+      font-size: 16px;
+      color: #555;
+    }
+    //RecentlyOpen
+    &.PCDD .recently-open thead {
+      background: #f9f2b9;
+      color: #555;
+    }
+    &.ELEX5 .recently-open thead {
+      background: #3352d7;
+    }
+    &.ELEX5 .recently-open tbody td:last-child {
+      color: #3352d7;
+    }
+    &.K3 .recently-open tbody td:last-child {
+      color: #555;
+    }
+    &.HKSIX .recently-open {
+      thead {
+        background: #35356e;
+        color: #FFF;
+      }
+      tbody {
+        color: #6d7288;
+        td:last-child {
+          .HKSIX {
+            display: flex;
+            color: #6d7288;
+            .lottery-ball {
+              margin: 0 1px;
+              letter-spacing: 0;
+              &.ball-red {
+                color: #ba373e;
+              }
+              &.ball-blue {
+                color: #3352d7;
+              }
+              &.ball-green {
+                color: #11906a;
+              }
+            }
+            .lottery-symbol {
+              letter-spacing: 0;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+    //bet-cart
+    &.PCDD .bet-cart .control button {
+      background: #f9f2b9;
+      border-color: #f9f2b9;
+      color: #555;
+      &.clear {
+        background: none;
+      }
+    }
+    &.ELEX5 {
+      .bet-cart .control {
+        .ivu-btn-primary {
+          background: #3352d7;
+          border-color: #3352d7;
+          color: #FFF;
+        }
+      }
+      .cart-wrap .title .toggle .ivu-switch-checked {
+        background: #3352d7;
+        border-color: #3352d7;
+      }
+      .chase-list .chase-tabs {
+        .ivu-input,
+        span {
+          color: #3352d7;
+        }
+      }
+      .ivu-checkbox-checked .ivu-checkbox-inner {
+        background: #3352d7;
+        border-color: #3352d7;
+      }
+    }
+    &.HKSIX .bet-cart {
+      background: #191930;
+      .title {
+        color: #FFF;
+      }
+      .list {
+        table {
+          color: #FFF;
+          thead {
+            background: #25254c;
+          }
+          tbody {
+            td {
+              .price {
+                display: inline-block;
+                width: 100px;
+                margin: 0 10px;
+              }
+              .remove i {
+                color: #FFF !important;
+              }
+            }
+          }
+        }
+      }
+      .foot {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        font-size: 12px;
+        color: #FFF;
+        .price {
+          display: inline-block;
+          width: 200px;
+          margin-right: 10px;
+        }
+      }
+      .control {
+        .ivu-btn-primary {
+          background: #ffd100;
+          border-color: #ffd100;
+          color: #555;
+        }
+        .clear {
+          color: #FFF;
+        }
+      }
+    }
+    //record-list
+    &.HKSIX .record-list {
+      background: #191930;
+      .title {
+        color: #FFF;
+      }
+      .record-table {
+        color: #FFF;
+        table {
+          thead {
+            td {
+              background: #25254c;
+              color: #FFF;
+            }
+          }
+          tbody {
+            td {
+              .ivu-checkbox-checked .ivu-checkbox-inner {
+                background: #ffd100;
+                border-color: #ffd100;
+              }
+              a {
+                color: #ffd100;
+              }
+            }
+          }
+        }
+      }
+      .table-page {
+        .ivu-page-item:hover a,
+        .ivu-page-prev:hover a,
+        .ivu-page-next:hover a {
+          color: #555;
+        }
+        .ivu-page-item-active {
+          background: #ffd100;
+          a {
+            color: #555;
+          }
+        }
+        .ivu-page-item-active:hover a {
+          color: #555;
+        }
+        .ivu-page-options input:hover,
+        .ivu-page-options input:focus {
+          border-color: #ffd100;
+        }
+        .ivu-select-visible .ivu-select-selection {
+          border-color: #555;
+          box-shadow: none;
+        }
+        .ivu-select-item-selected {
+          background: #ffd100;
+          color: #555;
+        }
+        button {
+          background: #ffd100;
+          border-color: #ffd100;
+          color: #555;
+        }
+      }
+    }
+  }
+  //開獎公告
+  #draw-notice {
+    padding-bottom: 35px;
+    background: #e6e6e6;
+    .head {
+      //最新開獎日期
+      .date {
+        padding: 15px 0;
+        font-size: 16px;
+        color: #847b5f;
+        span {
+          display: inline-block;
+          margin-left: 15px;
+          color: #495060;
+        }
+      }
+      //今日開獎彩種
+      .category {
+        padding: 5px 0;
+        background: #FFF;
+        font-size: 16px;
+        line-height: 34px;
+        span {
+          color: #847b5f;
+        }
+        a {
+          display: inline-block;
+          margin: 5px 0;
+          height: 34px;
+          padding: 0 15px;
+          color: #495060;
+          &.active {
+            background: #e6e6e6;
+            color: #847b5f;
+          }
+        }
+      }
+    }
+    .draw-detail {
+      .filter-tab {
+        display: flex;
+        padding: 10px 0;
+        .tab-item {
+          display: inline-block;
+          width: 87px;
+          font-size: 16px;
+          color: #555;
+          line-height: 34px;
+          text-align: center;
+          &.active {
+            background: #ffd100;
+          }
+        }
+        .custom-date {
+          margin-left: 20px;
+          font-size: 12px;
+        }
+      }
+      .draw-list {
+        height: 500px;
+        background: #FFF;
+        .lottery-balls {
+          display: flex;
+          justify-content: center;
+          li {
+            width: 22px;
+            height: 22px;
+            margin: 0 8px;
+            color: #FFF;
+            line-height: 22px;
+            text-align: center;
+            &.ball-01 {
+              background: #ffd100;
+            }
+            &.ball-02,
+            &.ball-small,
+            &.ball-odd {
+              background: #297bce;
+            }
+            &.ball-03 {
+              background: #64656a;
+            }
+            &.ball-04,
+            &.ball-big,
+            &.ball-even {
+              background: #ea721a;
+            }
+            &.ball-05 {
+              background: #67dbff;                  ;
+            }
+            &.ball-06 {
+              background: #2f29d3;
+            }
+            &.ball-07 {
+              background: #bababa;
+            }
+            &.ball-08 {
+              background: #ff2d2d;
+            }
+            &.ball-09 {
+              background: #6e3a15;
+            }
+            &.ball-10 {
+              background: #2db43d;
+            }
+            &.ball-01,
+            &.ball-05,
+            &.ball-07 {
+              color: #555;
+            }
+          }
+        }
+        .draw_table {
+          display: flex;
+          table {
+            width: 100%;
+            font-size: 12px;
+            text-align: center;
+            th {
+              padding: 25px 0;
+              background: #515368;
+              border-right: 1px solid #d4d4d4;
+              border-bottom: 1px solid #d4d4d4;
+              color: #FFF;
+              text-align: center;
+            }
+            tbody {
+              background: #FFF;
+            }
+            td {
+              padding: 10px 0;
+              border-right: 1px solid #d4d4d4;
+              border-bottom: 1px solid #d4d4d4;
+              &.open-num {
+                color: #ffaa0d;
+                font-weight: bold;
+              }
+            }
+          }
+          //SSC
+          .draw_table-col {
+            width: 100%;
+          }
+          //FT
+          .chart-table {
+            .filter-type {
+              display: flex;
+              justify-content: center;
+              li {
+                width: 68px;
+                margin: 0 10px;
+                line-height: 24px;
+                text-align: center;
+                &.active {
+                  background: #e6d18c;
+                  border-radius: 2px;
+                  color: #555;
+                }
+              }
+            }
+          }
+          //PK10
+          .ball-xs {
+            .lottery-balls li {
+              margin: 0 3px;
+            }
+          }
+          //HKSIX
+          .ball-row {
+            .lottery-ball {
+              width: 28px;
+              height: 28px;
+              margin: 0 auto 5px auto;
+              background-size: 100% auto;
+              line-height: 28px;
+              &.ball-blue {
+                background-image: url('~assets/themeBoMao/lottery/circle-blue.png');
+              }
+              &.ball-red {
+                background-image: url('~assets/themeBoMao/lottery/circle-red.png');
+              }
+              &.ball-green {
+                background-image: url('~assets/themeBoMao/lottery/circle-green.png');
+              }
+            }
+            .twelve-label {
+              color: #555;
+            }
+          }
+        }
+      }
+    }
+  }
+  //走勢圖
+  #trend {
+    padding-bottom: 50px;
+    background: #e6e6e6;
+    //主頁籤
+    .ivu-tabs {
+      padding: 10px 0;
+      .ivu-tabs-bar {
+        margin: 0;
+        border: none;
+        .ivu-tabs-ink-bar {
+          display: none;
+        }
+        .ivu-tabs-tab {
+          border-radius: 2px;
+          font-size: 16px;
+          color: #495060;
+          &.ivu-tabs-tab-active {
+            background: #FFF;
+          }
+        }
+      }
+    }
+    //次頁籤
+    .navs {
+      background: #FFF;
+      .layout-wrap {
+        padding: 10px 0;
+        li {
+          display: inline-block;
+          a {
+            display: block;
+            margin: 1px;
+            padding: 0 15px;
+            font-size: 16px;
+            color: #495060;
+            line-height: 34px;
+            &:hover,
+            &.active {
+              background: #e6e6e6;
+            }
+            &.active {
+              color: #847b5f;
+            }
+          }
+        }
+      }
+    }
+    //過濾器
+    .filter {
+      padding: 15px 0;
+      .ivu-checkbox-wrapper {
+        margin-right: 27px;
+        font-size: 16px;
+        color: #495060;
+        .ivu-checkbox {
+          margin-right: 6px;
+        }
+        .ivu-checkbox-inner {
+          width: 22px;
+          height: 22px;
+          border: 1px solid #bababa;
+          border-radius: 5px;
+        }
+        .ivu-checkbox-checked .ivu-checkbox-inner {
+          background: #ffd100;
+          border-color: #ffd100; 
+          &::after {
+            left: 6px;
+            top: 2px;
+            width: 8px;
+            height: 13px;
+          }
+        }
+      }
+      .ivu-radio-group {
+        margin-left: 50px;
+        .ivu-radio-wrapper {
+          height: 34px;
+          margin-right: 10px;
+          background: none;
+          border: 1px solid transparent;
+          font-size: 16px;
+          color: #555555;
+          line-height: 34px;
+          &::before,
+          &::after {
+            display: none;
+          }
+          &:hover {
+            border-color: #ffd100;
+          }
+          &.ivu-radio-wrapper-checked {
+            background: #ffd100;
+            box-shadow: none;
+          }
+          &.ivu-radio-focus {
+            box-shadow: none;
+          }
+        }
+      }
+    }
+    //圖表內容
+    #chart {
+      position: relative;
+      height: 800px;
+      overflow: auto;
+      .chart-table {
+        width: 100%;
+        background: #FFF;
+        font-size: 12px;
+        color: #555;
+        text-align: center;
+        th {
+          padding: 10px;
+          background: #515368;
+          border-right: 1px solid #d4d4d4;
+          border-bottom: 1px solid #d4d4d4;
+          color: #FFF;
+          text-align: center;
+          &.dark {
+            background: #3a3b50;
+          }
+          .filter-type {
+            display: flex;
+            justify-content: center;
+            li {
+              width: 68px;
+              height: auto;
+              margin: 0 10px;
+              background: none;
+              line-height: 24px;
+              text-align: center;
+              &.active {
+                background: #e6d18c;
+                border-radius: 2px;
+                color: #555;
+              }
+            }
+          }
+        }
+        td {
+          padding: 5px;
+          border-right: 1px solid #d4d4d4;
+          border-bottom: 1px solid #d4d4d4;
+          .num-ball.ball-orange {
+            color: #ffd100;
+          }
+          .omit-ball {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background: #ffd100;
+            border-radius: 50%;
+            line-height: 18px;
+          }
+          .ball-xs {
+            display: flex;
+            justify-content: center;
+            color: #ffd100;
+            letter-spacing: 1px;
+          }
+          //PCDD
+          .ball28 {
+            li {
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              line-height: 20px;
+              &.lottery-ball {
+                background: #f13131;
+                border-radius: 50%;
+                color: #FFF;
+                &.ball-red {
+                  background: #f13131;
+                }
+                &.ball-green {
+                  background: #47b53a;
+                }
+                &.ball-blue {
+                  background: #3990b4;
+                }
+                &.ball-gray {
+                  background: #999;
+                }
+              }
+            }
+          }
+          //PK10
+          .lottery-balls {
+            display: flex;
+            justify-content: center;
+            li {
+              margin: 0 3px;
+              color: #FFF;
+              &.ball-01 {
+                background: #ffd100;
+              }
+              &.ball-02,
+              &.ball-small,
+              &.ball-odd {
+                background: #297bce;
+              }
+              &.ball-03 {
+                background: #64656a;
+              }
+              &.ball-04,
+              &.ball-big,
+              &.ball-even {
+                background: #ea721a;
+              }
+              &.ball-05 {
+                background: #67dbff;                  ;
+              }
+              &.ball-06 {
+                background: #2f29d3;
+              }
+              &.ball-07 {
+                background: #bababa;
+              }
+              &.ball-08 {
+                background: #ff2d2d;
+              }
+              &.ball-09 {
+                background: #6e3a15;
+              }
+              &.ball-10 {
+                background: #2db43d;
+              }
+              &.ball-01,
+              &.ball-05,
+              &.ball-07 {
+                color: #555;
+              }
+            }
+          }
+          //HKSIX
+          .lottery-ball {
+            width: 28px;
+            height: 28px;
+            margin: 0 auto 5px auto;
+            background-size: 100% auto;
+            line-height: 28px;
+            &.ball-blue {
+              background-image: url('~assets/themeBoMao/lottery/circle-blue.png');
+            }
+            &.ball-red {
+              background-image: url('~assets/themeBoMao/lottery/circle-red.png');
+            }
+            &.ball-green {
+              background-image: url('~assets/themeBoMao/lottery/circle-green.png');
+            }
+          }
+          .twelve-label {
+            color: #555;
+          }
+        }
+      }
+      canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+        pointer-events: none;
+      }
+      &.hide-omit .text-ball {
+        display: none;
+      }
+      //隱藏折線
+      &.hide-line canvas {
+        visibility: hidden;
+      }
+    }
+  }
+
+  //玩法規則
+  #rules {
+    padding-bottom: 50px;
+    background: #e6e6e6;
+    //主頁籤
+    .ivu-tabs {
+      padding: 10px 0;
+      .ivu-tabs-bar {
+        margin: 0;
+        border: none;
+        .ivu-tabs-ink-bar {
+          display: none;
+        }
+        .ivu-tabs-tab {
+          border-radius: 2px;
+          font-size: 16px;
+          color: #495060;
+          &.ivu-tabs-tab-active {
+            background: #FFF;
+          }
+        }
+      }
+    }
+    //次頁籤
+    .navs {
+      background: #FFF;
+      .layout-wrap {
+        padding: 10px 0;
+        li {
+          display: inline-block;
+          a {
+            display: block;
+            margin: 1px;
+            padding: 0 15px;
+            font-size: 16px;
+            color: #495060;
+            line-height: 34px;
+            &:hover,
+            &.active {
+              background: #e6e6e6;
+            }
+            &.active {
+              color: #847b5f;
+            }
+          }
+        }
+      }
+    }
+    .help_list {
+      .lis {
+        padding: 10px 0;
+        h5 {
+          display: none;
+        }
+        ul {
+          display: flex;
+          li {
+            margin-right: 10px;
+            padding: 0 15px;
+            border: 1px solid transparent;
+            font-size: 16px;
+            color: #495060;
+            line-height: 34px;
+            cursor: pointer;
+            &:hover {
+              border-color: #ffd100;
+            }
+            &.sli {
+              background: #ffd100;
+            }
+          }
+        }
+      }
+      .help_col {
+        display: none;
+        height: 800px;
+        padding: 10px;
+        background: #FFF;
+        overflow: auto;
+        font-size: 16px;
+        color: #495060;
+        line-height: 1.5;
+        h4, h5, p {
+          margin-bottom: 20px;
+        }
+        h5 {
+          font-size: 16px;
+          color: #495060;
+          line-height: 1.5;
+        }
+        hr {
+          display: none;
+        }
+        &.show {
+          display: block;
+        }
+      }
+    }
+  }
+  .share-plan {
+    position: absolute;
+    right: 160px;
+    bottom: 12px;
+    height: 30px;
+    padding: 0 15px !important;
+    background: #ea721a;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #FFF;
+    line-height: 30px;
+    &:hover {
+      background: #FFF;
+      border-color: #ea721a;
+      color: #ea721a;
+    }
+  }
+}

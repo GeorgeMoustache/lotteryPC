@@ -1,0 +1,57 @@
+#themeMix {
+  /* #region bet-cart*/
+  .theme-v2 .input-light {
+    width: 100px;
+    .ivu-input {
+      height: 20px;
+      line-height: 18px;
+      border-color: #ee8e48;
+    }
+  }
+  /* #endregion */
+
+  /* #region hack*/
+  // 传统&官方玩法的切换
+  .lottery-info {
+    .ivu-radio-group-button .ivu-radio-wrapper {
+      border-color: $primary-type2;
+      color: $primary-type2;
+    }
+    .ivu-radio-group-button .ivu-radio-wrapper-checked {
+      background: $primary-type2;
+      color: #fff;
+      &.ivu-radio-focus {
+        box-shadow: none;
+      }
+      &:before {
+        display: none !important;
+      }
+    }
+  }
+  /* #endregion */
+
+  /* #region betModal-list*/
+  .bet-modal {
+    font-size: 14px;
+    line-height: 32px;
+    em {
+      font-style: normal;
+    }
+    dd {
+      color: #666;
+      em {
+        color: #333;
+      }
+    }
+    .bd {
+      border: 1px solid #ddd;
+      height: 130px;
+      padding: 0 5px;
+      overflow: auto;
+    }
+    .ft {
+      color: #666;
+    }
+  }
+  /* #endregion */
+}

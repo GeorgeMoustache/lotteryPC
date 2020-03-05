@@ -1,0 +1,1773 @@
+@charset "utf-8";
+@import '../utils';
+@import 'base';
+@import 'hack';
+@import 'lotery-theme2';
+@import 'theme-hack';
+@import '../chat';
+
+@font-face {font-family: "iconfont";
+  src: url('./font/iconfont.eot?t=1539533061573'); /* IE9*/
+  src: url('./font/iconfont.eot?t=1539533061573#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff;charset=utf-8;base64,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') format('woff'),
+  url('./font/iconfont.ttf?t=1539533061573') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('./font/iconfont.svg?t=1539533061573#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+@font-face {
+  font-family: "digital-7";
+  src: url("./font/digital-7.ttf");
+}
+
+#themeMix {
+  //首頁大圖輪播 (theme4 用)
+  .owl-item {
+    background: #000;
+    a {
+      display: block;
+      img {
+        opacity: .2;
+        transition: all .3s;
+      }
+    }
+  }
+  .owl-item.center a img {
+    opacity: 1;
+  }
+  .owl-theme .owl-nav {
+    margin-top: 0 !important;
+  }
+  .owl-nav {
+    div {
+      position: absolute;
+      top: 50%;
+      width: 27px;
+      height: 53px;
+      margin-top: -26px !important;
+      text-indent: -9999px;
+    }
+    .owl-prev {
+      left: 280px;
+      background: url('~assets/themeMix/owl-arrow-left.svg') center center no-repeat !important;
+      background-size: 100% auto !important;
+    }
+    .owl-next {
+      right: 280px;
+      background: url('~assets/themeMix/owl-arrow-right.svg') center center no-repeat !important;
+      background-size: 100% auto !important;
+    }
+  }
+  //QuickContact.vue
+  .quick-contact  {
+    position: fixed;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    width: 70px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
+    .wrap {
+      position: relative;
+      padding-bottom: 50px;
+      background: #f13131;
+      font-size: 0;
+      pointer-events: fill;
+      li {
+        position: relative;
+        .inner {
+          display: inline-flex;
+          align-items: center;
+          margin-bottom: 2px;
+          padding-right: 10px;
+          background: #f13131;
+          cursor: pointer;
+          transition: all .3s;
+          z-index: 2;
+          &::before {
+            content: "";
+            flex-shrink: 0;
+            display: block;
+            width: 70px;
+            height: 50px;
+            background-position: center center;
+            background-repeat: no-repeat;
+          }
+          .content {
+            font-size: 12px;
+            color: #FFF;
+            line-height: 1.5;
+            white-space: nowrap;
+          }
+          .qrcode {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            display: none;
+            width: 135px;
+            padding: 10px 0;
+            background: #f13131;
+            img {
+              display: block;
+              width: 84px;
+              height: auto;
+              margin: 0 auto;
+            }
+          }
+          &:hover {
+            margin-left: 70px;
+            transform: translateX(-100%);
+            .qrcode {
+              display: block;
+            }
+          }
+        }
+        .line {
+          position: relative;
+          display: block;
+          height: 2px;
+          background: #f13131;
+          padding: 0;
+          line-height: 1;
+          &::after {
+            content: ""; 
+            position: absolute;
+            left: 11px;
+            top: 0;
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: #f89898;  
+          }
+        }
+      }
+      li.phone {
+        z-index: 1;
+        .inner::before {
+          background-image: url('~assets/themeMix/quick-contact-downapp.svg');
+          background-size: auto 35px;
+        }
+        .content {
+          width: 125px;
+          white-space: normal;
+        }
+      }
+      li.wechat {
+        .inner::before {
+          background-image: url('~assets/themeMix/quick-contact-wechat.svg');
+          background-size: auto 23px;
+        }
+      }
+      li.qq {
+        .inner::before {
+          background-image: url('~assets/themeMix/quick-contact-qq.svg');
+          background-size: auto 27px;
+        }
+      }
+      li.tel {
+        .inner::before {
+          background-image: url('~assets/themeMix/quick-contact-contact.svg');
+          background-size: auto 24px;
+        }
+      }
+      .ivu-back-top {
+        position: absolute;
+        left: 0;
+        bottom: 0 !important;
+        display: flex;
+        align-items: center;
+        width: 125px;
+        background: #f13131;
+        font-size: 12px;
+        color: #FFF;
+        transition: all .3s;
+        &::before {
+          content: "";
+          display: block;
+          width: 70px;
+          height: 50px;
+          background: url('~assets/themeMix/quick-contact-gotop.svg') center center no-repeat;
+          background-size: auto 26px;
+        }
+        &:hover {
+          left: -60px;
+        }
+      }
+    }
+    &.theme4 {
+      .wrap {
+        background: #262732;
+        li {
+          .inner {
+            background: #262732;
+            .qrcode {
+              background: #262732;
+            }
+          }
+          .line {
+            background: #262732;
+            &::after {
+              background: #666;
+            }
+          }
+        }
+      }
+      .ivu-back-top {
+        background: #262732;
+      }
+    }
+  }
+  .iconfont {
+    font-family:"iconfont" !important;
+    font-size: 54px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .icon-jetton:before { content: "\e60b"; }
+
+  /* #region 彩票-号码-球 */
+  .lottery-ball {
+    display: inline-block;
+    margin: 0 1px;
+    @include square(30);
+    font-size: 18px;
+    border-radius: 50%;
+    background: $ball-red;
+    text-align: center;
+    color: #f6f6f6;
+    transition: all .2s linear;
+    &.ball-lg {
+      @include square(40);
+      font-size: 26px;
+    }
+    &.ball-md {
+      @include square(25);
+      font-size: 16px;
+    }
+    &.ball-xs {
+      @include square(20);
+      font-size: 12px;
+    }
+    &.ball-green {
+      background: $ball-green;
+    }
+    &.ball-blue {
+      background: $ball-blue;
+    }
+    &.ball-gray {
+      background: #999;
+    }
+  }
+
+  .lottery-balls {
+    .lottery-symbol {
+      display: inline-block;
+      line-height: 22px;
+      font-size: 17px;
+      margin: 0 3px;
+    }
+
+    &.ball-lg .lottery-ball {
+      @include square(30);
+      font-size: 16px;
+    }
+
+    &.ball-md .lottery-ball {
+      @include square(25);
+      font-size: 16px;
+    }
+
+    &.ball-xs .lottery-ball {
+      @include square(20);
+      font-size: 12px;
+    }
+  }
+  .draw-view {
+    .lottery-ball {
+      margin: 0 2px;
+      text-shadow: none;
+      font-weight: normal;
+      box-shadow: none;
+    }
+    .lottery-symbol {
+      font-weight: 700;
+      font-size: 14px!important;
+      color: #333;
+    }
+  }
+  .symbol,
+  .lottery-symbol {
+    display: inline-block;
+    color:#666;
+  }
+  .lottery-balls {
+    .symbol {
+    // .lottery-symbol {
+      height: 20px;
+      line-height: 20px;
+      font-size: 12px;
+    }
+  }
+  .ball-xs {
+    display: inline-block;
+    .lottery-ball {
+      @include square(20);
+      font-size: 12px;
+    }
+  }
+  .lottery-card {
+    .ball-xs {
+      width: 230px;
+      text-align: center;
+      .lottery-ball {
+        margin-right: 0;
+        margin-left: 3px;
+        text-shadow: none;
+        box-shadow: none;
+      }
+    }
+    .lottery-symbol {
+      font-size: 12px;
+    }
+  }
+  /* #endregion */
+
+  /* #region bet-bar */
+  .bet-bar {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 5px 16px;
+    border-radius: 40px;
+    background: #efefef;
+    color: #707070;
+    line-height: 1;
+    &.hack-background {
+      margin-bottom: 0;
+      padding: 0;
+      background: #fff;
+    }
+    .cell-side,
+    .cell-main,
+    .cell-filter {
+      float: left;
+    }
+    .cell-side {
+      min-width: 60px;
+      line-height: 30px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .cell-filter {
+      margin: 4px 0;
+      text-align: right;
+      line-height: 1;
+      font-size: 14px;
+    }
+    .clear-ball {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      margin-left: 3px;
+      padding: 0;
+      background: #FFF;
+      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+      border: none;
+      border-radius: 50%;
+      font-size: 14px;
+      color: $BoMao-text-color;
+      line-height: 22px;
+      text-align: center;
+      transition: all .3s;
+      &:hover {
+        transform: scale(1.3);
+        border: 1px solid #e84f31;
+      }
+    }
+    // hack
+    .ivu-radio-wrapper {
+      margin-right: 0;
+    }
+    .cell-main {
+      @include clearfix;
+      .ivu-checkbox-wrapper {
+        margin-right: 0;
+      }
+    }
+    .check-group {
+      display: inline-block;
+      border-radius: 25px;
+      transition: all .3s linear;
+    }
+    .ratio-group {
+      // padding: 0 15px;
+      @include clearfix();
+    }
+    .num-ball,
+    .num-ratio {
+      float: left;
+      text-align: center;
+    }
+    .num-ball {
+      margin: 0 4px;
+      width: 30px;
+      height: 30px;
+      line-height: 28px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px #ccc solid;
+      font-size: 16px;
+      color: #707070;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all .2s linear;
+      &:hover {
+        transform: scale(1.3);
+        border: 1px solid #e84f31;
+      }
+    }
+    .num-ratio {
+      width: 35px;
+      padding: 3px 0;
+      font-size: 11px;
+    }
+    .ball-sm {
+      width: 22px;
+      height: 22px;
+      margin: 0 3px;
+      line-height: 20px;
+      font-size: 14px;
+    }
+    .ivu-checkbox-checked + .num-ball,
+    .ivu-radio-checked + .num-ball {
+      background: #e84f31;
+      color: #fff;
+    }
+    .num-rectangle {
+      &:hover {
+        background: none;
+        box-shadow: none;
+      }
+      .num-ball {
+        width: auto;
+        padding: 0 12px;
+        border-radius: 15px;
+        &:hover {
+          transform: none;
+          border: 1px solid #e84f31;
+        }
+      }
+    }
+  }
+  /* #endregion */
+
+  /* #region 时时彩顶部位置筛选 */
+  .top-digits {
+    margin-bottom: 16px;
+    display: inline-block;
+    .checkbox-group {
+      display: inline-block;
+    }
+    .ivu-checkbox-wrapper {
+      font-size: 13px;
+    }
+    &-tip {
+      display: inline-block;
+      em {
+        padding: 0 5px;
+        font-style: normal;
+      }
+    }
+  }
+  /* #endregion */
+
+  // Lottery_*.vue
+  .mode-template {
+    .number-cell {
+      @include clearfix;
+      line-height: 1;
+    }
+  }
+
+  /* #region bet-cart */
+  .bet-cart-wrap {
+    margin-bottom: 16px;
+    height: 182px;
+    .bet-cart {
+      margin-right: 16px;
+    }
+  }
+
+  .bet-cart {
+    width: 630px;
+    height: 20px;
+    border: 1px solid #d6d6d6;
+    border-radius: 8px;
+    background: #ededed;
+    .wrap {
+      width: 617px;
+      height: 8px;
+      margin: 6px auto;
+      border-radius: 5px;
+      background: #3b3d42;
+    }
+    .body,
+    .foot {
+      position: relative;
+      width: 610px;
+      margin: 3px auto;
+    }
+    .body {
+      top: 5px;
+      height: 136px;
+      border: 1px solid #e1e1e1;
+      background: #fff;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    .bet-list {
+      table-layout: fixed;
+      th + th {
+        border-left: 1px solid #333;
+      }
+      th, td {
+        line-height: 1.5;
+        border-bottom: 1px #d5d5d5 dashed;
+      }
+      tr:hover {
+        background: #fdf0e8;
+        box-shadow: 0 3px 5px #d4bead inset;
+      }
+      td {
+        padding-top: 2px;
+        padding-bottom: 2px;
+      }
+      td[class^="td-"] {
+        text-align: right;
+      }
+      td.td-num {
+        padding-left: 16px;
+        text-align: left;
+      }
+      .td-count {
+        width: 40px;
+      }
+      .td-price {
+        width: 100px;
+      }
+      .td-cost {
+        width: 120px;
+      }
+      .td-remove {
+        width: 75px;
+      }
+    }
+    .remove {
+      margin-right: 9px;
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      text-align: center;
+      line-height: 25px;
+      cursor: pointer;
+    }
+    .null-tip {
+      position: absolute;
+      top: 45%;
+      left: 45%;
+      color: #aaa;
+    }
+    .foot {
+      padding: 8px 20px;
+      border: 1px solid #e1e1e1;
+      background: #efefef;
+    }
+    .empty {
+      cursor: pointer;
+      .ivu-icon {
+        margin-right: 5px;
+        vertical-align: top;
+      }
+    }
+    .remove,
+    .empty {
+      &:hover .ivu-icon {
+        transition: transform .5s ease-in-out;
+        transform: rotate(360deg);
+      }
+    }
+  }
+  // theme-v2 HK6
+  .theme-v2 .bet-list {
+    .td-count {
+      width: 30px;
+    }
+    .td-price {
+      width: 140px;
+    }
+    .td-cost {
+      width: 155px;
+    }
+  }
+  /* #endregion */
+
+  /* 非兩面盤樣式 */
+  .lottery_play_wrap {
+    display: flex;
+    justify-content: space-between;
+    background: #FFF;
+    .left-games {
+      width: 905px;
+      height: calc(100vh - 237px);
+      overflow: auto;
+    }
+    .right-games {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 375px;
+      height: 100%;
+      .switch {
+        position: absolute;
+        right: 100%;
+        top: 0;
+        a {
+          display: block;
+          width: 30px;
+          margin-bottom: 10px;
+          padding: 8px 5px;
+          border-radius: 2px;
+          box-shadow: -2px 3px 6px 0 rgba(0, 0, 0, 0.16);
+          font-size: 14px;
+          color: #FFF;
+          text-align: center;
+          &.draw-bar {
+            background: #dbc585;
+          }
+          &.trend-ball {
+            background: #ff454a;
+          }
+        }
+      }
+      .wrap {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .lottery_play_wrap {
+    position: relative;
+    .lottery_play_wrap {
+      position: static;
+      .left-games {
+        height: auto;
+      }
+      .right-games {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+  }
+
+  /* 兩面盤樣式 */
+
+
+  /* #region lottery-mode */
+  .mode-wrap {
+    overflow: hidden;
+    .divide {
+      margin: 0;
+      border-bottom: 2px #cecece dotted;
+    }
+  }
+
+  /* #endregion */
+
+  /* #region 特码包三 */
+  .ball-xs {
+    background: none!important;
+    .ivu-select-selection .ivu-select-selected-value {
+      display: inline-block;
+      margin: 5px 0;
+      margin-left: -15px;
+      padding: 0;
+      @include square(20);
+      border-radius: 50%;
+      color: #fff;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+  .ball-red .ivu-select-selected-value {
+    background: $ball-red;
+  }
+  .ball-green .ivu-select-selected-value {
+    background: $ball-green;
+  }
+  .ball-blue .ivu-select-selected-value {
+    background: $ball-blue;
+  }
+  .ball-gray .ivu-select-selected-value {
+    background: $ball-gray;
+  }
+  /* #endregion */
+
+  // RecordList.vue modal-table
+  .modal-bd {
+    margin-top: 5px;
+    height: 150px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+  }
+  .modal-table {
+    word-break: break-all;
+    word-wrap: break-all;
+    th {
+      text-align: left;
+    }
+    th,
+    td {
+      padding: 2px 10px;
+      line-height: 30px;
+      border-bottom: 1px dashed #e1e1e1;
+      font-weight: normal;
+    }
+  }
+
+  .share-plan {
+    position: absolute;
+    right: 160px;
+    bottom: 12px;
+    height: 36px;
+    padding: 0 15px;
+    background: #ff631e;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #FFF;
+    line-height: 36px;
+    &:hover {
+      background: #FFF;
+      border-color: #ff631e;
+      color: #ff631e;
+    }
+  }
+
+  // login-modal hack
+  .login-modal {
+    .ivu-modal-mask,
+    .ivu-modal-wrap {
+      z-index: 1001;
+    }
+  }
+  .vcode {
+    .ivu-input-group-append {
+      padding: 0!important;
+      border: none;
+    }
+    img {
+      display: block;
+      width: 60px;
+      height: 32px;
+    }
+  }
+  // price
+  .price {
+    .ivu-input {
+      color: $primary-type2;
+      height: 16px;
+      line-height: 16px;
+      padding: 2px 4px;
+    }
+    &.text-gray .ivu-input {
+      color: #707070;
+    }
+  }
+
+
+  /* #region trend.vue */
+  .num-ball,
+  .omit-ball,
+  .text-ball {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 19px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all .2s linear;
+    color: $gray-color;
+    &.ball-orange,
+    &.ball-green {
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, .3);
+      // border: 1px solid #000;
+      color: #fff;
+      background: #fff;
+    }
+    &.ball-orange {
+      background: #dd5e00;
+    }
+    &.ball-green {
+      background: #11b35e;
+    }
+  }
+  .chart-wrap {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    margin: 0 auto;
+    padding: 36px 16px;
+    background: #FFF;
+    overflow: auto;
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      // background: rgba(0, 0, 0, .1);
+    }
+    .light-bg {
+      background: #ffe;
+    }
+  }
+  .hide-line {
+    canvas {
+      visibility: hidden;
+    }
+  }
+  .hide-omit {
+    .text-ball {
+      visibility: hidden;
+    }
+  }
+  .chart-table {
+    $border: 1px solid #ddd;
+    border-top: $border;
+    border-left: $border;
+    th,
+    td {
+      border-bottom: $border;
+      border-right: $border;
+      padding: 5px;
+      text-align: center;
+    }
+  }
+  /* #endregion */
+
+  //今日盈虧
+  .today_profit-wrap {
+    em {
+      font-style: normal;
+    }
+    .ivu-icon-ios-loop-strong {
+      position: relative;
+      top: -3px;
+      margin-left: 32px;
+      font-size: 20px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .ivu-icon-ios-loop-strong:hover {
+      transform: rotate(180deg);
+    }
+    .box {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    ul.head {
+      display: table;
+      width: 100%;
+      border-spacing: 20px;
+      li {
+        display: table-cell;
+        padding: 0 15px;
+        height: 100px;
+        vertical-align: middle;
+        overflow: hidden;
+      }
+    }
+    // 余额
+    .balance {
+      em {
+        font-size: 30px;
+        line-height: 1;
+      }
+      p {
+        margin-top: 10px;
+      }
+      span {
+        margin-right: 30px;
+      }
+      a {
+        color: #495060;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        margin: 0 3px;
+        padding: 2px 10px;
+      }
+    }
+    .amount,
+    .calculate {
+      .ivu-icon {
+        float: left;
+        margin-right: 15px;
+        width: 60px;
+        height: 60px;
+        padding: 16px;
+        text-align: center;
+        border-radius: 4px;
+        background: #fb4046;
+        font-size: 28px;
+        line-height: 28px;
+        color: #fff;
+      }
+      .detail {
+        overflow: hidden;
+      }
+      em {
+        display: block;
+        line-height: 1;
+      }
+    }
+    .amount em {
+      margin-top: 15px;
+      font-size: 28px;
+    }
+    .calculate em {
+      margin-top: 30px;
+    }
+    // 更多
+    .body {
+      padding: 0 20px 20px;
+      > li {
+        margin-bottom: 20px;
+      }
+      h2 {
+        display: flex;
+        align-items: center;
+        margin-bottom: 13px;
+        font-size: 16px;
+        color: #495060;
+      }
+      h2::before {
+        content: "";
+        display: block;
+        width: 22px;
+        height: 22px;
+        margin-right: 13px;
+        background: url('~assets/themeMix/member-title-level.png') center center no-repeat
+          #f13131;
+        border-radius: 50%;
+      }
+    }
+    .more {
+      display: table;
+      width: 100%;
+      padding: 20px;
+      li {
+        display: table-cell;
+        text-align: center;
+        & + li {
+          border-left: 1px dotted #d9d8d8;
+        }
+      }
+      em {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 18px;
+      }
+    }
+  }
+
+  //會員中心
+  .profile_record {
+    padding: 20px 0;
+    background: #fff;
+    height: 100%;
+    .profile-tab {
+      display: flex;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #dddee1;
+      a {
+        display: block;
+        margin-right: 16px;
+        padding: 8px 16px;
+        border-bottom: 2px solid transparent;
+        font-size: 14px;
+        color: #495060;
+      }
+      a.router-link-exact-active,
+      a.active {
+        border-bottom-color: #ea721a;
+        color: #ea721a;
+      }
+    }
+    &-head {
+      padding: 10px 20px 20px;
+      .page-size {
+        margin-right: 50px;
+        .form-width-sm {
+          margin-right: 10px;
+        }
+      }
+      .date-row {
+        display: flex;
+        margin-bottom: 10px;
+        .quick-date {
+          margin-right: 20px;
+        }
+        .custom-date {
+          margin-right: 20px;
+        }
+      }
+      .sort {
+        button {
+          margin-left: 10px;
+        }
+      }
+    }
+    &-main {
+      padding-bottom: 200px;
+    }
+    &-body {
+      padding: 20px 0;
+    }
+  }
+  .table-page {
+    border-top: 1px solid #d6d6d6;
+    padding: 4px;
+    text-align: center;
+  }
+
+  /* #region 开奖公告 */
+  .draw_table {
+    padding: 20px;
+    @include clearfix();
+
+    &-col {
+      margin-left: -1px;
+      float: left;
+      width: 33%;
+      border-top: 1px solid #d2d2d2;
+      table {
+        border: none;
+        border-left: 1px solid #d2d2d2;
+        border-right: 1px solid #d2d2d2;
+      }
+      tr.light {
+        background: #fafafa;
+      }
+      th,
+      td {
+        border-bottom: 1px solid #d2d2d2;
+        padding: 5px;
+        height: 37px;
+      }
+    }
+    .count-down,
+    .text-primary {
+      color: $layout-primary;
+    }
+    .btn {
+      display:inline-block;
+      margin-left: 5px;
+      padding: 5px 10px;
+      text-align: center;
+      line-height: 1;
+      color: #fff;
+    }
+    .btn-warning {
+      background:#f90;
+    }
+  }
+  .draw_explain {
+    clear: both;
+    h3 {
+      border-bottom: 1px solid #d2d2d2;
+      color: $primary-color;
+      line-height: 40px;
+      font-size: 20px;
+      &:before {
+        content: "";
+        width: 30px;
+        height: 24px;
+        vertical-align: middle;
+        background-position: -273px 0;
+      }
+    }
+    table {
+      border-top: 1px solid #d2d2d2;
+      border-left: 1px solid #d2d2d2;
+    }
+    th,
+    td {
+      padding: 5px;
+      border-bottom: 1px solid #d2d2d2;
+      border-right: 1px solid #d2d2d2;
+    }
+  }
+  /* #endregion */
+
+  // newsDetail
+  .news-content {
+    p {
+      margin-bottom: 15px;
+      text-indent: 2em;
+    }
+  }
+
+  .betdraw-bar {
+    .ball {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0px 2px;
+      padding: 4px;
+      border-radius: 3px;
+      line-height: 1;
+      color: #fff;
+    }
+    .bg-blue {
+      background: #5691d7;
+    }
+    .bg-yellow {
+      background: #ff9726;
+    }
+  }
+
+  // hack
+  .record-wrap .record-tabs {
+    .ivu-table-cell {
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+  }
+  .profile_record {
+    table {
+      font-size: 14px !important;
+    }
+    .ivu-table-cell {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+  .record-table .betnum {
+    @include ellipsis;
+    max-width: 200px;
+  }
+  @media (max-width: 1400px) {
+    .record-table .betnum {
+      max-width: 150px;
+    }
+  }
+
+
+  /* #region agent-wrap */
+  .agent-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #495060;
+    font-weight: bold;
+    &::before {
+      content: "";
+      display: block;
+      width: 22px;
+      height: 22px;
+      margin-right: 13px;
+      background: url('~assets/themeMix/agent-title.svg') center center no-repeat #f13131;
+      border-radius: 50%;
+    }
+  }
+  .agent-wrap {
+    .record-table {
+      a.text-error:hover {
+        text-decoration: underline;
+      }
+    }
+    .user-header a {
+      color: #333;
+      span {
+        font-weight: 300;
+      }
+    }
+    .filter-bar {
+      padding: 0 20px;
+      > li {
+        margin-bottom: 10px;
+      }
+    }
+    .ajax-wrap {
+      position: relative;
+    }
+  }
+  /* #endregion */
+
+  /* #region home*/
+  .icon-sprite {
+    display: inline-block;
+    vertical-align: middle;
+    background: url('~assets/themeMix/icon-sprite.png') no-repeat top left;
+    width: 32px;
+    height: 32px;
+  }
+  .icon-sprite.icon-bet { background-position: 0 0; }
+  .icon-sprite.icon-draw { background-position: 0 -42px; }
+  .icon-sprite.icon-gold { background-position: 0 -84px; }
+  .icon-sprite.icon-hot { background-position: 0 -126px; }
+  .icon-sprite.icon-trend { background-position: 0 -210px; }
+  .icon-gold,
+  .icon-hot {
+    transform: scale(.9);
+  }
+  .icon-draw {
+    transform: scale(.6);
+  }
+  .icon-list {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: -3px;
+    background: url('~assets/themeMix/navi-list.png') no-repeat;
+    width: 18px;
+    height: 18px;
+  }
+  // home
+  .box-hd {
+    height: 41px;
+    line-height: 41px;
+    border-bottom: 1px solid #ddd;
+    background: #eee;
+    font-size: 16px;
+    .icon-sprite {
+      margin-top: -1px;
+    }
+  }
+  /* #endregion */
+
+  .activity-group .item-detail img {
+    max-width: 100%;
+  }
+
+  .grade-percent .ivu-progress-bg {
+    background: $error-color;
+  }
+  /* #region 开奖号码12生肖*/
+  .twelve-labels {
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+    span {
+      display: inline-block;
+    }
+    .twelve-label {
+      width: 30px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .twelve-label:last-child {
+      color: $ball-red;
+    }
+    .twelve-space {
+      width: 30px;
+    }
+  }
+  .ball-md {
+    .twelve-label {
+      margin: 0 2px;
+      width: 25px;
+    }
+    .twelve-space {
+      width: 12px;
+    }
+  }
+  .ball-xs {
+    .twelve-labels {
+      display: none;
+    }
+  }
+
+  /* #endregion */
+
+  /* #region 传统*/
+  .ct-mode-view {
+    $border: 1px solid #ddd;
+    overflow: hidden;
+    margin-left: 20px;
+    width: 740px;
+    .bet-table {
+      float: left;
+      background: #f7f7f7;
+      margin-bottom: 20px;
+      border-top: $border;
+      border-left: $border;
+    }
+    .bet-table + .bet-table {
+      border-left: none 0;
+    }
+    th,
+    td {
+      border-right: $border;
+      border-bottom: $border;
+      text-align: center;
+      font-weight: normal;
+      & > div {
+        float: left;
+        padding: 0 5px;
+        line-height: 32px;
+      }
+      & > div:not(:last-child) {
+        border-right: $border;
+      }
+    }
+    // 冠亚军
+    .hack {
+      border: $border;
+      th,
+      td {
+        border: $border;
+      }
+    }
+    th.p5 {
+      padding: 5px;
+    }
+    td {
+      overflow: hidden;
+      line-height: 2;
+      &.active {
+        background: #ffd9d5;
+      }
+    }
+  }
+  /* #endregion */
+
+  /* #region 飞艇*/
+  .ft-nums,
+  .ft-nums .lottery-ball,
+  .lottery-ball.ft-num {
+    border-radius: 3px;
+    text-shadow: none;
+    box-shadow: none;
+  }
+  @each $num,
+    $color
+      in (
+        1: #e6dc30,
+        2: #1794da,
+        3: #4b4b4b,
+        4: #fd7622,
+        5: #2ddbdd,
+        6: #523ff8,
+        7: #bcbcbc,
+        8: #fc2a1c,
+        9: #770d07,
+        10: #1fba1f
+      )
+  {
+    .ball-#{$num},
+    .ball-0#{$num} {
+      background: $color;
+    }
+  }
+  .ball-ct,
+  .ball-pk10 {
+    display: inline-block;
+    vertical-align: middle;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #000;
+    line-height: 22px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+  }
+  .ball-big,
+  .ball-even {
+    background: #ff9726;
+  }
+  .ball-small,
+  .ball-odd {
+    background: #5691d7;
+  }
+  .ball-orange {
+    border-color: #ed8943;
+    background: #fd8c4e;
+  }
+  .ball-round {
+    border-radius: 50%;
+  }
+  /* #endregion */
+  .chart-wrap.theme-v2 {
+    th {
+      background: #f0f0f0;
+    }
+  }
+
+  .k3hz {
+    .num-ball {
+      margin: 0 12px;
+    }
+    .num-ratio {
+      width: 54px;
+    }
+  }
+
+  /* #region rules*/
+  .help_list {
+    min-height: 200px;
+    .lis {
+      overflow: hidden;
+      margin: 0 24px;
+      height: 55px;
+      border-bottom: 1px solid #efefef;
+      h5 {
+        float: left;
+        line-height: 40px;
+        color: #fa6200;
+        font-size: 16px;
+      }
+      ul {
+        float: right;
+      }
+      ul li {
+        float: left;
+        margin-left: 15px;
+        width: 62px;
+        height: 54px;
+        line-height: 54px;
+        border-bottom: 3px solid #fff;
+        text-align: center;
+        font-weight: 700;
+        color: #666;
+        cursor: pointer;
+      }
+      ul li.sli {
+        border-bottom-color: #fa6200;
+      }
+    }
+
+    .help_col {
+      margin: auto;
+      padding-bottom: 20px;
+      font-family: arial, 'Microsoft YaHei';
+      font-size: 14px;
+      font-weight: 200;
+      color: #000;
+      display: none;
+      &.show {
+        display: block;
+      }
+      h4 {
+        margin: 15px 0 0 7px;
+        line-height: 22px;
+        color: #333;
+      }
+      h5 {
+        margin: 15px 0 0 7px;
+        line-height: 22px;
+        font-size: 14px;
+        color: #333;
+      }
+      // b {
+      //   font-weight: 700;
+      //   color: #333;
+      // }
+      p {
+        margin: 12px;
+        line-height: 25px;
+        font-size: 14px;
+        text-align: justify;
+      }
+      table {
+        border: solid 1px #525252;
+        border-spacing: 0;
+        border-collapse: collapse;
+      }
+      td {
+        padding: 4px;
+        border: 1px solid #525252;
+        line-height: 20px;
+        text-align: left;
+        font-size: 12px;
+      }
+    }
+  }
+  /* #endregion */
+
+
+  /* #region 单式*/
+  .ds_betnums {
+    position: relative;
+    padding-bottom: 20px;
+    &.ellipsis2 {
+      overflow: hidden;
+      white-space: nowrap;
+      padding-bottom: 0;
+    }
+    a {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 60px;
+      text-align: right;
+      background: linear-gradient(to left, #fff, #fff 45%, transparent 100%);
+    }
+  }
+  /* #endregion */
+
+
+  /* #region 投注页面样式改版v1.0*/
+  // ivu
+  .ivu-switch-middle {
+    width: 30px;
+    height: 16px;
+    border-radius: 16px;
+    line-height: 16px;
+    background: #707070;
+    &:after {
+      width: 14px;
+      height: 14px;
+      border-radius: 14px;
+      top: 0;
+      left: 0;
+    }
+    &:active:after {
+      width: 14px;
+    }
+    // .ivu-switch-inner {
+    //   display: none;
+    // }
+    &.ivu-switch-checked:after {
+      left: 14px;
+    }
+    &.ivu-switch-checked {
+      background-color: $primary-type2;
+    }
+  }
+  .ivu-btn {
+    &-middle {
+      width: 88px;
+      height: 34px;
+      line-height: 30px;
+      padding: 0;
+      text-align: center;
+      font-size: 16px;
+    }
+    &-warning {
+      border-color: #ff631e;
+      background-color: #ff631e;
+    }
+    &-primary {
+      border-color: $primary-type2;
+      background-color: $primary-type2;
+    }
+    &-default {
+      border-color: #acacac;
+      background-color: #acacac;
+      color: #fff;
+    }
+  }
+  @each $type, $color in ('warning': #ff631e, 'primary': $primary-type2, 'default': #acacac) {
+    .ivu-btn-#{$type}:hover {
+      border-color: darken($color: $color, $amount: 10%);
+      background-color: darken($color: $color, $amount: 10%);
+      color: #fff;
+    }
+  }
+
+  .lottery_bet-wrap {
+    color: #707070;
+  }
+
+  .mode-template,
+  .bet-cart-wrap {
+    margin-left: 68px;
+  }
+  .bet-bar-inner {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 5px 16px;
+    border-radius: 40px;
+    background: #efefef;
+    color: #707070;
+    line-height: 1;
+    @include clearfix();
+    .ivu-checkbox-wrapper {
+      margin-right: 0;
+    }
+  }
+  .mode-help {
+    display: flex;
+    margin-bottom: 15px;
+    padding: 0 15px 15px 15px;
+    border-bottom: 1px solid #cecece;
+    span {
+      margin-right: 10px;
+    }
+    .desc {
+      color: #707070;
+    }
+    .ivu-icon {
+      margin-right: 3px;
+    }
+    .example,
+    .explain {
+      color: $primary-type2;
+      cursor: pointer;
+    }
+  }
+  /* #endregion */
+
+  //代理中心註冊下級會員
+  #proxyReg {
+    overflow: auto;
+    &.active {
+      height: 50vh;
+    }
+    .ivu-modal-footer {
+      display: none;
+    }
+    .ivu-form-item {
+      width: 660px;
+      margin: 0 auto 25px auto;
+    }
+    .ivu-input-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 340px;
+    }
+    .form-tip {
+      display: inline-block;
+      margin-left: 10px;
+      color: #999;
+    }
+    .vcode {
+      .ivu-input-group-append {
+        position: absolute;
+        left: 100%;
+        top: 0;
+        width: 60px;
+        padding: 0!important;
+        border: none;
+        z-index: 2;
+      }
+      img {
+        display: block;
+        width: 60px;
+        height: 32px;
+      }
+    }
+    .buttons {
+      width: 340px;
+      text-align: center;
+      button {
+        margin-right: 10px;
+        &.reset,
+        &.submit {
+          width: 68px;
+        }
+        &.submit {
+          background: none;
+          border-color: #f13131;
+          color: #f13131;
+          &:hover {
+            background: #f1f1f1;
+          }
+        }
+      }
+    }
+  }
+
+  //修改會員資料
+  #information {
+    .title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #495060;
+      &::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        margin-right: 13px;
+        background: url('~assets/themeMix/member-account.png') center center no-repeat #f13131;
+        border-radius: 50%;
+      }
+    }
+    .wrap {
+      position: relative;
+      padding: 20px 20px 20px 137px;
+      background: #FFF;
+      border-radius: 5px;
+      .user-avatar {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+      }
+      .list {
+        width: 400px;
+        .ivu-form-item {
+          margin-bottom: 10px;
+          .ivu-form-item-label {
+            font-size: 14px;
+            color: #555;
+          }
+          .ivu-form-item-content {
+            font-size: 14px;
+            color: #555;
+            .ivu-input-wrapper {
+              width: 300px;
+              .ivu-input {
+                border-color: #d4d4d4;
+                border-radius: 0;
+                font-size: 14px;
+                color: #555;
+                &.ivu-input-disabled {
+                  background: none;
+                  border: none;
+                }
+              }          
+            }
+            .ivu-form-item-error-tip {
+              left: 100%;
+              top: 6px;
+              margin-left: 10px;
+              font-size: 12px;
+              color: #ea721a;
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+      .buttons {
+        width: 340px;
+        margin-top: 30px;
+        text-align: center;
+        button,
+        a {
+          display: inline-block;
+          width: 72px;
+          height: 30px;
+          margin: 0 10px;
+          padding: 0;
+          border: none;
+          border-radius: 0;
+          font-size: 14px;
+          line-height: 30px;
+        }
+        .reset {
+          color: #8d8d8d;
+        }
+      }
+    }
+  }
+}

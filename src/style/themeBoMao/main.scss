@@ -1,0 +1,1538 @@
+@charset "utf-8";
+@import './reset';
+@import '../utils';
+@import './lottery';
+@import './profile';
+@import '../chat';
+@import './theme6';
+
+//博貓模板樣式庫
+#BoMao {
+  overflow-x: hidden;
+  font-family: arial, "微軟正黑體";
+  //主內容區塊空間
+  .container {
+    padding: 50px 0;
+  }
+  .layout-wrap {
+    max-width: $BoMao-layout;
+    margin: 0 auto;
+  }
+  //header 樣式
+  header {
+    //topbar
+    .topbar {
+      background: $BoMao-yellow-1;
+      font-size: 16px;
+      .layout-wrap {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+    }
+    .user-info {
+      display: inline-flex;
+      align-items: center;
+      color: $BoMao-text-color;
+      .name {
+        padding: 0 5px;
+      }
+      .money-toggle {
+        width: 20px;
+        height: 20px;
+        margin-left: 5px;
+        background-image: url('~assets/themeBoMao/header-show.svg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 17px auto;
+        &.active {
+          background-image: url('~assets/themeBoMao/header-hide.svg');
+          background-position: center 7px;
+          background-size: 15px auto;
+        }
+      }
+      .refresh {
+        display: block;
+        margin-left: 5px;
+        font-size: 20px;
+        transition: all .3s;
+        &:hover {
+          transform: rotate(180deg);
+        }
+      }
+    }
+    .links {
+      display: inline-flex;
+      margin-left: 10px;
+      border-left: 1px solid #dbb81c;
+      > a,
+      .member > a {
+        display: block;
+        padding: 0 15px;
+        border-right: 1px solid #dbb81c;
+        color: #495060;
+        line-height: 40px;
+      }
+      > a:hover,
+      .member:hover > a {
+        background: #161221;
+        color: #FFF;
+      }
+      .service {
+        display: inline-flex;
+        align-items: center;
+        &::before {
+          content: "";
+          display: block;
+          width: 18px;
+          height: 18px;
+          margin-right: 5px;
+          background: url('~assets/themeBoMao/header-support-gray.svg') center center no-repeat;
+          background-size: 100% auto;
+        }
+        &:hover::before {
+          background-image: url('~assets/themeBoMao/header-support-white.svg');
+        }
+      }
+      .member {
+        position: relative;
+        .sub-menu {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          display: none;
+          width: 600px;
+          margin-left: -300px;
+          z-index: 4;
+          &::before {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            margin: 0 auto;
+            border-style: solid;
+            border-width: 0 10px 15px 10px;
+            border-color: transparent transparent $BoMao-yellow-1 transparent;
+          }
+          .wrap {
+            display: flex;
+            padding: 65px 50px;
+            background: $BoMao-yellow-1;
+            li {
+              width: 100%;
+              text-align: center;
+              .title {
+                margin-bottom: 15px;
+                font-size: 16px;
+                color: #262732;
+                font-weight: bold;
+              }
+              a {
+                display: block;
+                width: 96px;
+                margin: 0 auto;
+                font-size: 12px;
+                color: $BoMao-text-color;
+                line-height: 30px;
+                text-align: center;
+                transition: all .3s;
+                &:hover {
+                  background: #161221;
+                  color: #FFF;
+                }
+              }
+            }
+          }
+        }
+        &:hover .sub-menu {
+          display: block;
+        }
+      }
+    }
+    //logobar
+    .logobar {
+      background: $BoMao-dark-1;
+      .layout-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .logo {
+          display: block;
+          width: 225px;
+          height: 70px;
+          background-size: auto 100%;
+          text-indent: -9999px;
+          cursor: default;
+        }
+      }
+    }
+    .navi {
+      display: flex;
+      > li {
+        position: relative;
+        > a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 120px;
+          font-size: 16px;
+          color: #FFF;
+          line-height: 110px;
+        }
+        > a::after {
+          content: "";
+          display: block;
+          width: 20px;
+          height: 20px;
+          background: url('~assets/themeBoMao/header-arrow-down.svg') center center no-repeat;
+    
+        }
+      }
+      > li:first-child > a::after {
+        display: none;
+      }
+      .sub-menu {
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        display: none;
+        width: 486px;
+        margin-left: -243px;
+        z-index: 22;
+        &::before {
+          content: "";
+          display: block;
+          width: 0;
+          height: 0;
+          margin: 0 auto;
+          border-style: solid;
+          border-width: 0 10px 15px 10px;
+          border-color: transparent transparent $BoMao-yellow-2 transparent;
+        }
+        .wrap {
+          padding: 15px;
+          background: $BoMao-yellow-2;
+        }
+      }
+      li:last-child .sub-menu,
+      li:nth-last-child(2) .sub-menu {
+        left: auto;
+        right: 0;
+        margin: 0;
+        &::before {
+          margin-right: 50px;
+        }
+      }  
+      li:hover > a {
+        background: $BoMao-dark-2;
+      }
+      li:hover .sub-menu {
+        display: block;
+      }
+    }
+    //下拉選單 (彩種列表)
+    .sub-menu.lottery {
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+      }
+      li:last-child {
+        margin-bottom: 0;
+      }
+      .game {
+        display: flex;
+        flex-wrap: wrap;
+        width: 340px;
+        a {
+          display: block;
+          width: 110px;
+          margin: 0 4px 4px 0;
+          background: $BoMao-yellow-3;
+          font-size: 14px;
+          color: $BoMao-text-color;
+          line-height: 30px;
+          text-align: center;
+        }
+        a:nth-child(3n) {
+          margin-right: 0;
+        }
+        a:hover {
+          background: #FFF;
+        }
+      }
+    }
+    //下拉選單 (第三方)
+    .sub-menu.thirdparty {
+      li {
+        margin-bottom: 25px;
+      }
+      li:last-child {
+        margin-bottom: 0;
+      }
+      .banner {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+      }
+      .enter {
+        display: block;
+        width: 100%;
+        background: $BoMao-yellow-3;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        font-size: 14px;
+        color: $BoMao-text-color;
+        line-height: 30px;
+        text-align: center;
+      }
+      .enter:hover {
+        background: #FFF;
+      }
+      .enter:disabled {
+        background: #d4d4d4;
+      }
+    }
+  }
+  //footer 樣式
+  footer {
+    padding: 15px 0 10px 0;
+    background: $BoMao-dark-2;
+    font-size: 12px;
+    color: #d4d4d4;
+    text-align: center;
+    p {
+      margin-bottom: 7px;
+    }  
+    span {
+      display: inline-block;
+      width: 23px;
+      height: 23px;
+      margin-left: 3px;
+      background-image: url('~assets/themeBoMao/footer-browser.png');
+      background-position-y: top;
+      background-size: 400% auto;
+      vertical-align: middle;
+      &.qq {
+        background-position-x: 0;
+      }
+      &.c360 {
+        background-position-x: -23px;
+      }
+      &.uc {
+        background-position-x: -46px;
+      }
+      &.sogo {
+        background-position-x: -69px;
+      }
+    }
+  }
+  //Announcement.vue
+  .announcement {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    z-index: 21;
+    .outer {
+      width: 1167px;
+      border-radius: 5px 5px 0 0;
+      overflow: hidden;
+    }
+    .title {
+      position: relative;
+      padding-left: 45px;
+      background: $BoMao-dark-1;
+      font-size: 18px;
+      color: #FFF;
+      line-height: 70px;
+      .close {
+        position: absolute;
+        right: 20px;
+        top: 24px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          left: -3px;
+          top: 9px;
+          display: block;
+          width: 25px;
+          height: 2px;
+          background: #FFF;
+        }
+        &::before {
+          transform: rotate(45deg);
+        }
+        &::after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+    .inner {
+      display: flex;
+      background: #FFF;
+    }
+    .list {
+      width: 400px;
+      border-right: 1px solid #d2d2d2;
+      .wrap {
+        padding: 0 20px;
+        li {
+          padding: 6px 0px;
+          border-bottom: 1px dashed #d2d2d2;
+          cursor: pointer;
+          transition: all .3s;
+        }
+        li:last-child {
+          border: none;
+        }
+        li a {
+          display: block;
+          padding: 15px;
+          @include ellipsis();
+          font-size: 16px;
+          color: #707070;
+        }
+        li:hover a,
+        li.active a {
+          background: #e2e2e2;
+          color: #ea721a;
+        }
+      }
+      .ivu-page {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        border-top: 1px solid #d2d2d2;
+        &::after {
+          display: none;
+        }
+        .ivu-page-prev,
+        .ivu-page-next {
+          font-size: 14px;
+        }
+        .ivu-page-prev a,
+        .ivu-page-next a {
+          display: flex;
+          align-items: center;
+          color: #8d8d8d;
+        }
+        .ivu-page-prev a::after {
+          content: "上一页";
+          margin-left: 5px;
+        }
+        .ivu-page-next a::before {
+          content: "下一页";
+          margin-right: 5px;
+        }
+        .ivu-page-simple-pager {
+          margin: 0;
+          color: #8d8d8d;
+          input {
+            margin: 0;
+            padding: 0;
+            color: #8d8d8d;
+          }
+          span {
+            padding: 0;
+          }
+          &::after {
+            content: "页";
+          }
+        }
+      }
+    }
+    .content {
+      width: 767px;
+      height: 590px;
+      padding: 0 35px 35px 35px;
+      overflow: auto;
+      font-size: 14px;
+      color: #707070;
+      dt,dd {
+        word-break: break-all;
+      }
+      dt {
+        margin-bottom: 15px;
+        padding: 21px 0;
+        border-bottom: 1px dashed #d2d2d2;
+        font-size: 16px;
+      }
+      dd {
+        font-size: 14px;
+      }
+    }
+  }
+  //QuickContact.vue
+  .quick-contact {
+    position: fixed;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    width: 70px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
+    .wrap {
+      position: relative;
+      padding-bottom: 50px;
+      background: $BoMao-yellow-1;
+      font-size: 0;
+      pointer-events: fill;
+      li {
+        position: relative;
+        .inner {
+          display: inline-flex;
+          align-items: center;
+          margin-bottom: 2px;
+          padding-right: 10px;
+          background: $BoMao-yellow-1;
+          cursor: pointer;
+          transition: all .3s;
+          z-index: 2;
+          &::before {
+            content: "";
+            flex-shrink: 0;
+            display: block;
+            width: 70px;
+            height: 50px;
+            background-position: center center;
+            background-repeat: no-repeat;
+          }
+          .content {
+            font-size: 12px;
+            color: #495060;
+            line-height: 1.5;
+            white-space: nowrap;
+          }
+          .qrcode {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            display: none;
+            width: 135px;
+            padding: 10px 0;
+            background: $BoMao-yellow-1;
+            img {
+              display: block;
+              width: 84px;
+              height: auto;
+              margin: 0 auto;
+            }
+          }
+          &:hover {
+            margin-left: 70px;
+            transform: translateX(-100%);
+            .qrcode {
+              display: block;
+            }
+          }
+        }
+        .line {
+          position: relative;
+          display: block;
+          height: 2px;
+          background: $BoMao-yellow-1;
+          padding: 0;
+          &::after {
+            content: ""; 
+            position: absolute;
+            left: 11px;
+            top: 0;
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: #a49030;  
+          }
+        }
+      }
+      li.phone {
+        z-index: 1;
+        .inner::before {
+          background-image: url('~assets/themeBoMao/quick-contact-downapp.svg');
+          background-size: auto 35px;
+        }
+        .content {
+          width: 125px;
+          white-space: normal;
+        }
+      }
+      li.wechat {
+        .inner::before {
+          background-image: url('~assets/themeBoMao/quick-contact-wechat.svg');
+          background-size: auto 23px;
+        }
+      }
+      li.qq {
+        .inner::before {
+          background-image: url('~assets/themeBoMao/quick-contact-qq.svg');
+          background-size: auto 27px;
+        }
+      }
+      li.tel {
+        .inner::before {
+          background-image: url('~assets/themeBoMao/quick-contact-contact.svg');
+          background-size: auto 24px;
+        }
+      }
+      .ivu-back-top {
+        position: absolute;
+        left: 0;
+        bottom: 0 !important;
+        display: flex;
+        align-items: center;
+        width: 125px;
+        background: $BoMao-yellow-1;
+        font-size: 12px;
+        color: #495060;
+        transition: all .3s;
+        &::before {
+          content: "";
+          display: block;
+          width: 70px;
+          height: 50px;
+          background: url('~assets/themeBoMao/quick-contact-gotop.svg') center center no-repeat;
+          background-size: auto 26px;
+        }
+        &:hover {
+          left: -60px;
+        }
+      }
+      .open-webchat {
+        position: absolute;
+        left: 0;
+        top: 100%;
+        display: block;
+        width: 70px;
+        height: 60px;
+        margin-top: 10px;
+        background: $BoMao-yellow-1;
+        border-radius: 10px;
+        font-size: 16px;
+        color: #4e4f52;
+        font-weight: bold;
+        text-align: center;
+        &::before {
+          content: "";
+          display: block;
+          width: 27px;
+          height: 23px;
+          margin: 7px auto;
+          background: url('~assets/themeBoMao/quick-contact-webchat.svg') center center no-repeat;
+        }
+        &.active {
+          position: fixed;
+          left: auto;
+          right: 0;
+          top: auto;
+          bottom: 10px;
+          margin: 0;
+          z-index: 999;
+        }
+      }
+    }
+  }
+  //首頁大圖輪播
+  .slider {
+    .owl-item {
+      background: #000;
+      a {
+        display: block;
+        img {
+          opacity: .2;
+          transition: all .3s;
+        }
+      }
+    }
+    .owl-item.center a img {
+      opacity: 1;
+    }
+    .owl-theme .owl-nav {
+      margin-top: 0 !important;
+    }
+    .owl-nav {
+      div {
+        position: absolute;
+        top: 50%;
+        width: 27px;
+        height: 53px;
+        margin-top: -26px !important;
+        text-indent: -9999px;
+      }
+      .owl-prev {
+        left: 280px;
+        background: url('~assets/themeBoMao/owl-arrow-left.svg') center center no-repeat !important;
+        background-size: 100% auto !important;
+      }
+      .owl-next {
+        right: 280px;
+        background: url('~assets/themeBoMao/owl-arrow-right.svg') center center no-repeat !important;
+        background-size: 100% auto !important;
+      }
+    }
+  }
+  //Register_Login
+  .register-login {
+    > .layout-wrap {
+      min-height: calc(100vh - 112px);
+    }
+    background: url('~assets/themeBoMao/login-background.png') left top repeat #2c2e31;
+    .header{
+      .wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 10px;
+        .logo {
+          display: block;
+          width: 171px;
+          height: 40px;
+          background-repeat: no-repeat;
+          background-size: auto 100%;
+          text-indent: -9999px;
+          cursor: default;
+        }
+        .navBar {
+          display: flex;
+          align-items: center;
+          a {
+            display: flex;
+            align-items: center;
+            margin-left: 30px;
+            font-size: 16px;
+            color: #FFF;
+            line-height: 17px;
+            &.support::before {
+              content: "";
+              display: block;
+              width: 17px;
+              height: 17px;
+              margin-right: 8px;
+              background: url('~assets/themeBoMao/header-support-white.svg') center center no-repeat;
+              background-size: auto 100%;
+            }
+          }
+          a:hover {
+            color: $BoMao-yellow-2;
+            &::before {
+              background-image: url('~assets/themeBoMao/header-support-yellow.svg');
+            }
+          }
+        }
+      }
+    }
+    .container{
+      width: 355px;
+      margin: 0 auto;
+      .logo {
+        display: block;
+        width: 176px;
+        height: auto;
+        margin: 0 auto 30px auto;
+      }
+      .title {
+        margin-bottom: 30px;
+        font-size: 22px;
+        color: #ffffff;
+        font-weight: normal;
+        text-align: center;
+      }
+      .tip {
+        font-size: 14px;
+        color: #acacac;
+        text-align: center;
+        a {
+          color: $BoMao-yellow-2;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      form {
+        .ivu-form-item {
+          margin-bottom: 30px;
+          .ivu-input {
+            height: 40px;
+            background: none;
+            border-radius: 0;
+            color: #d4d4d4;
+            &:hover,
+            &:focus {
+              border-color: $BoMao-yellow-1;
+              box-shadow: none;
+            }
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus {
+              -webkit-text-fill-color: #d4d4d4;
+              box-shadow: 0 0 0px 1000px #34383c inset;
+            }
+          }
+          .ivu-form-item-error-tip{
+            color: #f18431;
+          }
+          .ivu-input-group-append {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 108px;
+            background: none;
+            padding: 0;
+            border: none;
+            img {
+              display: block;
+              width: 100%;
+              height: auto;
+            }
+          }
+        }
+        .ivu-form-item-error .ivu-input {
+          border-color: #f18431;
+        }
+        .id, .password, .verify {
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            display: block;
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            z-index: 1;
+          }
+          .ivu-input {
+            padding-left: 40px;
+          }
+        }
+        .id::before {
+          background-image: url('~assets/themeBoMao/login-id.svg');
+        }
+        .password::before {
+          background-image: url('~assets/themeBoMao/login-pw.svg');
+        }
+        .verify::before {
+          background-image: url('~assets/themeBoMao/login-code.svg');
+        }
+        .buttons {
+          position: relative;
+          button {
+            height: 54px;
+            padding: 0;
+            background: none;
+            border-radius: 0;
+            line-height: 54px;
+            &.submit {
+              width: 355px;
+              border: 1px solid $BoMao-yellow-2;
+              font-size: 22px;
+              color: $BoMao-yellow-2;
+              letter-spacing: 2.2px;
+              &:hover {
+                background: $BoMao-yellow-2;
+                color: #2E2F4E;
+              }
+            }
+            &.reset {
+              position: absolute;
+              left: 100%;
+              top: 0;
+              margin-left: 20px;
+              border: none;
+              font-size: 18px;
+              color: #d4d4d4;
+              letter-spacing: 1.8px;
+            }
+          }
+        }
+      }
+      .register {
+        .tip {
+          margin-bottom: 30px;
+        }
+        .lawMsg{
+          margin-bottom: 30px;
+          font-size: 12px;
+          color: #acacac;
+          text-align: center;
+          a {
+            color: $BoMao-yellow-2;
+          }
+        }
+      }
+      .login {
+        .tip {
+          margin-top: 65px;
+        }
+      }
+    }
+  }
+  //RegisterAgreement.vue
+  .register-agreement {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: #000000, $alpha: .7);
+    z-index: 2;
+    .outer {
+      display: inline-block;
+      width: 1000px;
+      height: 60vh;
+      background: #202225;
+      border: 1px solid #64656a;
+      font-size: 12px;
+      color: #FFF;
+      line-height: 1.7;
+      transform: translateY(-200%);
+      animation: 1s move forwards;
+      @keyframes move {
+        to {
+          transform: translateY(0);
+        }
+      }
+      .inner {
+        height: 82%;
+        margin-bottom: 30px;
+        padding: 30px;
+        overflow: auto;
+        .ps__rail-y {
+          width: 16px;
+          .ps__thumb-y {
+            right: 5px;
+            width: 5px;
+            background: #d4d4d4;
+            transition: all .3s;
+          }
+          &:hover {
+            background: #333;
+          }
+        }
+      }
+    }
+    .close {
+      display: block;
+      width: 340px;
+      margin: 0 auto;
+      border: 1px solid $BoMao-yellow-2;
+      font-size: 22px;
+      color: $BoMao-yellow-2;
+      line-height: 40px;
+      letter-spacing: 2.2px;
+      text-align: center;
+      transition: all .3s;
+      &:hover {
+        background: $BoMao-yellow-2;
+        color: #2E2F4E;
+      }
+    }
+  }
+  //Promotion.vue
+  #promotion {
+    background: url('~assets/themeBoMao/home-bodybg.png') center center no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    .layout-wrap {
+      padding: 20px;
+      background: rgba(255, 255, 255, .85);
+      > .title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        font-size: 22px;
+        color: $BoMao-text-color;
+        &::before {
+          content: "";
+          display: block;
+          width: 4px;
+          height: 24px;
+          margin-right: 15px;
+          background: #ffd100;
+          border-radius: 3px;
+        }
+      }
+      .activity-item {
+        margin-bottom: 15px;
+        background: #fff;
+        box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.16);
+        .item-header {
+          display: flex;
+          align-items: flex-end;
+          width: 100%;
+          padding: 23px 15px;
+          cursor: pointer;
+          .item-header-left {
+            position: relative;
+            width: 740px;
+            height: 230px;
+            margin-right: 65px;
+            overflow: hidden;
+            img {
+              position: absolute;
+              left: 0;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              width: auto;
+              max-width: 100%;
+              height: 100%;
+              max-height: 100%;
+              margin: auto;
+            }
+          }
+          .item-header-right {
+            width: 365px;
+            h2 {
+              margin-bottom: 20px;
+              font-size: 28px;
+              color: #2e2f41;
+              line-height: 1;
+              font-weight: normal;
+              @include ellipsis();
+            }
+            p {
+              max-height: 38px;
+              margin-bottom: 58px;
+              overflow: hidden;
+              font-size: 14px;
+              color: $BoMao-text-color;
+              line-height: 1.36;
+            }
+            a {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              width: 120px;
+              padding: 0 10px;
+              background: #ea721a;
+              border-radius: 3px;
+              font-size: 14px;
+              color: #fff;
+              line-height: 38px;
+              &::before {
+                content:"查看详情"
+              }
+              &::after {
+                content: "";
+                display: block;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 5px 4px 0 4px;
+                border-color: #FFF transparent transparent transparent;
+                transition: 0.1s;
+              }
+            }
+          }
+        }
+        .item-detail {
+          .list-item {
+            margin-bottom: 15px;
+            p {
+              margin-bottom: 15px;
+            }
+            p:last-child {
+              margin: 0;
+            }
+            .active-state {
+              em {
+                color: #f76727;
+                font-style: normal;
+                padding-right: 20px;
+              }
+              a {
+                display: inline-block;
+                height: 24px;
+                padding: 0 11px;
+                background: #e4393c;
+                border-radius: 2px;
+                font-size: 12px;
+                color: #fff;
+                line-height: 24px;
+              }
+              .ivu-btn {
+                height: 24px;
+                padding: 0 11px;
+                font-size: 12px;
+                line-height: 24px;
+              }
+            }
+          }
+          .list-item:last-child {
+            margin: 0;
+          }
+          display: none;
+          padding: 22px 15px;
+          border-top: 1px dashed #8d8d8d;
+          font-size: 12px;
+          color: #495060;
+          line-height: 1.33;
+          .title {
+            position: relative;
+            width: 84px;
+            height: 28px;
+            margin-bottom: 10px;
+            background: #f13131;
+            font-size: 14px;
+            color: #fff;
+            line-height: 28px;
+            font-weight: normal;
+            text-align: center;
+            &:after {
+              content: '';
+              position: absolute;
+              right: -20px;
+              width: 20px;
+              height: 28px;
+              border-style: solid;
+              border-width: 14px 0 14px 10px;
+              border-color: transparent transparent transparent #f13131;
+            }
+          }
+          table.gridtable {
+            width: 610px;
+            font-size: 12px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+          }
+          table.gridtable th {
+            border-style: solid;
+            background-color: #4393be;
+            border: 1px solid #e6e6e6;
+            color: white;
+            font-size: 14px;
+            height: 40px;
+            width: 115px;
+          }
+          .tbplus {
+            position: relative;
+            width: 145px;
+            i {
+              position: absolute;
+              left: 12px;
+              bottom: 3px;
+              color: #fff;
+            }
+            ins {
+              border-bottom: 1px solid #7fbbdc;
+              position: absolute;
+              width: 147px;
+              transform: rotate(15.2deg);
+              left: -1px;
+              top: 19px;
+            }
+            em {
+              position: absolute;
+              right: 5px;
+              top: 0px;
+              font-size: 14px;
+            }
+          }
+          table.gridtable td {
+            text-align: center;
+            height: 40px;
+            border-style: solid;
+            border: 1px solid #e6e6e6;
+            background-color: #ffffff;
+          }
+        }
+        &.show .item-header .item-header-right a::before {
+          content: "收合详情";
+        }
+        &.show a::after {
+          transform: rotate(180deg);
+        }
+        &.show .item-detail {
+          display: block;
+        }
+      }
+    }
+  }
+  //RecordTable
+  .record-table {
+    font-size: 14px;
+    color: #495060;
+    table {
+      width: 100%;
+      border-left: 1px solid #d4d4d4;
+      border-top: 1px solid #d4d4d4;
+      text-align: center;
+      thead {
+        td {
+          background: #94c4ad;
+          border-right: 1px solid #FFF;
+          color: #FFF;
+          font-weight: bold;
+        }
+      }
+      td {
+        padding: 5px 10px;
+        border-right: 1px solid #d4d4d4;
+        border-bottom: 1px solid #d4d4d4;
+        white-space: nowrap;
+        .ivu-input-wrapper {
+          width: 200px;
+        }
+        .betnum {
+          width: 200px;
+          @include ellipsis;
+        }
+        a {
+          color: #25b596;
+        }
+        .util a {
+          margin: 0 5px;
+        }
+      }
+    }
+    .loading {
+      color: #25b596;
+      .text {
+        display: block;
+        margin-top: 5px;
+      }
+    }
+  }
+  //table-page 
+  .table-page {
+    font-size: 14px;
+    .ivu-page-item:hover a,
+    .ivu-page-prev:hover a,
+    .ivu-page-next:hover a {
+      color: #94c4ad;
+    }
+    .ivu-page-item-active {
+      background: #94c4ad;
+    }
+    .ivu-page-item-active:hover a {
+      color: #FFF;
+    }
+    .ivu-page-options input:hover,
+    .ivu-page-options input:focus {
+      border-color: #25b596;
+      box-shadow: none;
+    }
+  }
+  //Modal4BetDetail.vue (查看詳情彈窗)
+  .modal-bet-detail {
+    color: #495060;
+    .order-no {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      tr {
+        border-bottom: 1px dashed #e1e1e1;
+      }
+      tr:last-child {
+        border-bottom: none;
+      }
+      td {
+        width: 30%;
+        padding: 10px;
+        &:nth-child(1),
+        &:nth-child(3) {
+          width: 20%;
+          white-space: nowrap;
+        }
+        .nums {
+          width: 400px;
+          word-break: break-all;
+          overflow: hidden;
+          &.ellipsis {
+            @include ellipsis;
+          }
+        }
+        .toggle-nums {
+          color: #25b596;
+        }
+      }
+    }
+    .open-send {
+      display: block;
+      width: 100px;
+      margin: 20px auto 0 auto;
+      background: #25b596;
+      border-radius: 5px;
+      color: #FFF;
+      line-height: 30px;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+  //聊天室
+  #chat-frame {
+    position: fixed;
+    right: 75px;
+    top: 0;
+    height: 100%;
+    z-index: 999;
+    #chatroom {
+      border: 5px solid $BoMao-yellow-1;
+      .room-head {
+        padding: 6px 10px;
+        background:#3d4367;
+        .title {
+          color: #FFF;
+        }
+        .option {
+          align-items: center;
+        } li {
+          > a.filter {
+            background-image: url('~assets/webchat/filter-toggle-w.svg');
+          }
+          > a.readme {
+            background-image: url('~assets/webchat/readme-w.svg');
+          }
+          .close {
+            font-size: 25px;
+            color: #FFF;
+            line-height: 1;
+            cursor: pointer;
+          }
+        } 
+      }
+      .history {
+        bottom: 83px;
+        li.view-log .time span {
+          background: #ffc342;
+        }
+      }
+      .send-redpack {
+        .title {
+          background: #252943;
+        }
+        .tabs {
+          .ivu-radio-wrapper {
+            border-color: #ffcf4a;
+            color: #2e324e;
+          }
+          .ivu-radio-wrapper.ivu-radio-wrapper-checked {
+            background: #ffcf4a;
+          }
+        }
+        .wrap {
+          padding: 1px 20px;
+          li.option {
+            .ivu-radio-wrapper, .ivu-checkbox-wrapper {
+              margin-right: 12px;
+            }
+            .ivu-radio-wrapper.ivu-radio-wrapper-checked, 
+            .ivu-radio-wrapper.ivu-checkbox-wrapper-checked, 
+            .ivu-checkbox-wrapper.ivu-radio-wrapper-checked, 
+            .ivu-checkbox-wrapper.ivu-checkbox-wrapper-checked {
+              background: #ffcf4a;
+              color: #2e324e;
+            }
+          } 
+        }
+        .send {
+          background: #ffcf4a;
+          color: #2e324e;
+        }
+      }
+      .control {
+        background: #3d4367;
+      }
+      .main {
+        label.upload {
+          background-image: url('~assets/webchat/icon-image-w.svg');
+        }
+        a.open-emoji {
+          background-image: url('~assets/webchat/icon-sticker-w.svg');
+        }
+      }
+      .clear {
+        background-image: url('~assets/webchat/icon-clean-w.svg');
+      }
+      .send {
+        .txt {
+          background: #565a6e;
+          color: #FFF;
+        }
+        .submit {
+          background-color: #ffc342;
+          &.lock {
+            background-color: #999;
+          }
+        }
+      }
+      .readme-window {
+        .title {
+          background: #3d4367;
+          color: #FFF;
+          .close {
+            top: 6px;
+            &::before,
+            &::after {
+              background: #FFF;
+            }
+          }
+        }
+        .content {
+          line-height: 1.5;
+        }
+      } 
+      .redpack-detail .bomb-pack .content .list {
+        height: 530px;
+      }
+    }
+  }
+
+  //發炫耀紅包頁面
+  .redpack-overlay {
+    .ivu-modal-close {
+      top: 4px;
+      z-index: 1;
+      i {
+        color: #FFF;
+      }
+    }
+    .ivu-modal-body {
+      padding: 0 !important;
+      .send-redpack {
+        position: static;
+        padding-bottom: 20px;
+        .send {
+          padding: 0;
+          background: #ffc342;
+          color: #2e324e;
+        }
+      }
+      .title {
+        margin-bottom: 0;
+        background: #252943;
+      }
+      .wrap {
+        margin-bottom: 20px;
+        padding: 20px;
+        li {
+          margin: 0 0 20px 0;
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+    .ivu-modal-footer {
+      display: none;
+    }
+  }
+
+
+
+
+
+
+
+
+
+  
+  //iview hack 區塊
+  //gotop
+  .ivu-back-top-inner {
+    display: none;
+  }
+  //checkbox
+  .ivu-checkbox-checked .ivu-checkbox-inner {
+    border-color: #f17e2e;
+    background-color: #f17e2e;
+  }
+  //ivu-modal
+  .ivu-modal-wrap {
+    display: flex;
+    align-items: center;
+    .ivu-modal {
+      top: 0;
+      .ivu-modal-header {
+        background: #d4d4d4;
+      }
+      button {
+        padding: 5px 10px;
+        font-size: 12px;
+        transition: all .3s;
+        &:hover {
+          opacity: .7;
+        }
+      }
+      .ivu-btn-primary {
+        background: #a68f4c;
+        border-color: #a68f4c;
+        &:hover {
+          opacity: .6;
+        }
+      }
+      .ivu-btn-text {
+        border-color: #a68f4c;
+        color: #a68f4c;
+      }
+      //確認購物彈窗
+      .bet-modal {
+        font-size: 13px;
+        color: $BoMao-text-color;
+        .info {
+          margin-bottom: 5px;
+          line-height: 2.5;
+        }
+        .content {
+          .title {
+            margin-bottom: 5px;
+          }
+          .list {
+            height: 130px;
+            padding: 0 5px;
+            border: 1px solid #CCC;
+            overflow: auto;
+            table {
+              width: 100%;
+              td {
+                padding: 5px;
+              }
+            }
+          }
+          .total {
+            margin-top: 5px;
+            span {
+              color: #ea721a;
+            }
+          }
+        }
+      }
+      .ivu-modal-footer {
+        border: none;
+      }
+    }
+  }
+  //table-page
+  .table-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    text-align: center;
+    .ivu-page {
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,986 @@
+@charset "utf-8";
+
+#BoMao.theme6 {
+  //Header.vue
+  header {
+    position: relative;
+    z-index: 4;
+    .topbar,
+    .logobar {
+      background: rgba(21, 70, 119, 0.5);
+    }
+    &.dark {
+      .topbar,
+      .logobar {
+        background: #1e1c2e;
+      }
+    }
+    .topbar {
+      position: relative;
+      .user-info {
+        color: #fff;
+        .money-toggle {
+          background-image: url('~assets/themeBoMao/header-show-w.svg');
+          &.active {
+            background-image: url('~assets/themeBoMao/header-hide-w.svg');
+          }
+        }
+      }
+      .links {
+        align-items: center;
+        border: none;
+        > a,
+        .member > a {
+          border: none;
+          font-size: 14px;
+          color: #fff;
+        }
+        > a {
+          margin-left: 15px;
+          border: 1px solid #fff;
+          border-radius: 3px;
+          line-height: 24px;
+        }
+        > a:hover,
+        .member:hover > a {
+          background: #356ea6;
+        }
+        > a:hover {
+          border-color: #356ea6;
+        }
+        .service {
+          &::before {
+            display: none;
+          }
+        }
+        .member {
+          .sub-menu {
+            margin-left: -295px;
+            &::before {
+              border-bottom-color: #262732;
+            }
+            .wrap {
+              background: #262732;
+              li {
+                width: 100%;
+                text-align: center;
+                .title {
+                  color: #fff;
+                }
+                a {
+                  color: #fff;
+                  &:hover {
+                    background: #356ea6;
+                  }
+                }
+              }
+            }
+          }
+          &:hover .sub-menu {
+            display: block;
+          }
+        }
+      }
+    }
+    .logobar {
+      .layout-wrap {
+        align-items: center;
+        .logo {
+          height: 40px;
+          background-repeat: no-repeat;
+          cursor: pointer;
+          &.logined {
+            cursor: default;
+          }
+        }
+        .navi {
+          > li {
+            > a {
+              line-height: 60px;
+            }
+          }
+          li:first-child > a::after {
+            display: block;
+          }
+          li:nth-last-child(1) > a::after,
+          li:nth-last-child(2) > a::after {
+            display: none;
+          }
+          .sub-menu {
+            &::before {
+              border-bottom-color: #262732;
+            }
+            .wrap {
+              background: #262732;
+            }
+          }
+          li:hover > a {
+            background: #356ea6;
+          }
+        }
+      }
+    }
+    //下拉選單 (彩種列表)
+    .sub-menu.lottery {
+      .game {
+        a {
+          background: #356ea6;
+          color: #fff;
+        }
+        a:hover {
+          background: #fff;
+          color: #262732;
+        }
+      }
+    }
+    //下拉選單 (第三方)
+    .sub-menu.thirdparty {
+      .enter {
+        background: #356ea6;
+        color: #fff;
+      }
+      .enter:hover {
+        background: #fff;
+        color: #262732;
+      }
+      .enter:disabled {
+        color: #262732;
+      }
+    }
+  }
+  //QuickContact.vue
+  .quick-contact {
+    .wrap {
+      background: #356ea6;
+      li {
+        .inner {
+          background: #356ea6;
+          z-index: 2;
+          .content {
+            color: #fff;
+          }
+          .qrcode {
+            background: #356ea6;
+          }
+        }
+        .line {
+          background: #356ea6;
+          &::after {
+            background: #5187bc;
+          }
+        }
+      }
+      li.phone {
+        z-index: 1;
+        .inner::before {
+          background-image: url('~assets/themeBoMao/quick-contact-downapp-w.svg');
+        }
+      }
+      li.wechat {
+        .inner::before {
+          background-image: url('~assets/themeBoMao/quick-contact-wechat-w.svg');
+        }
+      }
+      li.qq {
+        .inner::before {
+          background-image: url('~assets/themeBoMao/quick-contact-qq-w.svg');
+        }
+      }
+      li.tel {
+        .inner::before {
+          background-image: url('~assets/themeBoMao/quick-contact-contact-w.svg');
+        }
+      }
+      .ivu-back-top {
+        background: #356ea6;
+        color: #fff;
+        &::before {
+          background: url('~assets/themeBoMao/quick-contact-gotop-w.svg') center center no-repeat;
+        }
+      }
+      .open-webchat {
+        background: #356ea6;
+        color: #FFF;
+        &::before {
+          background: url('~assets/themeBoMao/quick-contact-webchat-w.svg');
+        }
+      }
+    }
+  }
+  //首頁樣式
+  .home {
+    //大圖輪播
+    .slider {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      .owl-item {
+        background: none;
+        a {
+          cursor: default;
+          img {
+            width: 100%;
+            height: 100vh;
+            opacity: 1;
+            transition: all 0.3s;
+          }
+        }
+      }
+      .owl-nav {
+        .owl-prev {
+          left: 80px;
+        }
+        .owl-next {
+          right: 80px;
+        }
+      }
+    }
+    //登入窗
+    .login {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: calc(100vh - 220px);
+      .outer {
+        position: relative;
+        width: 330px;
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(#3979bf, #232b3d);
+          opacity: 0.6;
+        }
+        .inner {
+          position: relative;
+          padding: 20px 35px;
+          z-index: 2;
+          .logo {
+            display: block;
+            width: 200px;
+            height: auto;
+            margin: 0 auto 10px auto;
+          }
+          .ivu-form-item {
+            position: relative;
+            &::before {
+              content: "";
+              position: absolute;
+              left: 10px;
+              top: 50%;
+              display: block;
+              width: 15px;
+              height: 18px;
+              margin-top: -9px;
+              background-repeat: no-repeat;
+              background-size: 100% auto;
+              z-index: 1;
+            }
+            &.id::before {
+              background-image: url('~assets/themeBoMao/quick-login-id.svg');
+            }
+            &.password::before {
+              background-image: url('~assets/themeBoMao/quick-login-pw.svg');
+            }
+            &.verify::before {
+              background-image: url('~assets/themeBoMao/quick-login-code.svg');
+            }
+            .ivu-input {
+              padding-left: 40px;
+              background: none;
+              border: none;
+              border-bottom: 2px solid #95a1be;
+              border-radius: 0;
+              color: #FFF;
+              &:focus {
+                box-shadow: none;
+              }
+              &:-webkit-autofill,
+              &:-webkit-autofill:hover,
+              &:-webkit-autofill:focus {
+                -webkit-text-fill-color: #d4d4d4;
+                box-shadow: 0 0 0px 1000px #6c708c inset;
+              }
+            }
+            .ivu-input-group-append {
+              background: none;
+              border: none;
+              border-bottom: 2px solid #95a1be;
+              border-radius: 0;
+            }
+            
+          }
+          .ivu-form-item-error-tip {
+            color: #ffd100;
+          }
+          .buttons {
+            width: 200px;
+            margin: 65px auto 0 auto;
+            a {
+              display: block;
+              width: 100%;
+              margin-top: 10px;
+              border-radius: 20px;
+              font-size: 16px;
+              line-height: 40px;
+              text-align: center;
+              transition: all 0.3s;
+              &.submit {
+                background: #356ea6;
+                color: #fff;
+              }
+              &.register {
+                background: #fff;
+                color: #356ea6;
+              }
+            }
+          }
+        }
+      }
+    }
+    //最新消息
+    .notice {
+      position: relative;
+      max-width: 1280px;
+      display: flex;
+      align-items: center;
+      margin: 0 auto;
+      padding: 10px 15px;
+      background: rgba(73, 80, 96, 0.8);
+      font-size: 12px;
+      color: #fff;
+      .label {
+        display: flex;
+        align-items: center;
+        width: 100px;
+        font-size: 14px;
+        font-weight: bold;
+        &::before {
+          content: '';
+          display: block;
+          width: 20px;
+          height: 20px;
+          background: url('~assets/themeBoMao/home-notice-w.svg') center center no-repeat;
+        }
+      }
+    }
+    //快速註冊
+    .quick-register {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background: rgba(38, 39, 49, 0.7);
+      &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(to right, #b1dcea, #498aca);
+      }
+      .layout-wrap {
+        position: relative;
+        .logo {
+          position: absolute;
+          left: 0;
+          top: 50%;
+          display: block;
+          width: auto;
+          height: 40px;
+          margin-top: -20px;
+        }
+        .copyright {
+          padding: 30px 0;
+          font-size: 12px;
+          color: #fff;
+          text-align: center;
+        }
+        .reg {
+          position: absolute;
+          right: 100px;
+          top: 50%;
+          display: block;
+          width: 135px;
+          margin-top: -20px;
+          background: linear-gradient(to right, #67dbff, #356ea6);
+          border-radius: 4px;
+          font-size: 16px;
+          color: #fff;
+          line-height: 40px;
+          text-align: center;
+          transition: all 0.3s;
+        }
+        .close {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          display: block;
+          width: 25px;
+          height: 25px;
+          margin-top: -12.5px;
+          text-indent: -9999px;
+          &::before,
+          &::after {
+            content: '';
+            position: absolute;
+            left: 1px;
+            top: 11px;
+            display: block;
+            width: 23px;
+            height: 2px;
+            background: #fff;
+          }
+          &::before {
+            transform: rotate(45deg);
+          }
+          &::after {
+            transform: rotate(-45deg);
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 1540px) {
+      .layout-wrap {
+        width: 1000px;
+      }
+    }
+  }
+  //註冊頁面
+  .register-login {
+    background: url('~assets/themeBoMao/lottery/bg-PK10.png') center center;
+    background-attachment: fixed;
+    .layout-wrap {
+      max-width: 100%;
+      .header {
+        background: rgba(21, 70, 119, 0.5);
+        .wrap {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 0;
+          .navBar {
+            a {
+              display: block;
+              width: 120px;
+              margin-left: 0;
+              line-height: 60px;
+              text-align: center;
+              &.support::before {
+                display: none;
+              }
+              &:hover {
+                background: #356ea6;
+                color: #FFF;
+              }
+            }
+          }
+        }
+      }
+      .container {
+        width: 650px;
+        margin: 30px auto;
+        padding: 20px 40px 40px 40px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 15px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        .logo {
+          display: none;
+        }
+        .title {
+          margin-bottom: 20px;
+          background: url('~assets/themeBoMao/register-line.png') center center no-repeat;
+          font-size: 28px;
+          color: #004f8b;
+          font-weight: bold;
+        }
+        .register {
+          padding: 25px;
+          background: rgba(248, 251, 255, 0.96);
+          .tip {
+            margin-bottom: 20px;
+            color: #356ea6;
+          }
+          .ivu-form {
+            width: 365px;
+            margin: 0 auto;
+            .ivu-form-item {
+              .ivu-input {
+                border-color: #8ba6c3;
+                &::-webkit-input-placeholder {
+                  color: #356ea6;
+                }
+                &:-webkit-autofill,
+                &:-webkit-autofill:hover,
+                &:-webkit-autofill:focus {
+                  -webkit-text-fill-color: #d4d4d4;
+                  box-shadow: 0 0 0px 1000px #6c708c inset;
+                }
+              }
+            }
+            .ivu-form-item-error {
+              .ivu-input {
+                border-color: #ff773b;
+              }
+            }
+          }
+          .lawMsg {
+            color: #356ea6;
+          }
+          .buttons {
+            button {
+              display: block;
+              height: 40px;
+              line-height: 40px;
+              &.submit {
+                width: 100%;
+                margin-bottom: 10px;
+                background: #356ea6;
+                border: none;
+                color: #FFF;
+                font-weight: bold;
+              }
+              &.reset {
+                position: static;
+                margin: 0 auto;
+                color: #356ea6;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //RegisterAgreement.vue
+  .register-agreement {
+    .outer {
+      background: rgba(248, 251, 255, 0.96);
+      border: none;
+      color: #356ea6;
+      .inner {
+        .ps__rail-y {
+          .ps__thumb-y {
+            background: #356ea6;
+          }
+          &:hover {
+            background: none;
+          }
+        }
+      }
+    }
+    .close {
+      background: #356ea6;
+      border: none;
+      color: #FFF;
+      &:hover {
+        background: #356ea6;
+        color: #FFF;
+        opacity: .6;
+      }
+    }
+  }
+  //Promotion.vue
+  #promotion .layout-wrap > .title::before {
+    background: #356ea6;
+  }
+  //會員頁面
+  .profile-outer {
+    .layout-wrap {
+      //側邊選單
+      .side-nav {
+        > li {
+          > a {
+            &::before {
+              background: #356ea6;
+            }
+            &.active {
+              background-color: #356ea6;
+            }
+          }
+          &:hover > a.active {
+            background-color: #356ea6;
+          }
+        }
+      }
+      .profile-inner {
+        //頁籤切換 tab
+        .page-tabs {
+          a.active,
+          a.router-link-active {
+            border-color: #356ea6;
+            color: #356ea6;
+          }
+        }
+        //搜尋功能
+        .filter {
+          .quick-date .ivu-radio-wrapper-checked {
+            background: #356ea6;
+          }
+          .custom-data {
+            .ivu-date-picker-rel input:hover,
+            .ivu-date-picker-focused input,
+            .ivu-date-picker input:focus {
+              border-color: #356ea6;
+            }
+          }
+          .sort {
+            .ivu-radio-checked .ivu-radio-inner {
+              border-color: #356ea6;
+              &::after {
+                background: #356ea6;
+              }
+            }
+          }
+          .option {
+            .ivu-select {
+              .ivu-select-selection {
+                &:hover,
+                &:focus {
+                  border-color: #356ea6;
+                }
+              }
+              .ivu-select-dropdown {
+                .ivu-select-item-selected {
+                  background: #356ea6;
+                }
+              }
+            }
+          }
+          .user {
+            .ivu-checkbox-wrapper-checked {
+              .ivu-checkbox-inner {
+                background: #356ea6;
+                border-color: #356ea6;
+              }
+            }
+          }
+          .submit {
+            button {
+              background: #356ea6;
+            }
+          }
+        }
+        //today-detail
+        .today-detail li span {
+          color: #356ea6;
+        }
+        //MoneyTrans.vue
+        #money-trans {
+          .section-title::before {
+            background: #356ea6;
+          }
+          .trans {
+            .wrap {
+              .money .submit {
+                background: #356ea6;
+              }
+              .option .ivu-radio-wrapper-checked {
+                background: #356ea6;
+              }
+            }
+          }
+          .current .wrap dl dt button {
+            background: #356ea6;
+          }
+        }
+        //Information.vue
+        #information {
+          .wrap {
+            .user-info { 
+              .grade {
+                .ivu-progress .ivu-progress-inner .ivu-progress-bg {
+                  background: linear-gradient(to right, #67dbff, #356ea6);
+                }
+                .grade-explain {
+                  border-color: #356ea6;
+                }
+              }
+            }
+            .submit {
+              background: #356ea6;
+            }
+            .grade-table table thead {
+              background: #356ea6;
+            }
+          }
+        }
+        //Password.vue
+        #password {
+          .tabs {
+            a {
+              border-color: #356ea6;
+              &:hover,
+              &.active {
+                background: #356ea6;
+              }
+            }
+          }
+          .ivu-form button {
+            background: #356ea6;
+          }
+        }
+        //BankCard.vue
+        #bank-card .card-wrap .card {
+          background: url('~assets/themeBoMao/profile/bankcard-bg-blue.png');
+        }
+        //未綁定銀行卡提示
+        #never-bind a {
+          background: #356ea6;
+        }
+        //Deposit.vue
+        #deposit {
+          .pay-list a.active {
+            border-color: #356ea6;
+          }
+          .buttons {
+            button, a {
+              &.submit {
+                background: #356ea6;
+              }
+              &.back {
+                border-color: #356ea6;
+                color: #356ea6;
+              }
+            }
+          }
+        }
+        //Withdraw.vue
+        #withdraw {
+          .bind-bank .ivu-form .ivu-form-item-content .buttons button.submit {
+            background: #356ea6;
+          }
+          .withdraw {
+            .head {
+              dl {
+                border-color: #356ea6;
+                dt {
+                  background: #356ea6;
+                }
+              }
+            }
+            .ivu-form .ivu-form-item-content .buttons button.submit {
+              background: #356ea6;
+            }
+          }
+        }
+        //Intro.vue (agent-intro)
+        #agent-intro h3 {
+          color: #356ea6;
+        }
+        //AgencyReport.vue
+        #agency-report {
+          .list {
+            dl {
+              dt {
+                background: #356ea6;
+              }
+              dd {
+                em {
+                  color: #356ea6;
+                }
+              }
+            }
+          }
+        }
+        //ManageInvite.vue
+        #manage-invite {
+          .tip a {
+            color: #356ea6;
+          }
+          .ivu-form-item .ivu-form-item-content button {
+            background: #356ea6;
+          }
+        }
+        //TodayProfit.vue
+        #today-profit .wrap {
+          .amount .ivu-icon, 
+          .calculate .ivu-icon {
+            background: #356ea6;
+          }
+          .calculate .detail em {
+            color: #356ea6;
+          }
+          .platform h2::before {
+            background-color:#356ea6;
+          }
+          .share {
+            background: #356ea6;
+          }
+        } 
+        //loading
+        .ivu-spin {
+          color: #356ea6;
+        }
+      }
+    }
+  }
+  //RecordTable
+  .record-table {
+    table {
+      thead td {
+        background: #356ea6;
+      }
+      td a {
+        color: #356ea6;
+      }
+    }
+    .loading {
+      color: #356ea6;
+    }
+    .ivu-spin {
+      color: #356ea6;
+    }
+  }
+  //table-page 
+  .table-page {
+    .ivu-page-item:hover a,
+    .ivu-page-prev:hover a,
+    .ivu-page-next:hover a {
+      color: #356ea6;
+    }
+    .ivu-page-item-active {
+      background: #356ea6;
+    }
+    .ivu-page-options input:hover,
+    .ivu-page-options input:focus {
+      border-color: #356ea6;
+    }
+  }
+  //Modal4BetDetail.vue (查看詳情彈窗)
+  .modal-bet-detail {
+    table td .toggle-nums {
+      color: #356ea6;
+    }
+    .open-send {
+      background: #356ea6;
+    }
+  }
+
+  //投注頁面
+  .lottery-wrap .body-outer {
+    .float-switch a {
+      background: #356ea6;
+      color: #FFF;
+      &.draw-bar::before {
+        background-image: url('~assets/themeBoMao/lottery/float-note-w.svg');
+      }
+      &.trend-ball::before {
+        background-image: url('~assets/themeBoMao/lottery/float-star-w.svg');
+      } 
+    }
+    .float-panel #betdraw-bar, 
+    .float-panel #trend-ball-list {
+      border-color: #356ea6;
+      .tabs a {
+        border-color: #356ea6;
+      }
+    }
+    #trend-ball-list .content .range .ivu-radio-wrapper.ivu-radio-wrapper-checked {
+      background: #356ea6;
+      color: #FFF;
+    }
+  } 
+
+  //分享計劃按鈕
+  .share-plan {
+    background: #356ea6;
+    &:hover {
+      border-color: #356ea6;
+      color: #356ea6;
+    }
+  }
+  
+  //開獎公告
+  #draw-notice .draw-detail  {
+    .filter-tab .tab-item.active {
+      background: #356ea6;
+      color: #FFF;
+    }
+    .draw-list .draw_table table td.open-num {
+      color: #356ea6;
+    }
+  }
+
+  //走勢圖
+  #trend .filter {
+    .ivu-checkbox-wrapper .ivu-checkbox-checked .ivu-checkbox-inner {
+      background: #356ea6;
+      border-color: #356ea6;
+    }
+    .ivu-radio-group .ivu-radio-wrapper {
+      &:hover {
+        border-color: #356ea6;
+      }
+      &.ivu-radio-wrapper-checked {
+        background: #356ea6;
+        color: #FFF;
+      }
+    }
+  }
+
+  //聊天室
+  #chat-frame {
+    #chatroom {
+      border-color: #356ea6;
+      .history li.view-log .time span {
+        background: #356ea6;
+      }
+      .send-redpack {
+        .title {
+          background: #252943;
+        }
+        .tabs {
+          .ivu-radio-wrapper {
+            border-color: #356ea6;
+            color: #2e324e;
+          }
+          .ivu-radio-wrapper.ivu-radio-wrapper-checked {
+            background: #356ea6;
+            color: #FFF;
+          }
+        }
+        .wrap {
+          li.option {
+            .ivu-radio-wrapper.ivu-radio-wrapper-checked, 
+            .ivu-radio-wrapper.ivu-checkbox-wrapper-checked, 
+            .ivu-checkbox-wrapper.ivu-radio-wrapper-checked, 
+            .ivu-checkbox-wrapper.ivu-checkbox-wrapper-checked {
+              background: #356ea6;
+              color: #FFF;
+            }
+          } 
+        }
+        .send {
+          background: #356ea6;
+          color: #FFF;
+        }
+      }
+      .send .submit {
+        background-color: #356ea6;
+      }
+    }
+  }
+  
+  //發炫耀紅包頁面
+  .redpack-overlay .ivu-modal-body .send-redpack .send {
+    background: #356ea6;
+    color: #FFF;
+  }
+  
+  //iview hack 區塊
+  //ivu-modal
+  .ivu-modal-wrap {
+    .ivu-modal {
+      .ivu-btn-primary {
+        background: #356ea6;
+        border-color: #356ea6;
+      }
+      .ivu-btn-text {
+        border-color: #356ea6;
+        color: #356ea6;
+      }
+    }
+  }
+}
