@@ -1,0 +1,1687 @@
+/**
+ * 彩票-彩票玩法
+ *
+ * @url lottery/lotteryMode.action?category=SFSSC
+ * tpl: 如果有值，说明是传统(传统)玩法
+ *
+ */
+
+module.exports = ({ method, query, body }) => {
+  const { category, tpl } = query;
+  if (/SSC$/.test(category)) {
+    if (tpl != null) {
+      return {
+        code: '0',
+        msg: '',
+        list: [
+          {
+            label: '整合',
+            id: 1370,
+            children: [
+              {
+                id: 13700,
+                label: '总和/龙虎',
+                alias: 'ZHZHLH',
+                price: 2,
+                ratio: '1.98|1.98|1.98|1.98|2.199|2.199|9.9',
+              },
+              {
+                id: 13701,
+                label: '万位',
+                alias: 'ZHWW',
+                price: 2,
+                ratio: '1.98|1.98|1.98|1.98|1.98|1.98|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9',
+              },
+              {
+                id: 13702,
+                label: '仟位',
+                alias: 'ZHQW',
+                price: 2,
+                ratio: '1.98|1.98|1.98|1.98|1.98|1.98|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9',
+              },
+              {
+                id: 13703,
+                label: '佰位',
+                alias: 'ZHBW',
+                price: 2,
+                ratio: '1.98|1.98|1.98|1.98|1.98|1.98|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9',
+              },
+              {
+                id: 13704,
+                label: '拾位',
+                alias: 'ZHSW',
+                price: 2,
+                ratio: '1.98|1.98|1.98|1.98|1.98|1.98|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9',
+              },
+              {
+                id: 13705,
+                label: '个位',
+                alias: 'ZHGW',
+                price: 2,
+                ratio: '1.98|1.98|1.98|1.98|1.98|1.98|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9|9.9',
+              },
+            ],
+          },
+          {
+            label: '龙虎斗',
+            id: 1372,
+            children: [
+              { id: 13720, label: '万仟', alias: 'LHDWQ', price: 2, ratio: '2.199|2.199|9.9' },
+              { id: 13721, label: '万佰', alias: 'LHDWB', price: 2, ratio: '2.199|2.199|9.9' },
+              { id: 13722, label: '万拾', alias: 'LHDWS', price: 2, ratio: '2.199|2.199|9.9' },
+              { id: 13723, label: '万个', alias: 'LHDWG', price: 2, ratio: '2.199|2.199|9.9' },
+              { id: 13724, label: '仟佰', alias: 'LHDQB', price: 2, ratio: '2.199|2.199|9.9' },
+              { id: 13725, label: '仟拾', alias: 'LHDQS', price: 2, ratio: '2.199|2.199|9.9' },
+              { id: 13726, label: '仟个', alias: 'LHDQG', price: 2, ratio: '2.199|2.199|9.9' },
+              { id: 13727, label: '佰拾', alias: 'LHDBS', price: 2, ratio: '2.199|2.199|9.9' },
+              { id: 13728, label: '佰个', alias: 'LHDBG', price: 2, ratio: '2.199|2.199|9.9' },
+              { id: 13729, label: '拾个', alias: 'LHDSG', price: 2, ratio: '2.199|2.199|9.9' },
+            ],
+          },
+        ],
+      };
+    }
+    return {
+      code: '0',
+      msg: '',
+      list: [
+        {
+          label: '定位胆',
+          id: 117,
+          children: [
+            {
+              id: 5,
+              label: '定位胆',
+              alias: 'DWD',
+              price: 2,
+              ratio: 9.8,
+            },
+          ],
+        },
+        {
+          label: '五星',
+          id: 118,
+          children: [
+            {
+              id: 18,
+              label: '五星直选',
+              alias: 'WXZX',
+              price: 2,
+              ratio: 98000,
+            },
+            {
+              id: 181,
+              label: '直选单式',
+              alias: 'WXZX_MDS',
+              price: 2,
+              ratio: 98000,
+              single_max_count: 5,
+            },
+          ],
+        },
+        {
+          label: '四星',
+          id: 119,
+          children: [
+            {
+              id: 1759,
+              label: '前四直选复式',
+              alias: 'Q4ZX',
+              price: 0.01,
+              ratio: '9800.000',
+            },
+            {
+              id: 1760,
+              label: '前四直选单式',
+              alias: 'Q4ZX_MDS',
+              price: 0.01,
+              single_max_count: 6000,
+              current_issue_max_count: 8000,
+              ratio: '9900.000',
+            },
+            {
+              id: 176,
+              label: '后四直选复式',
+              alias: 'SXZX',
+              price: 0.01,
+              ratio: '9800.000',
+            },
+            {
+              id: 1029,
+              label: '后四直选单式',
+              alias: 'SXZX_MDS',
+              price: 0.01,
+              single_max_count: 6000,
+              current_issue_max_count: 8000,
+              ratio: '9900.000',
+            },
+            {
+              id: 1761,
+              label: '前四组选24',
+              alias: 'Q4ZUX24',
+              price: 0.01,
+              ratio: '408.330',
+            },
+            {
+              id: 1762,
+              label: '前四组选12',
+              alias: 'Q4ZUX12',
+              price: 0.01,
+              ratio: '816.666',
+            },
+            {
+              id: 1763,
+              label: '前四组选6',
+              alias: 'Q4ZUX6',
+              price: 0.01,
+              ratio: '1633.000',
+            },
+            {
+              id: 1764,
+              label: '前四组选4',
+              alias: 'Q4ZUX4',
+              price: 0.01,
+              ratio: '1450.000',
+            },
+            {
+              id: 1765,
+              label: '后四组选24',
+              alias: 'H4ZUX24',
+              price: 0.01,
+              ratio: '408.330',
+            },
+            {
+              id: 1766,
+              label: '后四组选12',
+              alias: 'H4ZUX12',
+              price: 0.01,
+              ratio: '816.000',
+            },
+            {
+              id: 1767,
+              label: '后四组选6',
+              alias: 'H4ZUX6',
+              price: 0.01,
+              ratio: '1633.000',
+            },
+            {
+              id: 1768,
+              label: '后四组选4',
+              alias: 'H4ZUX4',
+              price: 0.01,
+              ratio: '1450.000',
+            },
+          ],
+        },
+        {
+          label: '后三',
+          id: 120,
+          children: [
+            {
+              id: 16,
+              label: '直选复式',
+              alias: 'H3ZX',
+              price: 2,
+              ratio: 980,
+            },
+            {
+              id: 161,
+              label: '直选单式',
+              alias: 'H3ZX_MDS',
+              price: 2,
+              ratio: 980,
+              single_max_count: 3,
+            },
+            {
+              id: 57,
+              label: '后三组合',
+              alias: 'H3H3ZH',
+              price: 2,
+              ratio: '980.0|98.0|9.8',
+            },
+            {
+              id: 55,
+              label: '直选和值',
+              alias: 'H3ZHXHZ',
+              price: 2,
+              ratio: 980,
+            },
+            {
+              id: 56,
+              label: '直选跨度',
+              alias: 'H3ZXKD',
+              price: 2,
+              ratio: 980,
+            },
+            {
+              id: 15,
+              label: '组三复式',
+              alias: 'H3Z3',
+              price: 2,
+              ratio: 326.66,
+            },
+            {
+              id: 151,
+              label: '组三单式',
+              alias: 'H3Z3_DS',
+              price: 2,
+              ratio: 326.66,
+              single_max_count: 3,
+            },
+            {
+              id: 17,
+              label: '组六复式',
+              alias: 'H3Z6',
+              price: 2,
+              ratio: 163.33,
+            },
+            {
+              id: 171,
+              label: '组六单式',
+              alias: 'H3Z6_DS',
+              price: 2,
+              ratio: 163.33,
+              single_max_count: 2,
+            },
+            {
+              id: 172,
+              label: '混合组选',
+              alias: 'H3HHZX_DS',
+              price: 2,
+              ratio: 163.33,
+              single_max_count: 1,
+            },
+            {
+              id: 52,
+              label: '组选和值',
+              alias: 'H3ZUXHZ',
+              price: 2,
+              ratio: '326.666|163.333',
+            },
+            {
+              id: 51,
+              label: '组选包胆',
+              alias: 'H3ZXBD',
+              price: 2,
+              ratio: '326.666|163.333',
+            },
+            {
+              id: 53,
+              label: '和值尾数',
+              alias: 'H3HZWS',
+              price: 2,
+              ratio: 9.8,
+            },
+            {
+              id: 54,
+              label: '特殊号',
+              alias: 'H3TSH',
+              price: 2,
+              ratio: '3.629|16.334|98.0',
+            },
+          ],
+        },
+        {
+          children: [
+            { alias: 'Z3ZX', id: 11, label: '直选复式', price: 0.01, ratio: '780.000' },
+            { alias: 'Z3ZHXHZ', id: 20, label: '直选和值', price: 0.01, ratio: '980.000' },
+            { alias: 'Z3ZXKD', id: 21, label: '直选跨度', price: 0.01, ratio: '980.000' },
+            { alias: 'Z3Z3ZH', id: 22, label: '中三组合', price: 0.01, ratio: '980.000|98.000|9.800' }, // ！！！ 中三-中三组合
+            { alias: 'Z3Z3', id: 10, label: '组三复式', price: 0.01, ratio: '280.000' },
+            { alias: 'Z3Z6', id: 12, label: '组六复式', price: 0.01, ratio: '140.000' },
+            {
+              alias: 'Z3ZX_MDS',
+              current_issue_max_count: 800,
+              id: 1044,
+              label: '直选单式',
+              price: 0.01,
+              ratio: '990.000',
+              single_max_count: 800,
+            },
+            { alias: 'Z3ZUXHZ', id: 23, label: '组选和值', price: 0.01, ratio: '326.666|163.333' },
+            {
+              alias: 'Z3Z3_DS',
+              current_issue_max_count: 800,
+              id: 1045,
+              label: '组三单式',
+              price: 0.01,
+              ratio: '326.666',
+              single_max_count: 800,
+            },
+            { alias: 'Z3ZXBD', id: 24, label: '组选包胆', price: 0.01, ratio: '326.666|163.333' },
+            {
+              alias: 'Z3Z6_DS',
+              current_issue_max_count: 800,
+              id: 1046,
+              label: '组六单式',
+              price: 0.01,
+              ratio: '163.333',
+              single_max_count: 800,
+            },
+            { alias: 'Z3HZWS', id: 25, label: '和值尾数', price: 0.01, ratio: '9.800' },
+            {
+              alias: 'Z3HHZX_DS',
+              current_issue_max_count: 800,
+              id: 1047,
+              label: '混合组选',
+              price: 0.01,
+              ratio: '326.666|163.333',
+              single_max_count: 800,
+            },
+            { alias: 'Z3TSH', id: 26, label: '特殊号', price: 0.01, ratio: '3.629|16.334|98.000' },
+          ],
+          id: 103,
+          label: '中三',
+        },
+        {
+          label: '前三',
+          id: 121,
+          children: [
+            {
+              id: 58,
+              label: '直选复式',
+              alias: 'Q3ZX',
+              price: 2,
+              ratio: 980,
+            },
+            {
+              id: 581,
+              label: '直选单式',
+              alias: 'Q3ZX_MDS',
+              price: 2,
+              ratio: 980,
+            },
+            {
+              id: 61,
+              label: '前三组合',
+              alias: 'Q3Q3ZH',
+              price: 2,
+              ratio: '980.0|98.0|9.8',
+            },
+            {
+              id: 59,
+              label: '直选和值',
+              alias: 'Q3ZHXHZ',
+              price: 2,
+              ratio: 980,
+            },
+            {
+              id: 60,
+              label: '直选跨度',
+              alias: 'Q3ZXKD',
+              price: 2,
+              ratio: 980,
+            },
+            {
+              id: 62,
+              label: '组三复式',
+              alias: 'Q3Z3',
+              price: 2,
+              ratio: 326.666,
+            },
+            {
+              id: 621,
+              label: '组三单式',
+              alias: 'Q3Z3_DS',
+              price: 2,
+              ratio: 326.66,
+            },
+            {
+              id: 63,
+              label: '组六复式',
+              alias: 'Q3Z6',
+              price: 2,
+              ratio: 163.33,
+            },
+            {
+              id: 631,
+              label: '组六单式',
+              alias: 'Q3Z6_DS',
+              price: 2,
+              ratio: 163.33,
+            },
+            {
+              id: 632,
+              label: '混合组选',
+              alias: 'Q3HHZX_DS',
+              price: 2,
+              ratio: 163.33,
+            },
+            {
+              id: 64,
+              label: '组选和值',
+              alias: 'Q3ZUXHZ',
+              price: 2,
+              ratio: '326.666|163.333',
+            },
+            {
+              id: 65,
+              label: '组选包胆',
+              alias: 'Q3ZXBD',
+              price: 2,
+              ratio: '326.666|163.333',
+            },
+            {
+              id: 66,
+              label: '和值尾数',
+              alias: 'Q3HZWS',
+              price: 2,
+              ratio: 9.8,
+            },
+            {
+              id: 67,
+              label: '特殊号',
+              alias: 'Q3TSH',
+              price: 2,
+              ratio: '3.629|16.334|98.0',
+            },
+          ],
+        },
+        {
+          label: '前二',
+          id: 122,
+          children: [
+            {
+              id: 68,
+              label: '直选复式',
+              alias: 'Q2ZXFS',
+              price: 2,
+              ratio: 98,
+            },
+            {
+              id: 681,
+              label: '直选单式',
+              alias: 'Q2ZXFS_MDS',
+              price: 2,
+              ratio: 98,
+            },
+            {
+              id: 69,
+              label: '直选和值',
+              alias: 'Q2ZHXHZ',
+              price: 2,
+              ratio: 98,
+            },
+            {
+              id: 70,
+              label: '直选跨度',
+              alias: 'Q2ZXKD',
+              price: 2,
+              ratio: 98,
+            },
+            {
+              id: 71,
+              label: '组选复式',
+              alias: 'Q2ZX',
+              price: 2,
+              ratio: 49,
+            },
+            {
+              id: 711,
+              label: '组选单式',
+              alias: 'Q2ZX_DS',
+              price: 2,
+              ratio: 49,
+            },
+            {
+              id: 72,
+              label: '组选和值',
+              alias: 'Q2ZUXHZ',
+              price: 2,
+              ratio: 49,
+            },
+            {
+              id: 73,
+              label: '组选包胆',
+              alias: 'Q2ZXBD',
+              price: 2,
+              ratio: 49,
+            },
+          ],
+        },
+        {
+          label: '后二',
+          id: 128,
+          children: [
+            {
+              id: 110,
+              label: '直选复式',
+              alias: 'EXZX',
+              price: 2,
+              ratio: 98,
+            },
+            {
+              id: 1101,
+              label: '直选单式',
+              alias: 'EXZX_MDS',
+              price: 2,
+              ratio: 98,
+            },
+            {
+              id: 112,
+              label: '直选和值',
+              alias: 'H2ZHXHZ',
+              price: 2,
+              ratio: 98,
+            },
+            {
+              id: 171,
+              label: '直选跨度',
+              alias: 'H2ZXKD',
+              price: 2,
+              ratio: 98,
+            },
+            {
+              id: 14,
+              label: '组选复式',
+              alias: 'H2ZX',
+              price: 2,
+              ratio: 49,
+            },
+            {
+              id: 141,
+              label: '组选单式',
+              alias: 'H2ZX_DS',
+              price: 2,
+              ratio: 49,
+            },
+            {
+              id: 172,
+              label: '组选和值',
+              alias: 'H2ZUXHZ',
+              price: 2,
+              ratio: 49,
+            },
+            {
+              id: 173,
+              label: '组选包胆',
+              alias: 'H2ZXBD',
+              price: 2,
+              ratio: 49,
+            },
+          ],
+        },
+        {
+          label: '不定位',
+          id: 123,
+          children: [
+            {
+              id: 124,
+              label: '前三一码',
+              alias: 'BDWQ31M',
+              price: 2,
+              ratio: 3.616,
+            },
+            {
+              id: 125,
+              label: '前三二码',
+              alias: 'BDWQ32M',
+              price: 2,
+              ratio: 18.147,
+            },
+            {
+              id: 126,
+              label: '后三一码',
+              alias: 'BDWH31M',
+              price: 2,
+              ratio: 3.616,
+            },
+            {
+              id: 127,
+              label: '后三二码',
+              alias: 'BDWH32M',
+              price: 2,
+              ratio: 18.147,
+            },
+            {
+              id: 128,
+              label: '前四一码',
+              alias: 'BDWQ41M',
+              price: 2,
+              ratio: 2.849,
+            },
+            {
+              id: 129,
+              label: '前四二码',
+              alias: 'BDWQ42M',
+              price: 2,
+              ratio: 10.061,
+            },
+            {
+              id: 130,
+              label: '后四一码',
+              alias: 'BDWH41M',
+              price: 2,
+              ratio: 2.849,
+            },
+            {
+              id: 131,
+              label: '后四二码',
+              alias: 'BDWH42M',
+              price: 2,
+              ratio: 10.061,
+            },
+            {
+              id: 132,
+              label: '五星一码',
+              alias: 'BDWWX1M',
+              price: 2,
+              ratio: 2.392,
+            },
+            {
+              id: 133,
+              label: '五星二码',
+              alias: 'BDWWX2M',
+              price: 2,
+              ratio: 6.68,
+            },
+            {
+              id: 134,
+              label: '五星三码',
+              alias: 'BDWWX3M',
+              price: 2,
+              ratio: 22.528,
+            },
+          ],
+        },
+        {
+          label: '大小单双',
+          id: 124,
+          children: [
+            {
+              id: 78,
+              label: '前二',
+              alias: 'Q2DXDS',
+              price: 2,
+              ratio: 3.92,
+            },
+            {
+              id: 77,
+              label: '后二',
+              alias: 'H2DXDS',
+              price: 2,
+              ratio: 3.92,
+            },
+            {
+              id: 79,
+              label: '前三',
+              alias: 'Q3DXDS',
+              price: 2,
+              ratio: 7.84,
+            },
+            {
+              id: 80,
+              label: '后三',
+              alias: 'H3DXDS',
+              price: 2,
+              ratio: 7.84,
+            },
+          ],
+        },
+        {
+          label: '任选二',
+          id: 125,
+          children: [
+            {
+              id: 85,
+              label: '直选复式',
+              alias: 'RX2ZHX',
+              price: 2,
+              ratio: 98,
+            },
+            {
+              id: 86,
+              label: '直选和值',
+              alias: 'RX2ZHXHZ',
+              price: 2,
+              ratio: 98,
+            },
+            {
+              id: 87,
+              label: '组选复式',
+              alias: 'RX2ZUXFS',
+              price: 2,
+              ratio: 49,
+            },
+            {
+              id: 88,
+              label: '组选和值',
+              alias: 'RX2ZUXHZ',
+              price: 2,
+              ratio: 49,
+            },
+            { id: 70, label: '直选跨度', alias: 'RX2ZXKD', price: 0.01, ratio: '98.000' },
+            { id: 73, label: '组选包胆', alias: 'RX2ZXBD', price: 0.01, ratio: '49.000' },
+            {
+              id: 1010,
+              label: '直选单式',
+              alias: 'RX2ZXFS_MDS',
+              price: 0.01,
+              ratio: '99.000',
+            },
+            {
+              id: 1011,
+              label: '组选单式',
+              alias: 'RX2ZX_DS',
+              price: 0.01,
+              ratio: '49.000',
+            },
+          ],
+        },
+        {
+          label: '任选三',
+          id: 126,
+          children: [
+            {
+              id: 94,
+              label: '直选复式',
+              alias: 'RX3ZHX',
+              price: 2,
+              ratio: 980,
+            },
+            {
+              id: 95,
+              label: '直选和值',
+              alias: 'RX3ZHXHZ',
+              price: 2,
+              ratio: 980,
+            },
+            {
+              id: 96,
+              label: '组三复式',
+              alias: 'RX3ZU3FS',
+              price: 2,
+              ratio: 326.666,
+            },
+            {
+              id: 97,
+              label: '组六复式',
+              alias: 'RX3ZU6FS',
+              price: 2,
+              ratio: 163.333,
+            },
+            {
+              id: 98,
+              label: '组选和值',
+              alias: 'RX3ZUXHZ',
+              price: 2,
+              ratio: '326.666|163.333',
+            },
+            // 增加的
+            {
+              id: 1002,
+              label: '直选单式',
+              alias: 'RX3ZX_MDS',
+              price: 0.01,
+              ratio: '990.000',
+            },
+            { id: 56, label: '直选跨度', alias: 'RX3ZXKD', price: 0.01, ratio: '980.000' },
+            {
+              id: 1005,
+              label: '混合组选',
+              alias: 'RX3HHZX_DS',
+              price: 0.01,
+              ratio: '326.666|163.333',
+            },
+            { id: 51, label: '组选包胆', alias: 'RX3ZXBD', price: 0.01, ratio: '326.666|163.333' },
+            {
+              id: 1004,
+              label: '组六单式',
+              alias: 'RX3Z6_DS',
+              price: 0.01,
+              single_max_count: 800,
+              current_issue_max_count: 800,
+              ratio: '163.333',
+            },
+            {
+              id: 1003,
+              label: '组三单式',
+              alias: 'RX3Z3_DS',
+              price: 0.01,
+              single_max_count: 800,
+              current_issue_max_count: 800,
+              ratio: '326.666',
+            },
+          ],
+        },
+        {
+          label: '任选四',
+          id: 127,
+          children: [
+            {
+              id: 104,
+              label: '直选复式',
+              alias: 'RX4ZHX',
+              price: 2,
+              ratio: 9800,
+            },
+            {
+              id: 1041,
+              label: '直选单式',
+              alias: 'RX4ZX_MDS',
+              price: 0.01,
+              single_max_count: 6000,
+              current_issue_max_count: 8000,
+              ratio: '9900.000',
+            },
+            {
+              id: 105,
+              label: '组选24',
+              alias: 'RX4ZUX24',
+              price: 2,
+              ratio: 408.33,
+            },
+            {
+              id: 106,
+              label: '组选12',
+              alias: 'RX4ZUX12',
+              price: 2,
+              ratio: 816.666,
+            },
+            {
+              id: 107,
+              label: '组选6',
+              alias: 'RX4ZUX6',
+              price: 2,
+              ratio: 1633.33,
+            },
+            {
+              id: 108,
+              label: '组选4',
+              alias: 'RX4ZUX4',
+              price: 2,
+              ratio: 2450,
+            },
+          ],
+        },
+      ],
+    };
+  }
+  if (/(PK10|FT)$/.test(category)) {
+    if (tpl != null) {
+      return {
+        code: 0,
+        msg: '',
+        list: [
+          {
+            label: '双面盘',
+            id: 1270,
+            children: [
+              { id: 12700, label: '冠、亚和', alias: 'SMPGYH', price: 2, ratio: '2.227|1.782|1.782|2.227' },
+              { id: 12701, label: '冠军', alias: 'SMPD1M', price: 2, ratio: '1.98' },
+              { id: 12702, label: '亚军', alias: 'SMPD2M', price: 2, ratio: '1.98' },
+              { id: 12703, label: '季军', alias: 'SMPD3M', price: 2, ratio: '1.98' },
+              { id: 12704, label: '第四名', alias: 'SMPD4M', price: 2, ratio: '1.98' },
+              { id: 12705, label: '第五名', alias: 'SMPD5M', price: 2, ratio: '1.98' },
+              { id: 12706, label: '第六名', alias: 'SMPD6M', price: 2, ratio: '1.98' },
+              { id: 12707, label: '第七名', alias: 'SMPD7M', price: 2, ratio: '1.98' },
+              { id: 12708, label: '第八名', alias: 'SMPD8M', price: 2, ratio: '1.98' },
+              { id: 12709, label: '第九名', alias: 'SMPD9M', price: 2, ratio: '1.98' },
+              { id: 12710, label: '第十名', alias: 'SMPD10M', price: 2, ratio: '1.98' },
+            ],
+          },
+          {
+            label: '定位胆',
+            id: 1272,
+            children: [
+              { id: 12721, label: '冠军', alias: 'DWDD1M', price: 2, ratio: '9.9' },
+              { id: 12722, label: '亚军', alias: 'DWDD2M', price: 2, ratio: '9.9' },
+              { id: 12723, label: '季军', alias: 'DWDD3M', price: 2, ratio: '9.9' },
+              { id: 12724, label: '第四名', alias: 'DWDD4M', price: 2, ratio: '9.9' },
+              { id: 12725, label: '第五名', alias: 'DWDD5M', price: 2, ratio: '9.9' },
+              { id: 12726, label: '第六名', alias: 'DWDD6M', price: 2, ratio: '9.9' },
+              { id: 12727, label: '第七名', alias: 'DWDD7M', price: 2, ratio: '9.9' },
+              { id: 12728, label: '第八名', alias: 'DWDD8M', price: 2, ratio: '9.9' },
+              { id: 12729, label: '第九名', alias: 'DWDD9M', price: 2, ratio: '9.9' },
+              { id: 127210, label: '第十名', alias: 'DWDD10M', price: 2, ratio: '9.9' },
+            ],
+          },
+          {
+            label: '冠亚军',
+            id: 1273,
+            children: [
+              {
+                id: 12731,
+                label: '冠亚和',
+                alias: 'GYJGYH',
+                price: 2,
+                ratio:
+                  '44.55|44.55|22.275|22.275|14.85|14.85|11.137|11.137|11.137|8.91|11.137|11.137|14.85|14.85|22.275|22.275|44.55|44.55|2.227|1.782|1.782|2.227',
+              },
+            ],
+          },
+        ],
+      };
+    }
+
+    return {
+      code: '0',
+      msg: '',
+      list: [
+        { label: '前一', id: 159, children: [{ id: 302, label: '直选复式', alias: 'Q1ZX', price: 2, ratio: 9.8 }] },
+        { label: '定位胆', id: 160, children: [{ id: 303, label: '定位胆', alias: 'DWD', price: 2, ratio: 9.8 }] },
+        { label: '前二', id: 161, children: [{ id: 304, label: '直选复式', alias: 'Q2ZX', price: 2, ratio: 88.2 }] },
+        { label: '前三', id: 162, children: [{ id: 305, label: '直选复式', alias: 'Q3ZX', price: 2, ratio: 705.6 }] },
+      ],
+    };
+  }
+  if (/11X5$/.test(category)) {
+    if (tpl != null) {
+      return {
+        code: '0',
+        msg: '',
+        list: [
+          {
+            id: 1290,
+            label: '传统玩法',
+            children: [
+              {
+                id: 12901,
+                label: '第一球',
+                alias: 'KQD1Q',
+                price: 2,
+                ratio: '10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|1.984|1.984|1.984|1.984',
+              },
+              {
+                id: 12902,
+                label: '第二球',
+                alias: 'KQD2Q',
+                price: 2,
+                ratio: '10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|1.984|1.984|1.984|1.984',
+              },
+              {
+                id: 12903,
+                label: '第三球',
+                alias: 'KQD3Q',
+                price: 2,
+                ratio: '10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|1.984|1.984|1.984|1.984',
+              },
+              {
+                id: 12904,
+                label: '第四球',
+                alias: 'KQD4Q',
+                price: 2,
+                ratio: '10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|1.984|1.984|1.984|1.984',
+              },
+              {
+                id: 12905,
+                label: '第五球',
+                alias: 'KQD5Q',
+                price: 2,
+                ratio: '10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|10.836|1.984|1.984|1.984|1.984',
+              },
+              {
+                id: 12906,
+                label: '一中一',
+                alias: 'KQ1Z1',
+                price: 2,
+                ratio: '2.048|2.048|2.048|2.048|2.048|2.048|2.048|2.048|2.048|2.048|2.048',
+              },
+              {
+                id: 12907,
+                label: '总和',
+                alias: 'KQZH',
+                price: 2,
+                ratio: '1.984|1.984|1.884|1.964|1.964|1.964|1.984|1.984',
+              },
+            ],
+          },
+        ],
+      };
+    }
+    return {
+      code: '0',
+      msg: '',
+      list: [
+        {
+          label: '三码',
+          id: 129,
+          children: [
+            { id: 138, label: '前三组选复式', alias: 'SMQ3ZUX', price: 2, ratio: 162.525 },
+            { id: 141, label: '前三组选胆拖', alias: 'SMQ3ZUXDT', price: 2, ratio: 162.525 },
+            { id: 135, label: '前三直选复式', alias: 'SMQ3ZHX', price: 2, ratio: 975.15 },
+            { id: 136, label: '中三直选复式', alias: 'SMZ3ZHX', price: 2, ratio: 975.15 },
+            { id: 139, label: '中三组选复式', alias: 'SMZ3ZUX', price: 2, ratio: 162.525 },
+            { id: 142, label: '中三组选胆拖', alias: 'SMZ3ZUXDT', price: 2, ratio: 162.525 },
+            { id: 137, label: '后三直选复式', alias: 'SMH3ZHX', price: 2, ratio: 975.15 },
+            { id: 140, label: '后三组选复式', alias: 'SMH3ZUX', price: 2, ratio: 162.525 },
+            { id: 143, label: '后三组选胆拖', alias: 'SMH3ZUXDT', price: 2, ratio: 162.525 },
+          ],
+        },
+        {
+          label: '二码',
+          id: 130,
+          children: [
+            { id: 144, label: '前二直选复式', alias: 'EMQ2ZHX', price: 2, ratio: 108.35 },
+            { id: 146, label: '前二组选复式', alias: 'EMQ2ZUX', price: 2, ratio: 54.175 },
+            { id: 148, label: '前二组选胆拖', alias: 'EMQ2ZUXDT', price: 2, ratio: 54.175 },
+            { id: 145, label: '后二直选复式', alias: 'EMH2ZHX', price: 2, ratio: 108.35 },
+            { id: 147, label: '后二组选复式', alias: 'EMH2ZUX', price: 2, ratio: 54.175 },
+            { id: 149, label: '后二组选胆拖', alias: 'EMH2ZUXDT', price: 2, ratio: 54.175 },
+          ],
+        },
+        {
+          label: '不定位',
+          id: 131,
+          children: [
+            { id: 150, label: '前三位', alias: 'BDWQ3W', price: 2, ratio: 3.611 },
+            { id: 151, label: '中三位', alias: 'BDWZ3W', price: 2, ratio: 3.611 },
+            { id: 152, label: '后三位', alias: 'BDWH3W', price: 2, ratio: 3.611 },
+          ],
+        },
+        { label: '定位胆', id: 132, children: [{ id: 153, label: '定位胆', alias: 'DWD', price: 2, ratio: 10.835 }] },
+        {
+          label: '任选复式',
+          id: 133,
+          children: [
+            { id: 156, label: '任选一中一', alias: 'RX1Z1', price: 2, ratio: 2.167 },
+            { id: 163, label: '任选二中二', alias: 'RX2Z2', price: 2, ratio: 5.418 },
+            { id: 157, label: '任选三中三', alias: 'RX3Z3', price: 2, ratio: 16.253 },
+            { id: 158, label: '任选四中四', alias: 'RX4Z4', price: 2, ratio: 65.01 },
+            { id: 159, label: '任选五中五', alias: 'RX5Z5', price: 2, ratio: 455.07 },
+            { id: 160, label: '任选六中五', alias: 'RX6Z5', price: 2, ratio: 75.845 },
+            { id: 161, label: '任选七中五', alias: 'RX7Z5', price: 2, ratio: 21.67 },
+            { id: 162, label: '任选八中五', alias: 'RX8Z5', price: 2, ratio: 8.126 },
+          ],
+        },
+        {
+          label: '任选胆拖',
+          id: 134,
+          children: [
+            { id: 164, label: '任选二中二', alias: 'RXDT2Z2', price: 2, ratio: 5.418 },
+            { id: 165, label: '任选三中三', alias: 'RXDT3Z3', price: 2, ratio: 16.253 },
+            { id: 166, label: '任选四中四', alias: 'RXDT4Z4', price: 2, ratio: 65.01 },
+            { id: 167, label: '任选五中五', alias: 'RXDT5Z5', price: 2, ratio: 455.07 },
+            { id: 168, label: '任选六中五', alias: 'RXDT6Z5', price: 2, ratio: 75.845 },
+            { id: 169, label: '任选七中五', alias: 'RXDT7Z5', price: 2, ratio: 21.67 },
+            { id: 170, label: '任选八中五', alias: 'RXDT8Z5', price: 2, ratio: 8.126 },
+          ],
+        },
+      ],
+    };
+  }
+  if (/K3$/.test(category)) {
+    return {
+      categoryLabel: '极速快三',
+      issue: '201807200586',
+      result: '2,5,6',
+      list: [
+        {
+          label: '和值',
+          id: 249,
+          children: [
+            {
+              id: 482,
+              label: '和值',
+              alias: 'HZHZ',
+              price: 0.01,
+              ratio: '1.960|1.960|1.960|1.960|191.688|63.859|31.985|19.141|12.834|9.120|7.674|7.120|7.120|7.674|9.120|12.834|19.141|31.985|63.859|191.688',
+            },
+          ],
+        },
+        {
+          label: '三同号',
+          id: 250,
+          children: [
+            { id: 483, label: '通选', alias: 'TH3TX', price: 0.01, ratio: '31.363' },
+            { id: 484, label: '单选', alias: 'TH3DX', price: 0.01, ratio: '188.179' },
+          ],
+        },
+        {
+          label: '三不同号',
+          id: 251,
+          children: [
+            { id: 485, label: '标准', alias: 'BTH3BZ', price: 0.01, ratio: '31.363' },
+            { id: 486, label: '胆拖', alias: 'BTH3DT', price: 0.01, ratio: '31.363' },
+          ],
+        },
+        {
+          label: '三连号',
+          id: 252,
+          children: [{ id: 487, label: '通选', alias: 'LH3TX', price: 0.01, ratio: '7.841' }],
+        },
+        {
+          label: '二同号',
+          id: 253,
+          children: [
+            { id: 488, label: '复选', alias: 'TH2FX', price: 0.01, ratio: '11.761' },
+            { id: 489, label: '单选', alias: 'TH2DX', price: 0.01, ratio: '62.726' },
+          ],
+        },
+        {
+          label: '二不同号',
+          id: 254,
+          children: [
+            { id: 490, label: '标准', alias: 'BTH2BZ', price: 0.01, ratio: '6.273' },
+            { id: 491, label: '胆拖', alias: 'BTH2DT', price: 0.01, ratio: '6.273' },
+          ],
+        },
+      ],
+      code: '0',
+      msg: '',
+    };
+  }
+  if (/28$/.test(category)) {
+    return {
+      code: '0',
+      msg: '',
+      list: [
+        {
+          label: '混合',
+          id: 179,
+          children: [
+            {
+              id: 356,
+              label: '混合',
+              alias: 'HHHH',
+              price: 20,
+              ratio: '1.98|1.98|1.98|1.98|3.8|3.6|3.6|3.8|10.0|10.0',
+            },
+          ],
+        },
+        {
+          label: '特码',
+          id: 180,
+          children: [
+            {
+              id: 357,
+              label: '特码',
+              alias: 'TMTM',
+              price: 50,
+              ratio:
+                '16.0|15.0|14.0|13.0|12.0|11.0|10.0|10.0|10.0|10.0|10.0|10.0|10.0|10.0|10.0|10.0|10.0|10.0|10.0|10.0|10.0|10.0|11.0|12.0|13.0|14.0|15.0|16.0',
+            },
+            {
+              id: 358,
+              label: '特码包三',
+              alias: 'TMTMB3',
+              price: 8,
+              ratio: 3.5,
+            },
+          ],
+        },
+        {
+          label: '波色',
+          id: 181,
+          children: [
+            {
+              id: 359,
+              label: '波色',
+              alias: 'BSBS',
+              price: 2,
+              ratio: '3.0|3.0|3.0',
+            },
+          ],
+        },
+        {
+          label: '豹子',
+          id: 182,
+          children: [
+            {
+              id: 360,
+              label: '豹子',
+              alias: 'BZBZ',
+              price: 2,
+              ratio: 50,
+            },
+          ],
+        },
+      ],
+    };
+  }
+  if (/HKSIX/.test(category)) {
+    return {
+      list: [
+        {
+          label: '特码',
+          id: 163,
+          children: [
+            {
+              id: 306,
+              label: '选码',
+              alias: 'TMBXM',
+              price: 2,
+              ratio:
+                '48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8|48.8',
+            },
+            {
+              id: 307,
+              label: '两面',
+              alias: 'TMBLM',
+              price: 2,
+              ratio: '1.98|1.98|1.98|1.98|1.98|1.98|3.76|3.76|1.98|1.98|3.76|3.76|1.98|1.98|1.98|1.98|1.98|1.98|1.98|1.98',
+            },
+          ],
+        },
+        {
+          label: '色波',
+          id: 164,
+          children: [
+            {
+              id: 308,
+              label: '色波',
+              alias: 'SBSB',
+              price: 2,
+              ratio: '2.78|2.86|2.86',
+            },
+            {
+              id: 309,
+              label: '半波',
+              alias: 'SBBB',
+              price: 2,
+              ratio: '5.58|5.06|6.5|4.5|5.58|5.58|5.0|6.58|5.58|6.45|5.58|6.52',
+            },
+            {
+              id: 310,
+              label: '半半波',
+              alias: 'SBBBB',
+              price: 2,
+              ratio: '14.8|11.12|8.92|8.92|8.92|11.12|14.82|11.12|11.12|11.12|11.12|14.82',
+            },
+          ],
+        },
+        {
+          label: '特肖',
+          id: 165,
+          children: [
+            {
+              id: 311,
+              label: '生肖',
+              alias: 'TXSX',
+              price: 2,
+              ratio: '11.6|11.6|11.6|11.6|11.6|11.6|11.6|11.6|11.6|9.5|11.6|11.6',
+            },
+          ],
+        },
+        {
+          label: '正码',
+          id: 166,
+          children: [
+            {
+              id: 312,
+              label: '选码',
+              alias: 'ZMXM',
+              price: 2,
+              ratio:
+                '8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02|8.02',
+            },
+            {
+              id: 313,
+              label: '其他',
+              alias: 'ZMQT',
+              price: 2,
+              ratio: '1.98|1.98|1.98|1.98',
+            },
+          ],
+        },
+        {
+          label: '五行',
+          id: 167,
+          children: [
+            {
+              id: 314,
+              label: '种类',
+              alias: 'WXZL',
+              price: 2,
+              ratio: '4.7|4.7|4.7|4.7|4.8',
+            },
+          ],
+        },
+        {
+          label: '合肖',
+          id: 168,
+          children: [
+            {
+              id: 315,
+              label: '合肖',
+              alias: 'HXHX',
+              price: 2,
+              ratio: '5.8|3.8|2.8|2.3|1.95|1.65|1.45|1.25|1.15|1.05',
+            },
+          ],
+        },
+        {
+          label: '头尾数',
+          id: 169,
+          children: [
+            {
+              id: 316,
+              label: '头尾数',
+              alias: 'TWSTWS',
+              price: 2,
+              ratio: '5.0|4.36|4.36|4.36|4.36|9.25|9.25|9.25|9.25|9.25|9.25|9.25|9.25|9.25|11.16',
+            },
+          ],
+        },
+        {
+          label: '正码特',
+          id: 170,
+          children: [
+            {
+              id: 317,
+              label: '正一特',
+              alias: 'ZMTZ1T',
+              price: 2,
+              ratio:
+                '47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0',
+            },
+            {
+              id: 318,
+              label: '正一特大小',
+              alias: 'ZMTZ1TDX',
+              price: 2,
+              ratio: '1.98|1.98|1.98|1.98|1.98|1.98|2.78|2.86|2.86',
+            },
+            {
+              id: 319,
+              label: '正二特',
+              alias: 'ZMTZ2T',
+              price: 2,
+              ratio:
+                '47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0',
+            },
+            {
+              id: 320,
+              label: '正二特大小',
+              alias: 'ZMTZ2TDX',
+              price: 2,
+              ratio: '1.98|1.98|1.98|1.98|1.98|1.98|2.78|2.86|2.86',
+            },
+            {
+              id: 321,
+              label: '正三特',
+              alias: 'ZMTZ3T',
+              price: 2,
+              ratio:
+                '47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0',
+            },
+            {
+              id: 322,
+              label: '正三特大小',
+              alias: 'ZMTZ3TDX',
+              price: 2,
+              ratio: '1.98|1.98|1.98|1.98|1.98|1.98|2.78|2.86|2.86',
+            },
+            {
+              id: 323,
+              label: '正四特',
+              alias: 'ZMTZ4T',
+              price: 2,
+              ratio:
+                '47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0',
+            },
+            {
+              id: 324,
+              label: '正四特大小',
+              alias: 'ZMTZ4TDX',
+              price: 2,
+              ratio: '1.98|1.98|1.98|1.98|1.98|1.98|2.78|2.86|2.86',
+            },
+            {
+              id: 325,
+              label: '正五特',
+              alias: 'ZMTZ5T',
+              price: 2,
+              ratio:
+                '47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0',
+            },
+            {
+              id: 326,
+              label: '正五特大小',
+              alias: 'ZMTZ5TDX',
+              price: 2,
+              ratio: '1.98|1.98|1.98|1.98|1.98|1.98|2.78|2.86|2.86',
+            },
+            {
+              id: 327,
+              label: '正六特',
+              alias: 'ZMTZ6T',
+              price: 2,
+              ratio:
+                '47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0|47.0',
+            },
+            {
+              id: 328,
+              label: '正六特大小',
+              alias: 'ZMTZ6TDX',
+              price: 2,
+              ratio: '1.98|1.98|1.98|1.98|1.98|1.98|2.78|2.86|2.86',
+            },
+          ],
+        },
+        {
+          label: '正码1-6',
+          id: 171,
+          children: [
+            {
+              id: 330,
+              label: '正码一',
+              alias: 'ZM16ZM1',
+              price: 2,
+              ratio: '1.95|1.95|1.95|1.95|1.95|1.95|1.95|1.95|2.75|2.8|2.8|1.95|1.95',
+            },
+            {
+              id: 331,
+              label: '正码二',
+              alias: 'ZM16ZM2',
+              price: 2,
+              ratio: '1.95|1.95|1.95|1.95|1.95|1.95|1.95|1.95|2.78|2.86|2.86|1.95|1.95',
+            },
+            {
+              id: 332,
+              label: '正码三',
+              alias: 'ZM16ZM3',
+              price: 2,
+              ratio: '1.95|1.95|1.95|1.95|1.95|1.95|1.95|1.95|2.78|2.86|2.86|1.95|1.95',
+            },
+            {
+              id: 333,
+              label: '正码四',
+              alias: 'ZM16ZM4',
+              price: 2,
+              ratio: '1.95|1.95|1.95|1.95|1.95|1.95|1.95|1.95|2.78|2.86|2.86|1.95|1.95',
+            },
+            {
+              id: 334,
+              label: '正码五',
+              alias: 'ZM16ZM5',
+              price: 2,
+              ratio: '1.95|1.95|1.95|1.95|1.95|1.95|1.95|1.95|2.78|2.86|2.86|1.95|1.95',
+            },
+            {
+              id: 335,
+              label: '正码六',
+              alias: 'ZM16ZM6',
+              price: 2,
+              ratio: '1.95|1.95|1.95|1.95|1.95|1.95|1.95|1.95|2.78|2.86|2.86|1.95|1.95',
+            },
+          ],
+        },
+        {
+          label: '平特一肖尾数',
+          id: 172,
+          children: [
+            {
+              id: 336,
+              label: '一肖',
+              alias: 'PT1XWS1X',
+              price: 2,
+              ratio: '2.1|2.1|2.1|2.1|2.1|2.1|2.1|2.1|2.1|1.8|2.1|2.1',
+            },
+            {
+              id: 337,
+              label: '尾数',
+              alias: 'PT1XWSWS',
+              price: 2,
+              ratio: '2.1|1.8|1.8|1.8|1.8|1.8|1.8|1.8|1.8|1.8',
+            },
+          ],
+        },
+        {
+          label: '正肖',
+          id: 173,
+          children: [
+            {
+              id: 338,
+              label: '生肖',
+              alias: 'ZXSX',
+              price: 2,
+              ratio: '1.92|1.92|1.92|1.92|1.92|1.92|1.92|1.92|1.92|1.75|1.92|1.92',
+            },
+          ],
+        },
+        {
+          label: '7色波',
+          id: 174,
+          children: [
+            {
+              id: 339,
+              label: '种类',
+              alias: 'QSBZL',
+              price: 2,
+              ratio: '2.8|2.8|2.8|23.0',
+            },
+          ],
+        },
+        {
+          label: '总肖',
+          id: 175,
+          children: [
+            {
+              id: 340,
+              label: '种类',
+              alias: 'ZXZL',
+              price: 2,
+              ratio: '14.0|14.0|14.0|3.06|1.95|5.3|1.95|1.85',
+            },
+          ],
+        },
+        {
+          label: '自选不中',
+          id: 176,
+          children: [
+            {
+              id: 341,
+              label: '自选不中',
+              alias: 'ZXBZ',
+              price: 2,
+              ratio: '2.5|3.0|3.6|4.3|5.2|6.35',
+            },
+          ],
+        },
+        {
+          label: '连肖连尾',
+          id: 177,
+          children: [
+            {
+              id: 342,
+              label: '二连肖',
+              alias: 'LXLW2LX',
+              price: 2,
+              ratio: '4.12|4.12|4.12|4.12|4.12|4.12|4.12|4.12|4.12|3.32|4.12|4.12',
+            },
+            {
+              id: 343,
+              label: '三连肖',
+              alias: 'LXLW3LX',
+              price: 2,
+              ratio: '11.12|11.12|11.12|11.12|11.12|11.12|11.12|11.12|11.12|9.02|11.12|11.12',
+            },
+            {
+              id: 344,
+              label: '四连肖',
+              alias: 'LXLW4LX',
+              price: 2,
+              ratio: '32.0|32.0|32.0|32.0|32.0|32.0|32.0|32.0|32.0|28.0|32.0|32.0',
+            },
+            {
+              id: 345,
+              label: '五连肖',
+              alias: 'LXLW5LX',
+              price: 2,
+              ratio: '98.0|98.0|98.0|98.0|98.0|98.0|98.0|98.0|98.0|87.0|98.0|98.0',
+            },
+            {
+              id: 346,
+              label: '二连尾',
+              alias: 'LXLW2LW',
+              price: 2,
+              ratio: '3.18|3.18|3.18|3.18|3.18|3.18|3.18|3.18|3.18|3.18',
+            },
+            {
+              id: 347,
+              label: '三连尾',
+              alias: 'LXLW3LW',
+              price: 2,
+              ratio: '7.08|7.08|7.08|7.08|7.08|7.08|7.08|7.08|7.08|7.08',
+            },
+            {
+              id: 348,
+              label: '四连尾',
+              alias: 'LXLW4LW',
+              price: 2,
+              ratio: '15.8|15.8|15.8|15.8|15.8|15.8|15.8|15.8|15.8|15.8',
+            },
+            {
+              id: 349,
+              label: '五连尾',
+              alias: 'LXLW5LW',
+              price: 2,
+              ratio: '45.0|40.0|40.0|40.0|40.0|40.0|40.0|40.0|40.0|40.0',
+            },
+          ],
+        },
+        {
+          id: 515,
+          label: '连码',
+          children: [
+            {
+              id: 51501,
+              label: '三中二',
+              alias: 'LM3ZE7',
+              price: 2.0,
+              ratio: '23|100',
+            },
+            {
+              id: 51502,
+              label: '三全中',
+              alias: 'LM3QZ10',
+              price: 2.0,
+              ratio: 650,
+            },
+            {
+              id: 51503,
+              label: '二全中',
+              alias: 'LM2QZ7',
+              price: 2.0,
+              ratio: '70',
+            },
+            {
+              id: 51504,
+              label: '二中特',
+              alias: 'LM2ZT7',
+              price: 2.0,
+              ratio: '33|52',
+            },
+            {
+              id: 51505,
+              label: '特串',
+              alias: 'LM2TC7',
+              price: 2.0,
+              ratio: '158',
+            },
+            {
+              id: 51506,
+              label: '四全中',
+              alias: 'LM4QZ10',
+              price: 2.0,
+              ratio: '10000',
+            },
+          ],
+        },
+      ],
+      code: '0',
+      msg: '',
+    };
+  }
+};
